@@ -35,7 +35,7 @@ collections:
         name: "index"
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "landing"}
-          - {label: "Resumen de perfil", name: resumeProfile, widget: object, fields: [{label: "Nombre a mostrar", name: name, widget: string}, {label: "Descripción", name: description, widget: "markdown"}, {label: "", name: networks, fields: [{label: "Wathsapp", name: wathsapp, widget: string}, {label: "Url de instagram", name: instagram, widget: string}, {label: "Url de youtube", name: youtube, widget: string}, {label: "Url de facebook", name: facebook, widget: string}, {label: "Imagen de perfil", name: image, widget: image}]}]}
+          - {label: "Resumen de perfil", name: resumeProfile, widget: object, fields: [{label: "Nombre a mostrar", name: name, widget: string}, {label: "Descripción", name: description, widget: "markdown"}, {label: "", name: networks, widget: object, fields: [{label: "Wathsapp", name: wathsapp, widget: string}, {label: "Url de instagram", name: instagram, widget: string}, {label: "Url de youtube", name: youtube, widget: string}, {label: "Url de facebook", name: facebook, widget: string}]}, {label: "Imagen de perfil", name: image, widget: image}]}
           # - {label: Image, name: image, widget: image}
           # - {label: Heading, name: heading, widget: string}
           # - {label: Subheading, name: subheading, widget: string}
