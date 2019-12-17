@@ -28,7 +28,8 @@ const Landing = ({
         </section>
 
         {/* Resume Info doctor */}
-        <Presentation 
+        <Presentation
+        ion 
           drName={profile.name}
           profilePicture={{
             image: profile.image.childImageSharp.fluid.src,

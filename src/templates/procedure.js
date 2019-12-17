@@ -1,11 +1,13 @@
 import React from 'react'
 import TemplateWrapper2 from '../components/Layout2'
 import ItemCard from '../components/ItemCard'
+import { graphql } from 'gatsby';
 
 const Procedure = ({
     title,
     location,
-    items
+    items,
+    data
 }) => {
     return (
         <TemplateWrapper2 location={location}>
@@ -79,4 +81,24 @@ Procedure.defaultProps = {
         resume: "La liposucción de papada es una cirugía que permite mejorar los ángulos de la cara extrayendo la grasa localizada en la parte inferior de la mandíbula y cuello, logrando un perfilamiento facial estilizado y armonioso."
     }]
 }
+
+export const procedureQuery = graphql`
+  query ProcedurePostByID {
+    allMarkdownRemark(
+        sort: { order: DESC, fields: [frontmatter___date] }
+        filter: { frontmatter: { templateKey: { eq: "procedure" } } }
+      ) {
+        edges {
+          node {
+            fields {
+              slug
+            }
+            frontmatter {
+              title
+            }
+          }
+        }
+      }
+  }
+`
 export default Procedure;

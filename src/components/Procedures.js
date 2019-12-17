@@ -5,11 +5,13 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import ButtonMore from './ButtonMore';
+import { Link, graphql, StaticQuery } from 'gatsby'
 
 const Procedures = ({
     className,
     title,
-    procedures
+    procedures, 
+    data
 }) => {
     const [selected, setSelected] = useState(null);
 
@@ -20,6 +22,8 @@ const Procedures = ({
                 setSelected(obj)
         }
     }, []);
+
+    console.log('data de proceduresssssss:', data);
 
     return (
         <div
@@ -156,7 +160,7 @@ const Procedures = ({
     )
 }
 
-Procedures.defaultProps = {
+const procedures = {
     title: "PROCEDIMIENTOS",
     procedures: [{
         image: "/img/proc1.png",
@@ -259,4 +263,27 @@ Procedures.defaultProps = {
     }]
 }
 
-export default Procedures;
+export default () => (
+    <StaticQuery
+      query={graphql`
+        query ProceduresQuery {
+            allMarkdownRemark(
+                sort: { order: DESC, fields: [frontmatter___date] }
+                filter: { frontmatter: { templateKey: { eq: "procedure-data" } } }
+              ) {
+                edges {
+                    node {
+                        fields {
+                            slug
+                        }
+                        frontmatter {
+                            title
+                        }
+                    }
+                }
+            }
+        }
+      `}
+      render={(data, count) => <Procedures data={data} count={count} title={procedures.title} procedures={procedures.procedures} />}
+    />
+  )
