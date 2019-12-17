@@ -269,7 +269,7 @@ export default () => (
         query ProceduresQuery {
             allMarkdownRemark(
                 sort: { order: DESC, fields: [frontmatter___date] }
-                filter: { frontmatter: { templateKey: { eq: "procedure-data" } } }
+                filter: { frontmatter: { templateKey: { eq: "procedure-post" } } }
               ) {
                 edges {
                     node {

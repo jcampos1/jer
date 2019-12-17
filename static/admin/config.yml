@@ -29,11 +29,11 @@ collections:
   
   - name: "procedure"
     label: "Procedimiento"
-    folder: "src/pages/procedure-data"
+    folder: "src/pages/procedure"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "procedure"}
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "procedure-post"}
       - {label: "Título", name: title, widget: string}
       - {label: "Imagen thumbnail", name: "thumbnail", widget: "object", fields: [{label: "Imagen", name: image, widget: image}, {label: "Texto alternativo", name: alt, widget: string}]}
       - {label: "Imagen de portada", name: "cover", widget: "object", fields: [{label: "Imagen", name: image, widget: image}, {label: "Texto alternativo", name: alt, widget: string}]}

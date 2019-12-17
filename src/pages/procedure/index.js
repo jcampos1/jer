@@ -1,6 +1,6 @@
 import React from 'react'
-import TemplateWrapper2 from '../components/Layout2'
-import ItemCard from '../components/ItemCard'
+import TemplateWrapper2 from '../../components/Layout2'
+import ItemCard from '../../components/ItemCard'
 import { graphql } from 'gatsby';
 
 const Procedure = ({
@@ -82,23 +82,23 @@ Procedure.defaultProps = {
     }]
 }
 
-export const procedureQuery = graphql`
-  query ProcedurePostByID {
-    allMarkdownRemark(
-        sort: { order: DESC, fields: [frontmatter___date] }
-        filter: { frontmatter: { templateKey: { eq: "procedure" } } }
-      ) {
-        edges {
-          node {
-            fields {
-              slug
-            }
-            frontmatter {
-              title
-            }
-          }
-        }
-      }
-  }
-`
+// export const procedureQuery = graphql`
+//   query ProcedurePostByID {
+//     allMarkdownRemark(
+//         sort: { order: DESC, fields: [frontmatter___date] }
+//         filter: { frontmatter: { templateKey: { eq: "procedure" } } }
+//       ) {
+//         edges {
+//           node {
+//             fields {
+//               slug
+//             }
+//             frontmatter {
+//               title
+//             }
+//           }
+//         }
+//       }
+//   }
+// `
 export default Procedure;
