@@ -1,4 +1,4 @@
 ---
 templateKey: 'landing'
-path: /landing
+path: /
 ---

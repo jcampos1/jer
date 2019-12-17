@@ -2,16 +2,13 @@ import React from 'react'
 import Feature2 from './Feature2'
 import SocialNetworks from './SocialNetworks';
 import ButtonMore from './ButtonMore';
+import showdown from 'showdown'
 
-const Content = () => (
-    <div>
-        <p>Soy cirujana plástica reconstructiva y estética, egresada de la Universidad Militar Nueva Granada de Bogotá y miembro de la Sociedad Colombiana de Cirugía Plástica. Estudié 6 años medicina general y un año de rural.</p>
-        <p>Tengo 2 especializaciones, una en microcirugía en el hospital Chang Gung memorial de Taiwán durante 1 año, y otra en cirugía plástica reconstructiva y estética durante 4 años.</p>
-    </div>
-)
+const converter = new showdown.Converter()
 
 const Presentation = ({
     drName,
+    description,
     networks,
     profilePicture
 }) => {
@@ -33,14 +30,16 @@ const Presentation = ({
                     </div>
                     <div className="d-flex justify-content-between align-items-center">
                         <div className="w-50 text-justify text-muted px-3 px-md-0 d-none d-md-block">
-                            <Content />
+                            <div
+                                dangerouslySetInnerHTML={{ __html: converter.makeHtml(description) }} />
                             <SocialNetworks networks={networks} />
                             <div className="mt-3">
                                 <ButtonMore to="/profile" />
                             </div>
                         </div>
                         <div className="w-100 text-justify text-muted px-3 px-md-0 d-block d-md-none">
-                            <Content />
+                            <div
+                                dangerouslySetInnerHTML={{ __html: converter.makeHtml(description) }} />
                             <SocialNetworks networks={networks} />
                             <div className="d-flex justify-content-center mt-3">
                                 <ButtonMore to="/profile" />

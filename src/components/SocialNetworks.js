@@ -26,15 +26,20 @@ const SocialNetworks = ({
     networks,
     isSimple
 }) => {
+    const _networks = networksImages.map(n => ({
+        ...n,
+        image: isSimple ? n.image : n.imageWhite,
+        url: networks[n.name]
+    }))
 
-    const _networks = networks.map(n => {
-        const image = networksImages.find(_n => _n.name === n.name);
-        return {
-            ...n,
-            image: isSimple ? image.image : image.imageWhite,
-            alt: image.alt
-        }
-    });
+    // const _networks = networks.map(n => {
+    //     const image = networksImages.find(_n => _n.name === n.name);
+    //     return {
+    //         ...n,
+    //         image: isSimple ? image.image : image.imageWhite,
+    //         alt: image.alt
+    //     }
+    // });
 
     console.log('_networks :', _networks);
 
