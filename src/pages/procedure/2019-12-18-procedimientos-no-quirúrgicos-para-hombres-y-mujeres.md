@@ -1,5 +1,5 @@
 ---
-templateKey: procedure-post
+templateKey: procedure
 title: PROCEDIMIENTOS NO QUIRÚRGICOS PARA HOMBRES Y MUJERES
 thumbnail:
   alt: vbcbc
