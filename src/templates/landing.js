@@ -4,10 +4,10 @@ import { Link, graphql } from 'gatsby'
 import TemplateWrapper2 from '../components/Layout2'
 import Feature2 from '../components/Feature2'
 import Presentation from '../components/Presentation'
-import Procedures from '../components/Procedures'
 import Comments from '../components/Comments'
 import Products from '../components/Products'
 import BlogSection from '../components/BlogSection';
+import Procedures from '../pages/procedure';
 
 const Landing = ({
   location,
