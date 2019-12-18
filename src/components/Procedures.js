@@ -268,7 +268,6 @@ export default () => (
       query={graphql`
         query ProceduresQuery {
             allMarkdownRemark(
-                sort: { order: DESC, fields: [frontmatter___date] }
                 filter: { frontmatter: { templateKey: { eq: "procedure-post" } } }
               ) {
                 edges {
