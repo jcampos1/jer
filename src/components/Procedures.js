@@ -268,7 +268,7 @@ export default () => (
       query={graphql`
         query ProceduresQuery {
             allMarkdownRemark(
-                filter: { frontmatter: { templateKey: { eq: "procedure" } } }
+                filter: { frontmatter: { templateKey: { eq: "procedure-post" } } }
               ) {
                 edges {
                     node {
