@@ -24,7 +24,7 @@ const Comments = ({
                                 <div
                                     key={`test${index}`} 
                                     className="col-md-6 col-lg-4 mb-3 mb-lg-0">
-                                    <div className="card py-4 bg-white">
+                                    <div className="card py-4 bg-white h-100">
                                         <div
                                             style={{
                                                 width: "200px", height: "200px",
