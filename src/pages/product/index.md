@@ -1,4 +1,0 @@
----
-templateKey: 'product'
-path: /product
----

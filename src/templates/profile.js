@@ -8,9 +8,15 @@ import ButtonMore from '../components/ButtonMore';
 
 const Profile = ({
     drName,
-    networks,
-    location
+    // networks,
+    location,
+    data
 }) => {
+    const { alt, altMobile, networks } =  data.markdownRemark.frontmatter;
+    const image = data.markdownRemark.frontmatter.image.childImageSharp.fluid.src;
+    const imageMobile = data.markdownRemark.frontmatter.imageMobile.childImageSharp.fluid.src;
+
+    console.log('data :', data);
   return (
     <TemplateWrapper2 location={location}>
         <section
@@ -19,13 +25,13 @@ const Profile = ({
             <img 
                 style={{objectFit: "cover", height: "fit-content"}}
                 className="img-fluid jumbo__cover w-100 position-relative d-none d-md-block"
-                src="/img/cover-profile.png"
-                alt="cover" />
+                src={image}
+                alt={alt} />
             <img 
                 style={{objectFit: "cover"}}
                 className="img-fluid jumbo__cover w-100 position-relative d-md-none"
-                src="/img/cover-profile-mobile.png"
-                alt="cover" />
+                src={imageMobile}
+                alt={altMobile} />
             <div
                 className="profile__content">
                 <Feature2 
@@ -61,31 +67,63 @@ const Profile = ({
 
 Profile.defaultProps = {
     drName: "Dra CAROLINA CARVAJAL",
-    networks: [{
-        image: "/img/wathsapp.svg",
-        name: "wathsapp",
-        alt: "wathsapp web",
-        url: "/"
-    },{
-        image: "/img/instagram.svg",
-        name: "instagram",
-        alt: "instagram",
-        url: "/"
-    },{
-        image: "/img/youtube.svg",
-        name: "youtube",
-        alt: "youtube web",
-        url: "/"
-    },{
-        image: "/img/facebook.svg",
-        name: "facebook",
-        alt: "facebook web",
-        url: "/"
-    }],
-    profilePicture: {
-        image: "/img/carolina.png",
-        alt: "perfil de carolina"
-    }
+    // networks: [{
+    //     image: "/img/wathsapp.svg",
+    //     name: "wathsapp",
+    //     alt: "wathsapp web",
+    //     url: "/"
+    // },{
+    //     image: "/img/instagram.svg",
+    //     name: "instagram",
+    //     alt: "instagram",
+    //     url: "/"
+    // },{
+    //     image: "/img/youtube.svg",
+    //     name: "youtube",
+    //     alt: "youtube web",
+    //     url: "/"
+    // },{
+    //     image: "/img/facebook.svg",
+    //     name: "facebook",
+    //     alt: "facebook web",
+    //     url: "/"
+    // }],
+    // profilePicture: {
+    //     image: "/img/carolina.png",
+    //     alt: "perfil de carolina"
+    // }
 }
 
 export default Profile
+
+export const profilePageQuery = graphql`
+  query ProfilePage($id: String!) {
+    markdownRemark(id: { eq: $id }) {
+      frontmatter {
+        name
+        image {
+            childImageSharp {
+              fluid(maxWidth: 1920) {
+                ...GatsbyImageSharpFluid
+              }
+            } 
+          }
+          alt
+        imageMobile {
+            childImageSharp {
+                fluid(maxWidth: 375) {
+                ...GatsbyImageSharpFluid
+                }
+            } 
+        }
+        altMobile
+        networks { 
+            wathsapp
+            instagram
+            youtube
+            facebook
+          }
+      }
+    }
+  }
+`

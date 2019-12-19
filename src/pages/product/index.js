@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Feature2 from './Feature2';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { Link } from 'gatsby';
+import Feature2 from '../../components/Feature2';
+import { graphql, StaticQuery } from 'gatsby';
 
 const Item = ({
     name,
@@ -54,10 +55,52 @@ const MAX_PER_SLIDE = 4;
 
 const Products = ({
     title,
-    items
+    data
+    // items
 }) => {
     const [productsSet, setProductsSet] = useState([]);
 
+    const items = [{
+        image: "/img/icon-fajas.svg",
+        alt: "testimonial 1",
+        name: "Fajas",
+        url: "/",
+    },{
+        image: "/img/icon-brasier-band.svg",
+        alt: "testimonial 1",
+        name: "Bandas de brasier",
+        url: "/",
+    },{
+        image: "/img/icon-table-abd.svg",
+        alt: "testimonial 1",
+        name: "Tablas abdominales",
+        url: "/",
+    },{
+        image: "/img/icon-medias.svg",
+        alt: "testimonial 1",
+        name: "Medias anti embólicas o de compresión",
+        url: "/",
+    },{
+        image: "/img/icon-espumas.svg",
+        alt: "testimonial 1",
+        name: "Espumas",
+        url: "/",
+    },{
+        image: "/img/icon-mentonera.svg",
+        alt: "testimonial 1",
+        name: "Mentoneras",
+        url: "/",
+    },{
+        image: "/img/icon-brasier.svg",
+        alt: "testimonial 1",
+        name: "Brasier quirurigico",
+        url: "/",
+    }, {
+        image: "/img/icon-post-operatory.svg",
+        alt: "Medicamentos post operatorio",
+        name: "Medicamentos post operatorio",
+        url: "/",
+    }];
     useEffect(() => {
         let aux = [];
         const len = items.length;
@@ -71,6 +114,7 @@ const Products = ({
         setProductsSet(aux);
     }, []);
 
+    console.log('query to products :', data);
     return (
         <section
             id="products"
@@ -183,4 +227,39 @@ Products.defaultProps = {
     }]
 }
 
-export default Products;
+export default props => (
+    <StaticQuery
+      query={graphql`
+        query ProductsQuery {
+            allMarkdownRemark(
+                filter: { frontmatter: { templateKey: { eq: "product-post" } } }
+              ) {
+                edges {
+                    node {
+                        fields {
+                            slug
+                        }
+                        frontmatter {
+                            title
+                            thumbnail{
+                                alt
+                                image {
+                                    childImageSharp {
+                                      fluid {
+                                        ...GatsbyImageSharpFluid
+                                      }
+                                    }
+                                  }
+                            }
+                            procedures {
+                                name
+                            }
+                        }
+                    }
+                }
+            }
+        }
+      `}
+      render={(data, count) => <Products data={data} count={count} title="PRODUCTOS" {...props} />}
+    />
+  )
