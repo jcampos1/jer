@@ -45,7 +45,7 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "product"}
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "product-page"}
       - {label: "Nombre", name: name, widget: string}
       - {label: "Imagen del producto", name: "cover", widget: object, fields: [{label: "Imagen", name: image, widget: image}, {label: "Texto alternativo a la imagen", name: alt, widget: string}]}
       - {label: "Productos", name: "products", widget: list, fields: [{label: "Nombre", name: name, widget: string}, {label: "Imagen", name: image, widget: image}, {label: "Texto alternativo", name: alt, widget: string}, {label: "Precio", name: "price", widget: "string"}]}

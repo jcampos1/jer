@@ -1,247 +1,255 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
-import Layout from '../components/Layout'
-import Features from '../components/Features'
-import Testimonials from '../components/Testimonials'
-import Pricing from '../components/Pricing'
-import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
+import TemplateWrapper2 from '../components/Layout2'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
-export const ProductPageTemplate = ({
-  image,
-  title,
-  heading,
-  description,
-  intro,
-  main,
-  testimonials,
-  fullImage,
-  pricing,
-}) => (
-  <div className="content">
-    <div
-      className="full-width-image-container margin-top-0"
-      style={{
-        backgroundImage: `url(${
-          !!image.childImageSharp ? image.childImageSharp.fluid.src : image
-        })`,
-      }}
-    >
-      <h2
-        className="has-text-weight-bold is-size-1"
-        style={{
-          boxShadow: '0.5rem 0 0 #f40, -0.5rem 0 0 #f40',
-          backgroundColor: '#f40',
-          color: 'white',
-          padding: '1rem',
-        }}
-      >
-        {title}
-      </h2>
-    </div>
-    <section className="section section--gradient">
-      <div className="container">
-        <div className="section">
-          <div className="columns">
-            <div className="column is-7 is-offset-1">
-              <h3 className="has-text-weight-semibold is-size-2">{heading}</h3>
-              <p>{description}</p>
+const Subitem = ({
+    image,
+    alt,
+    title,
+    price
+}) => {
+    return (
+        <div
+            className="mr-3">
+            <img src={image} alt={alt} className="img-fluid" />
+            <span className="text-muted d-block">{title}</span>
+            <div>
+                <h5 className="d-inline text-muted font-weight-bold">$</h5>
+                <h4 className="d-inline text-muted font-weight-bold">
+                    {price}
+                </h4>
             </div>
-          </div>
-          <div className="columns">
-            <div className="column is-10 is-offset-1">
-              <Features gridItems={intro.blurbs} />
-              <div className="columns">
-                <div className="column is-7">
-                  <h3 className="has-text-weight-semibold is-size-3">
-                    {main.heading}
-                  </h3>
-                  <p>{main.description}</p>
-                </div>
-              </div>
-              <div className="tile is-ancestor">
-                <div className="tile is-vertical">
-                  <div className="tile">
-                    <div className="tile is-parent is-vertical">
-                      <article className="tile is-child">
-                        <PreviewCompatibleImage imageInfo={main.image1} />
-                      </article>
-                    </div>
-                    <div className="tile is-parent">
-                      <article className="tile is-child">
-                        <PreviewCompatibleImage imageInfo={main.image2} />
-                      </article>
-                    </div>
-                  </div>
-                  <div className="tile is-parent">
-                    <article className="tile is-child">
-                      <PreviewCompatibleImage imageInfo={main.image3} />
-                    </article>
-                  </div>
-                </div>
-              </div>
-              <Testimonials testimonials={testimonials} />
-              <div
-                className="full-width-image-container"
-                style={{
-                  backgroundImage: `url(${
-                    fullImage.childImageSharp
-                      ? fullImage.childImageSharp.fluid.src
-                      : fullImage
-                  })`,
-                }}
-              />
-              <h2 className="has-text-weight-semibold is-size-2">
-                {pricing.heading}
-              </h2>
-              <p className="is-size-5">{pricing.description}</p>
-              <Pricing data={pricing.plans} />
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
-  </div>
-)
-
-ProductPageTemplate.propTypes = {
-  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  title: PropTypes.string,
-  heading: PropTypes.string,
-  description: PropTypes.string,
-  intro: PropTypes.shape({
-    blurbs: PropTypes.array,
-  }),
-  main: PropTypes.shape({
-    heading: PropTypes.string,
-    description: PropTypes.string,
-    image1: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-    image2: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-    image3: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  }),
-  testimonials: PropTypes.array,
-  fullImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  pricing: PropTypes.shape({
-    heading: PropTypes.string,
-    description: PropTypes.string,
-    plans: PropTypes.array,
-  }),
+    )
 }
 
-const ProductPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark
+const SETTINGS = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    centerMode: true,
+    adaptiveHeight: true,
+    responsive: [
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          dots: true
+        }
+      },
+      {
+          breakpoint: 300,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            dots: true
+          }
+        }
+    ]
+}
+
+const Product = ({
+    drName,
+    networks,
+    location,
+    items
+}) => {
 
   return (
-    <Layout>
-      <ProductPageTemplate
-        image={frontmatter.image}
-        title={frontmatter.title}
-        heading={frontmatter.heading}
-        description={frontmatter.description}
-        intro={frontmatter.intro}
-        main={frontmatter.main}
-        testimonials={frontmatter.testimonials}
-        fullImage={frontmatter.full_image}
-        pricing={frontmatter.pricing}
-      />
-    </Layout>
+    <TemplateWrapper2 location={location}>
+        <div id="product">
+            <div
+                className="container mt-3 mt-md-5">
+                <div className="d-flex justify-content-between flex-wrap">
+                    {
+                        items.map((item, index) => (
+                            <a href={`#${item.name}`}>
+                                <div className="mx-auto d-flex flex-column align-items-center justify-content-start mb-3 mr-sm-3 mr-md-4">
+                                    <div
+                                        className="align-items-start d-block bg-info framew d-flex align-items-center justify-content-center rounded-circle">
+                                            <img 
+                                                src={item.image}
+                                                alt={item.alt}
+                                                className="framew__img img-fluid"
+                                                />
+                                    </div>
+                                    <span
+                                        style={{width: "6rem"}} 
+                                        className="text-info text-center d-block">
+                                        {item.name}
+                                    </span>
+                                </div>
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+            {
+                items.map((item, index) => (
+                    <section
+                        id={item.name} 
+                        className="container-fluid bg-light px-0 mb-5">
+                        <div className="container py-5">
+                            <div className="d-flex align-items-center mb-3 mr-sm-3">
+                                <div
+                                    className="mr-3 align-items-start d-block bg-info framew-big d-flex align-items-center justify-content-center rounded-circle">
+                                        <img 
+                                            src={item.image}
+                                            alt={item.alt}
+                                            className="framew-big__img img-fluid"
+                                            />
+                                </div>
+                                <h3
+                                    className="text-info text-center d-block">
+                                    {item.name}
+                                </h3>
+                            </div>
+                            <Slider {...SETTINGS}>
+                            {
+                                    item.subitems.map((sub, index2) => (
+                                        <Subitem 
+                                            key={`prod${index}${index2}`}
+                                            image={sub.image}
+                                            alt={sub.alt}
+                                            title={sub.title}
+                                            price={sub.price} />
+                                    ))
+                                }
+                            </Slider>
+                        </div>
+                    </section>
+                ))
+            }
+        </div>
+    </TemplateWrapper2>
   )
 }
 
-ProductPage.propTypes = {
-  data: PropTypes.shape({
-    markdownRemark: PropTypes.shape({
-      frontmatter: PropTypes.object,
-    }),
-  }),
+Product.defaultProps = {
+    items: [{
+        image: "/img/icon-fajas-white.svg",
+        alt: "testimonial 1",
+        name: "Fajas",
+        url: "/",
+        subitems: [{
+            image: "/img/placeholder-image2.png",
+            alt: "testimonial 1",
+            title: "Faja abdominal.",
+            price: 123000
+        }, {
+            image: "/img/placeholder-image2.png",
+            alt: "testimonial 1",
+            title: "Faja rodillera.",
+            price: 123000
+        }, {
+            image: "/img/placeholder-image2.png",
+            alt: "testimonial 1",
+            title: "Faja rodillera con manga.",
+            price: 123000
+        },{
+            image: "/img/placeholder-image2.png",
+            alt: "testimonial 1",
+            title: "Faja abdominal.",
+            price: 123000
+        }, {
+            image: "/img/placeholder-image2.png",
+            alt: "testimonial 1",
+            title: "Faja rodillera.",
+            price: 123000
+        }, {
+            image: "/img/placeholder-image2.png",
+            alt: "testimonial 1",
+            title: "Faja rodillera con manga.",
+            price: 123000
+        }]
+    },{
+        image: "/img/icon-brasier-band-white.svg",
+        alt: "testimonial 1",
+        name: "Bandas de brasier",
+        url: "/",
+        subitems: [{
+            image: "/img/placeholder-image2.png",
+            alt: "testimonial 1",
+            title: "Nombre del producto.",
+            price: 123000
+        }]
+    },{
+        image: "/img/icon-table-abd-white.svg",
+        alt: "testimonial 1",
+        name: "Tablas abdominales",
+        url: "/",
+        subitems: [{
+            image: "/img/placeholder-image2.png",
+            alt: "testimonial 1",
+            title: "Nombre del producto.",
+            price: 123000
+        }]
+    },{
+        image: "/img/icon-medias-white.svg",
+        alt: "testimonial 1",
+        name: "Medias anti embólicas o de compresión",
+        url: "/",
+        subitems: [{
+            image: "/img/placeholder-image2.png",
+            alt: "testimonial 1",
+            title: "Nombre del producto.",
+            price: 123000
+        }]
+    },{
+        image: "/img/icon-espumas-white.svg",
+        alt: "testimonial 1",
+        name: "Espumas",
+        url: "/",
+        subitems: [{
+            image: "/img/placeholder-image2.png",
+            alt: "testimonial 1",
+            title: "Nombre del producto.",
+            price: 123000
+        }]
+    },{
+        image: "/img/icon-mentonera-white.svg",
+        alt: "testimonial 1",
+        name: "Mentoneras",
+        url: "/",
+        subitems: [{
+            image: "/img/placeholder-image2.png",
+            alt: "testimonial 1",
+            title: "Nombre del producto.",
+            price: 123000
+        }]
+    },{
+        image: "/img/icon-brasier-white.svg",
+        alt: "testimonial 1",
+        name: "Brasier quirurigico",
+        url: "/",
+        subitems: [{
+            image: "/img/placeholder-image2.png",
+            alt: "testimonial 1",
+            title: "Nombre del producto.",
+            price: 123000
+        }]
+    }, {
+        image: "/img/icon-post-operatory-white.svg",
+        alt: "Medicamentos post operatorio",
+        name: "Medicamentos post operatorio",
+        url: "/",
+        subitems: [{
+            image: "/img/placeholder-image2.png",
+            alt: "testimonial 1",
+            title: "Anticoagulantes.",
+            price: 123000
+        }, {
+            image: "/img/placeholder-image2.png",
+            alt: "testimonial 1",
+            title: "Antibióticos para el dolor.",
+            price: 123000
+        }]
+    }]
 }
 
-export default ProductPage
-
-export const productPageQuery = graphql`
-  query ProductPage($id: String!) {
-    markdownRemark(id: { eq: $id }) {
-      frontmatter {
-        title
-        image {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        heading
-        description
-        intro {
-          blurbs {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 240, quality: 64) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            text
-          }
-          heading
-          description
-        }
-        main {
-          heading
-          description
-          image1 {
-            alt
-            image {
-              childImageSharp {
-                fluid(maxWidth: 526, quality: 92) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-          image2 {
-            alt
-            image {
-              childImageSharp {
-                fluid(maxWidth: 526, quality: 92) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-          image3 {
-            alt
-            image {
-              childImageSharp {
-                fluid(maxWidth: 1075, quality: 72) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-        testimonials {
-          author
-          quote
-        }
-        full_image {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        pricing {
-          heading
-          description
-          plans {
-            description
-            items
-            plan
-            price
-          }
-        }
-      }
-    }
-  }
-`
+export default Product;
