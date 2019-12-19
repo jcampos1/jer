@@ -64,8 +64,8 @@ collections:
           - {label: "Nombre a mostrar", name: name, widget: string}
           - {label: "Imagen grande", name: image, widget: image}
           - {label: "Texto alternativo a la imagen grande", name: alt, widget: string}
-          - {label: "Imagen pequeña", name: image, widget: image}
-          - {label: "Texto alternativo a la imagen pequeña", name: alt, widget: string}
+          - {label: "Imagen pequeña", name: imageMobile, widget: image}
+          - {label: "Texto alternativo a la imagen pequeña", name: altMobile, widget: string}
           - {label: "Descripción", name: description, widget: "markdown"}
           - {label: "Redes sociales", name: networks, widget: object, fields: [{label: "Wathsapp", name: wathsapp, widget: string}, {label: "Url de instagram", name: instagram, widget: string}, {label: "Url de youtube", name: youtube, widget: string}, {label: "Url de facebook", name: facebook, widget: string}]}
       - file: "src/pages/about/index.md"
