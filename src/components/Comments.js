@@ -20,38 +20,42 @@ const Comments = ({
                     </div>
                     <div className="row">
                         {
-                            testimonials.map((item, index) => (
-                                <div
-                                    key={`test${index}`} 
-                                    className="col-md-6 col-lg-4 mb-3 mb-lg-0">
-                                    <div className="card py-4 bg-white h-100">
-                                        <div
-                                            style={{
-                                                width: "200px", height: "200px",
-                                                border: "3px solid transparent",
-                                                backgroundClip: "padding-box, border-box",
-                                                backgroundOrigin: "padding-box, border-box",
-                                                backgroundImage: "linear-gradient(90deg, #fff, #fff), linear-gradient(115deg, #71ffd2, #075ecf)"
-                                            }}
-                                            className="card-img-top mx-auto rounded-circle d-flex justify-content-center align-items-center p-3" 
-                                            >
-                                            <img 
-                                                src={item.image} 
-                                                className="w-50 mx-auto w-100" 
-                                                alt={item.alt} />
-                                        </div>
-                                        <div className="card-body">
-                                            <h5 className="card-title text-center mt-4 font-weight-bold text-muted">{item.title}</h5>
+                            testimonials.map((item, index) => {
+                                const {alt, resume, title} = item;
+                                const image = item.image.childImageSharp.fluid.src;
+                                return (
+                                    <div
+                                        key={`test${index}`} 
+                                        className="col-md-6 col-lg-4 mb-3 mb-lg-0">
+                                        <div className="card py-4 bg-white h-100">
                                             <div
-                                                style={{borderTop: "3px"}} 
-                                                className="border w-75 mx-auto mb-4" />
-                                            <p className="card-text text-muted text-center px-md-4">
-                                                {item.description}
-                                            </p>
+                                                style={{
+                                                    width: "200px", height: "200px",
+                                                    border: "3px solid transparent",
+                                                    backgroundClip: "padding-box, border-box",
+                                                    backgroundOrigin: "padding-box, border-box",
+                                                    backgroundImage: "linear-gradient(90deg, #fff, #fff), linear-gradient(115deg, #71ffd2, #075ecf)"
+                                                }}
+                                                className="card-img-top mx-auto rounded-circle d-flex justify-content-center align-items-center p-3" 
+                                                >
+                                                <img 
+                                                    src={image} 
+                                                    className="w-50 mx-auto w-100" 
+                                                    alt={alt} />
+                                            </div>
+                                            <div className="card-body">
+                                                <h5 className="card-title text-center mt-4 font-weight-bold text-muted">{title}</h5>
+                                                <div
+                                                    style={{borderTop: "3px"}} 
+                                                    className="border w-75 mx-auto mb-4" />
+                                                <p className="card-text text-muted text-center px-md-4">
+                                                    {resume}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))
+                                )
+                            })
                         }
                     </div>
                 </div>
@@ -67,37 +71,41 @@ const Comments = ({
                     </div>
                     <Carousel showStatus={false} showThumbs={false} emulateTouch>
                         {
-                            testimonials.map((item, index) => (
-                                <div
-                                    key={`test2${index}`}
-                                    className="card h-100">
+                            testimonials.map((item, index) => {
+                                const {alt, resume, title} = item;
+                                const image = item.image.childImageSharp.fluid.src;
+                                return(
                                     <div
-                                        style={{
-                                            width: "200px", height: "200px",
-                                            border: "3px solid transparent",
-                                            backgroundClip: "padding-box, border-box",
-                                            backgroundOrigin: "padding-box, border-box",
-                                            backgroundImage: "linear-gradient(90deg, #fff, #fff), linear-gradient(115deg, #71ffd2, #075ecf)"
-                                        }}
-                                        className="card-img-top mx-auto rounded-circle d-flex justify-content-center align-items-center p-3 mt-4" 
-                                        >
-                                        <img 
-                                            src={item.image} 
-                                            className="w-50 mx-auto w-100" 
-                                            alt={item.alt} />
-                                    </div>
-                                    <div 
-                                        className="card-body pb-5">
-                                        <h5 className="card-title text-center mt-4 font-weight-bold text-muted">{item.title}</h5>
+                                        key={`test2${index}`}
+                                        className="card h-100">
                                         <div
-                                            style={{borderTop: "3px"}} 
-                                            className="border w-75 mx-auto mb-5" />
-                                        <p className="card-text text-muted text-center px-md-4">
-                                            {item.description}
-                                        </p>
+                                            style={{
+                                                width: "200px", height: "200px",
+                                                border: "3px solid transparent",
+                                                backgroundClip: "padding-box, border-box",
+                                                backgroundOrigin: "padding-box, border-box",
+                                                backgroundImage: "linear-gradient(90deg, #fff, #fff), linear-gradient(115deg, #71ffd2, #075ecf)"
+                                            }}
+                                            className="card-img-top mx-auto rounded-circle d-flex justify-content-center align-items-center p-3 mt-4" 
+                                            >
+                                            <img 
+                                                src={image} 
+                                                className="w-50 mx-auto w-100" 
+                                                alt={alt} />
+                                        </div>
+                                        <div 
+                                            className="card-body pb-5">
+                                            <h5 className="card-title text-center mt-4 font-weight-bold text-muted">{title}</h5>
+                                            <div
+                                                style={{borderTop: "3px"}} 
+                                                className="border w-75 mx-auto mb-5" />
+                                            <p className="card-text text-muted text-center px-md-4">
+                                                {resume}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            ))
+                                )
+                            })
                         }
                     </Carousel>
                 </div>
@@ -107,23 +115,7 @@ const Comments = ({
 }
 
 Comments.defaultProps = {
-    title: "TESTIMONIOS",
-    testimonials: [{
-        image: "/img/test1.png",
-        alt: "testimonial 1",
-        title: "Lorem impsum",
-        description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque"
-    },{
-        image: "/img/test2.png",
-        alt: "testimonial 1",
-        title: "Lorem impsum",
-        description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque"
-    },{
-        image: "/img/test3.png",
-        alt: "testimonial 1",
-        title: "Lorem impsum",
-        description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque"
-    }]
+    title: "TESTIMONIOS"
 }
 
 export default Comments;

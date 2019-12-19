@@ -13,7 +13,7 @@ const Landing = ({
   location,
   data
 }) => {
-  const { resumeProfile: profile } = data.markdownRemark.frontmatter;
+  const { resumeProfile: profile, testimonials } = data.markdownRemark.frontmatter;
 
   console.log('data :', data);
   return (
@@ -43,7 +43,8 @@ const Landing = ({
         <Procedures />
 
         {/* Testimonials */}
-        <Comments />
+        <Comments 
+          testimonials={testimonials.slice(0, 3)}/>
 
         {/* Products */}
         <Products />
@@ -60,6 +61,18 @@ export const pageQuery = graphql`
   query Landing {
     markdownRemark(frontmatter: { templateKey: { eq: "landing" } }) {
       frontmatter {
+        testimonials {
+          title
+          image {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
+            } 
+          }
+          alt
+          resume
+        }
         resumeProfile {
           name
           description
