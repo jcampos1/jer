@@ -2,13 +2,17 @@ import React from 'react'
 import TemplateWrapper2 from '../components/Layout2'
 import ItemCard from '../components/ItemCard'
 import { graphql } from 'gatsby';
+import Procedures from '../pages/procedure'
 
 const ProcedurePost = ({
-    title,
     location,
-    items,
     data
 }) => {
+    console.log('data :', data);
+    const { title, cover, procedures: items } = data.markdownRemark.frontmatter;
+    const image = cover.image.childImageSharp.fluid.src;
+    console.log('data.markdownRemark.fields.slug :', data.markdownRemark.fields.slug);
+
     return (
         <TemplateWrapper2 location={location}>
             <section
@@ -17,12 +21,12 @@ const ProcedurePost = ({
                 <img 
                     style={{objectFit: "cover"}}
                     className="img-fluid jumbo__cover w-100 position-relative"
-                    src="/img/cirugias-faciales.png"
-                    alt="cover" />
+                    src={image}
+                    alt={cover.alt} />
                 <div
                     className="procedure__title">
                     <div
-                        className="mt-3 text-uppercase">
+                        className="mt-3 text-uppercase text-center">
                         {title}
                     </div>
                 </div>
@@ -33,72 +37,82 @@ const ProcedurePost = ({
                         items.map((item, index) => (
                             <div className="col-md-6 col-lg-4 mb-4">
                                 <ItemCard 
-                                    image={item.image}
+                                    image={item.image.childImageSharp.fluid.src}
                                     alt={item.alt}
-                                    title={item.title}
-                                    resume={item.resume}
+                                    title={item.name}
+                                    resume={item.description}
                                     />
                             </div>
                         ))
                     }
                 </div>
             </div>
+            <Procedures exludeSlug={data.markdownRemark.fields.slug} />
         </TemplateWrapper2>
     )
 }
 
-ProcedurePost.defaultProps = {
-    title: "cirugias faciales",
-    items: [{
-        image: "/img/placeholder-image.png",
-        alt: "liposucción de papada",
-        title: "liposucción de papada",
-        resume: "La liposucción de papada es una cirugía que permite mejorar los ángulos de la cara extrayendo la grasa localizada en la parte inferior de la mandíbula y cuello, logrando un perfilamiento facial estilizado y armonioso."
-    }, {
-        image: "/img/placeholder-image.png",
-        alt: "liposucción de papada",
-        title: "liposucción de papada",
-        resume: "La liposucción de papada es una cirugía que permite mejorar los ángulos de la cara extrayendo la grasa localizada en la parte inferior de la mandíbula y cuello, logrando un perfilamiento facial estilizado y armonioso."
-    }, {
-        image: "/img/placeholder-image.png",
-        alt: "liposucción de papada",
-        title: "liposucción de papada",
-        resume: "La liposucción de papada es una cirugía que permite mejorar los ángulos de la cara extrayendo la grasa localizada en la parte inferior de la mandíbula y cuello, logrando un perfilamiento facial estilizado y armonioso."
-    }, {
-        image: "/img/placeholder-image.png",
-        alt: "liposucción de papada",
-        title: "liposucción de papada",
-        resume: "La liposucción de papada es una cirugía que permite mejorar los ángulos de la cara extrayendo la grasa localizada en la parte inferior de la mandíbula y cuello, logrando un perfilamiento facial estilizado y armonioso."
-    }, {
-        image: "/img/placeholder-image.png",
-        alt: "liposucción de papada",
-        title: "liposucción de papada",
-        resume: "La liposucción de papada es una cirugía que permite mejorar los ángulos de la cara extrayendo la grasa localizada en la parte inferior de la mandíbula y cuello, logrando un perfilamiento facial estilizado y armonioso."
-    }, {
-        image: "/img/placeholder-image.png",
-        alt: "liposucción de papada",
-        title: "liposucción de papada",
-        resume: "La liposucción de papada es una cirugía que permite mejorar los ángulos de la cara extrayendo la grasa localizada en la parte inferior de la mandíbula y cuello, logrando un perfilamiento facial estilizado y armonioso."
-    }]
-}
-
-// export const procedureQuery = graphql`
-//   query ProcedurePostByID {
-//     allMarkdownRemark(
-//         sort: { order: DESC, fields: [frontmatter___date] }
-//         filter: { frontmatter: { templateKey: { eq: "procedure" } } }
-//       ) {
-//         edges {
-//           node {
-//             fields {
-//               slug
-//             }
-//             frontmatter {
-//               title
-//             }
-//           }
-//         }
-//       }
-//   }
-// `
 export default ProcedurePost;
+
+export const procedureQuery = graphql`
+  query ProcedurePostByID($id: String!) {
+    markdownRemark(id: { eq: $id }) {
+        fields {
+            slug
+        }
+      frontmatter {
+        title
+        cover{
+            alt
+            image {
+                childImageSharp {
+                  fluid {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+        }
+        procedures {
+            alt
+            description
+            image {
+                childImageSharp {
+                  fluid {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            name
+        }
+      }
+    }
+
+    allMarkdownRemark(
+        filter: { frontmatter: { templateKey: { eq: "procedure-post" } } }
+      ) {
+        edges {
+            node {
+                fields {
+                    slug
+                }
+                frontmatter {
+                    title
+                    thumbnail{
+                        alt
+                        image {
+                            childImageSharp {
+                              fluid {
+                                ...GatsbyImageSharpFluid
+                              }
+                            }
+                          }
+                    }
+                    procedures {
+                        name
+                    }
+                }
+            }
+        }
+    }
+  }
+`

@@ -10,27 +10,31 @@ import ButtonMore from '../../components/ButtonMore';
 const Procedures = ({
     className,
     title,
-    procedures, 
-    data
+    data,
+    exludeSlug
 }) => {
     const [selected, setSelected] = useState(null);
+    const [procedures, setProcedures] = useState([]);
 
     useEffect(() => {
-        if(procedures) {
-            const obj = procedures.find(p => p.isDefault);
+        let _procedures = data.allMarkdownRemark.edges;
+        if(_procedures) {
+            // if(exludeSlug)
+            //     _procedures =  _procedures.filter(p => p.node.fields.slug !== exludeSlug)
+            const obj = _procedures[0];
             if(obj)
-                setSelected(obj)
+                setSelected(obj.node)
+            
+            setProcedures(_procedures);
         }
     }, []);
-
-    console.log('data de proceduresssssss:', data);
 
     return (
         <div
             id="procedures" 
             className={className}>
             {/* Displayed in desk */}
-            <section className="container-fluid m-0 px-0 py-5 d-none d-md-block">
+            <section className={`container-fluid m-0 px-0 py-5 d-none d-md-block ${exludeSlug ? "bg-light" : ""}`}>
                 <div className="d-flex justify-content-center font-weight-bold">
                     <Feature2 title={title} />
                 </div>
@@ -39,37 +43,41 @@ const Procedures = ({
                     className="container d-flex align-items-center">
                     <div className="d-inline-block w-50">
                         {
-                            procedures.map((item, index) => (
-                                <div
-                                    key={`proc${index}`}
-                                    className="d-inline-block w-50"
-                                    style={{
-                                        cursor: "pointer"
-                                    }}
-                                    onClick={() => setSelected(item)}>
+                            procedures.map((item, index) => {
+                                const { thumbnail } = item.node.frontmatter;
+
+                                return (
                                     <div
-                                        className="card border-0">
-                                        <img 
-                                            src={item.image} 
-                                            className="card-img" 
-                                            alt={item.alt} 
-                                            />
-                                        {
-                                            ((!selected && index < 3) || (selected && selected.content.title !== item.content.title)) && (
-                                                <div
-                                                    style={{
-                                                        backgroundColor: "#17a4d6", opacity: ".5",
-                                                        width: "96%",
-                                                        height: "97%",
-                                                        left: "2%",
-                                                        top: "1%"
-                                                    }} 
-                                                    className="card-img-overlay item-image" />
-                                            )
-                                        }
+                                        key={`proc${index}`}
+                                        className="d-inline-block w-50"
+                                        style={{
+                                            cursor: "pointer"
+                                        }}
+                                        onClick={() => { console.log('item.node :', item.node); setSelected(item.node); }}>
+                                        <div
+                                            className="card border-0">
+                                            <img 
+                                                src={thumbnail.image.childImageSharp.fluid.src} 
+                                                className="card-img" 
+                                                alt={thumbnail.alt} 
+                                                />
+                                            {
+                                                ((!selected && index < 3) || (selected && selected.frontmatter.title !== item.node.frontmatter.title)) && (
+                                                    <div
+                                                        style={{
+                                                            backgroundColor: "#17a4d6", opacity: ".5",
+                                                            width: "96%",
+                                                            height: "97%",
+                                                            left: "2%",
+                                                            top: "1%"
+                                                        }} 
+                                                        className="card-img-overlay item-image" />
+                                                )
+                                            }
+                                        </div>
                                     </div>
-                                </div>
-                            ))
+                                )
+                            })
                         }
                     </div>
                     {
@@ -78,20 +86,20 @@ const Procedures = ({
                                 style={{backgroundColor: "#f4f5fa"}} 
                                 className="w-50 d-flex flex-column justify-content-center ml-2 px-5 py-3 h-100">
                                 <h3 className="text-muted font-weight-bold">
-                                    {selected.content.title}
+                                    {selected.frontmatter.title}
                                 </h3>
                                 <PerfectScrollbar>
                                     <ul 
                                         className="pl-0"
                                         style={{listStylePosition: "inside", color: "#17a4d6", fontSize: "25px", lineHeight: "25px"}}>
                                         {
-                                            selected.content.items.map((item, index) => (
+                                            selected.frontmatter.procedures.map((item, index) => (
                                                     <li 
                                                         key={`cont2${index}`}>
                                                         <span
                                                             className="text-muted" 
                                                             style={{color: "initial", fontSize: "initial"}}>
-                                                            {item.description}
+                                                            {item.name}
                                                         </span>
                                                     </li>
                                             )) 
@@ -101,7 +109,7 @@ const Procedures = ({
                                 <div className="d-flex">
                                     <ButtonMore 
                                         className="btn btn-sm btn-info px-4 font-weight-bold mt-3"
-                                        to="/procedure" />
+                                        to={selected.fields.slug} />
                                 </div>
                             </div>
                         )
@@ -116,43 +124,47 @@ const Procedures = ({
                 </div>
                 <Carousel showStatus={false} showThumbs={false} emulateTouch>
                     {
-                        procedures.map((item, index) => (
-                            <div
-                                key={`proc2${index}`}
-                                style={{backgroundColor: "#f4f5fa"}} 
-                                className="card h-100">
-                                <img 
-                                    src={item.image} 
-                                    className="card-img-top" 
-                                    alt={item.alt} 
-                                    />
-                                <div 
-                                    className="card-body">
-                                    <h3 className="card-title text-center">{item.content.title}</h3>
-                                    <ul 
-                                        className="pl-0 text-left pb-3"
-                                        style={{listStylePosition: "inside", color: "#17a4d6", fontSize: "25px", lineHeight: "25px"}}>
-                                        {
-                                            item.content.items.map((item2, index) => (
-                                                    <li 
-                                                        key={`cont${index}`}>
-                                                        <span
-                                                            className="text-muted" 
-                                                            style={{color: "initial", fontSize: "initial"}}>
-                                                            {item2.description}
-                                                        </span>
-                                                    </li>
-                                            )) 
-                                        }
-                                    </ul>
-                                    <div className="d-flex mb-4">
-                                        <ButtonMore 
-                                            className="btn btn-sm btn-info text-capitalize px-4 font-weight-bold mx-auto"
-                                            to="/procedure" />
+                        procedures.map((item, index) => {
+                            const { thumbnail, title, procedures: _items } = item.node.frontmatter;
+
+                            return (
+                                <div
+                                    key={`proc2${index}`}
+                                    style={{backgroundColor: "#f4f5fa"}} 
+                                    className="card h-100">
+                                    <img 
+                                        src={thumbnail.image.childImageSharp.fluid.src} 
+                                        className="card-img-top" 
+                                        alt={thumbnail.alt} 
+                                        />
+                                    <div 
+                                        className="card-body">
+                                        <h3 className="card-title text-center">{title}</h3>
+                                        <ul 
+                                            className="pl-0 text-left pb-3"
+                                            style={{listStylePosition: "inside", color: "#17a4d6", fontSize: "25px", lineHeight: "25px"}}>
+                                            {
+                                                _items.map((item2, index) => (
+                                                        <li 
+                                                            key={`cont${index}`}>
+                                                            <span
+                                                                className="text-muted" 
+                                                                style={{color: "initial", fontSize: "initial"}}>
+                                                                {item2.name}
+                                                            </span>
+                                                        </li>
+                                                )) 
+                                            }
+                                        </ul>
+                                        <div className="d-flex mb-4">
+                                            <ButtonMore 
+                                                className="btn btn-sm btn-info text-capitalize px-4 font-weight-bold mx-auto"
+                                                to={item.node.fields.slug} />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))
+                            )
+                        })
                     }
                 </Carousel>
             </div>
@@ -160,110 +172,7 @@ const Procedures = ({
     )
 }
 
-const procedures = {
-    title: "PROCEDIMIENTOS",
-    procedures: [{
-        image: "/img/proc1.png",
-        alt: "procedure 1",
-        to: "/",
-        isDefault: false,
-        content: {
-            title: "CIRUGÍAS FACIALES",
-            items: [{
-                description: "Cirugía de nariz (rinoplastia, septoplastía, turbinoplastia, septorrinoplastia o rinoseptoplastia)"
-            },{
-                description: "Rejuvenecimiento facial (lifting, reconstitución del tercio inferior)."
-            },{
-                description: "Blefaroplastia superior u operación de párpados."
-            },{
-                description: "Bichectomía o cirugía maxilofacial"
-            }]
-        }
-    },{
-        image: "/img/proc2.png",
-        alt: "procedure 2",
-        to: "/",
-        isDefault: false,
-        content: {
-            title: "CIRUGÍAS CORPORALES",
-            items: [{
-                description: "Mamoplastia de aumento"
-            },{
-                description: "Mamoplastia de reducción"
-            },{
-                description: "Liposucción"
-            },{
-                description: "Abdominoplastia"
-            },{
-                description: "Marcación abdominal"
-            },{
-                description: "Implante de pantorrilla."
-            },{
-                description: "Gluteoplastia"
-            },{
-                description: "Rejuvenecimiento vaginal"
-            },{
-                description: "Cambio de sexo"
-            },{
-                description: "Cirugía transgénero"
-            }]
-        }
-    },{
-        image: "/img/proc3.png",
-        alt: "procedure 3",
-        to: "/",
-        isDefault: false,
-        content: {
-            title: "RECONSTRUCCIONES AVANZADAS CON MICROCIRUGÍA ESTÉTICA, MÉDICAS O ACCIDENTALES",
-            items: [{
-                description: "Reconstrucción mamaria parcial o total"
-            },{
-                description: "Reconstrucciones en cabeza, cuello y demás miembros superiores e inferiores"
-            }]
-        }
-    },{
-        image: "/img/proc4.svg",
-        alt: "procedure 4",
-        to: "/",
-        isDefault: true,
-        content: {
-            title: "PROCEDIMIENTOS NO QUIRÚRGICOS PARA HOMBRES Y MUJERES",
-            items: [{
-                description: "Rejuvenecimiento celular"
-            },{
-                description: "Sueroterapia"
-            },{
-                description: "Hollywood Peel"
-            },{
-                description: "Ácido Hualurónico"
-            },{
-                description: "Toxina botulínica (Botox)"
-            },{
-                description: "Peeling laser"
-            },{
-                description: "Tratamiento de hilos tensores para moldear la nariz"
-            },{
-                description: "Hydrafacial 4D (limpieza facial produnda)"
-            },{
-                description: "Coolifting (hidratación facial profunda con CO2)"
-            },{
-                description: "Mesoterapia facial y corporal"
-            },{
-                description: "Lazer para limpiar tratamientos"
-            },{
-                description: "Masculinizacion facial"
-            },{
-                description: "Tratamiento para cicatrices"
-            },{
-                description: "Eliminación de tatuajes"
-            },{
-                description: "Lipoinyección glutea"
-            }]
-        }
-    }]
-}
-
-export default () => (
+export default props => (
     <StaticQuery
       query={graphql`
         query ProceduresQuery {
@@ -287,26 +196,7 @@ export default () => (
                                     }
                                   }
                             }
-                            cover{
-                                alt
-                                image {
-                                    childImageSharp {
-                                      fluid {
-                                        ...GatsbyImageSharpFluid
-                                      }
-                                    }
-                                  }
-                            }
                             procedures {
-                                alt
-                                description
-                                image {
-                                    childImageSharp {
-                                      fluid {
-                                        ...GatsbyImageSharpFluid
-                                      }
-                                    }
-                                  }
                                 name
                             }
                         }
@@ -315,6 +205,6 @@ export default () => (
             }
         }
       `}
-      render={(data, count) => <Procedures data={data} count={count} title={procedures.title} procedures={procedures.procedures} />}
+      render={(data, count) => <Procedures data={data} count={count} title="Procedimientos" {...props} />}
     />
   )

@@ -19,5 +19,33 @@ procedures:
     name: >-
       Cirugía de nariz (rinoplastia, septoplastía, turbinoplastia,
       septorrinoplastia o rinoseptoplastia)
+  - alt: dassadas
+    description: >-
+      Consiste en el aumento de los senos, ya sea con implantes mamarios o con
+      grasa del propio cuerpo del paciente según sea el caso y las necesidades
+      de cada uno.  utilizamos  implantes de última tecnología y escogemos la
+      mejor técnica según el tipo de senos, proporcionando así, resultados
+      naturales y hermosos.
+    image: /img/placeholder-image.png
+    name: >-
+      Rejuvenecimiento facial (lifting, reconstitución del tercio inferior).
+  - alt: dassadas
+    description: >-
+      Consiste en el aumento de los senos, ya sea con implantes mamarios o con
+      grasa del propio cuerpo del paciente según sea el caso y las necesidades
+      de cada uno.  utilizamos  implantes de última tecnología y escogemos la
+      mejor técnica según el tipo de senos, proporcionando así, resultados
+      naturales y hermosos.
+    image: /img/placeholder-image.png
+    name: Blefaroplastia superior u operación de párpados
+  - alt: dassadas
+    description: >-
+      Consiste en el aumento de los senos, ya sea con implantes mamarios o con
+      grasa del propio cuerpo del paciente según sea el caso y las necesidades
+      de cada uno.  utilizamos  implantes de última tecnología y escogemos la
+      mejor técnica según el tipo de senos, proporcionando así, resultados
+      naturales y hermosos.
+    image: /img/placeholder-image.png
+    name: Bichectomía o cirugía maxilofacial
 ---
 

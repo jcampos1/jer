@@ -3,7 +3,7 @@ templateKey: procedure-post
 title: PROCEDIMIENTOS NO QUIRÚRGICOS PARA HOMBRES Y MUJERES
 thumbnail:
   alt: dsfds
-  image: /img/proc4.svg
+  image: /img/proc4xxx.png
 cover:
   alt: dsfsdf
   image: /img/cirugias-faciales.png

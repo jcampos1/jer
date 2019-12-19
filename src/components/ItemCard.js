@@ -31,7 +31,7 @@ const ItemCard = ({
     return (
         <div 
             style={{borderRadius: "15px"}}
-            className="bg-light py-4 px-3">
+            className="bg-light py-4 px-3 h-100">
             <img 
                 src={image}
                 alt={alt}
