@@ -20,5 +20,24 @@ resumeProfile:
     instagram: 'https://instagram.com'
     wathsapp: 'https://wathsapp.com'
     youtube: 'https://youtube.com'
+testimonials:
+  - alt: cxvcxvxv
+    image: /img/test1.png
+    resume: >-
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+      ligula eget dolor. Aenean massa. Cum sociis natoque
+    title: Lorem impsum
+  - alt: asdasdad
+    image: /img/test2.png
+    resume: >-
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+      ligula eget dolor. Aenean massa. Cum sociis natoque
+    title: Lorem impsum
+  - alt: dsfdsfdsf
+    image: /img/test3.png
+    resume: >-
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+      ligula eget dolor. Aenean massa. Cum sociis natoque
+    title: Lorem impsum
 ---
 
