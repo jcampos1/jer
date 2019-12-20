@@ -11,5 +11,9 @@ prod:
     image: /img/placeholder-image2.png
     name: Banda 1
     price: '123000'
+  - alt: fdfdg
+    image: /img/placeholder-image2.png
+    name: banda 2
+    price: '125000'
 ---
 
