@@ -3,7 +3,9 @@ templateKey: product-page
 name: Bandas de brasier
 cover:
   alt: dfsfsf
+  altProd: dfsdsf
   image: /img/icon-brasier-band.svg
+  imageProd: /img/icon-brasier-band-white.svg
 prod:
   - alt: dsfdsf
     image: /img/placeholder-image2.png
