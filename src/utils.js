@@ -1,2 +1,2 @@
-export const getImage = image =>
-    image.image.childImageSharp === null ? image.image.publicURL : image.image.childImageSharp.fluid.src
+export const getImage = (image, key = "image") =>
+    image[key].childImageSharp === null ? image[key].publicURL : image[key].childImageSharp.fluid.src

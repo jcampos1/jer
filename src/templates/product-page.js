@@ -14,7 +14,9 @@ const Subitem = ({
     return (
         <div
             className="mr-3">
-            <img src={image} alt={alt} className="img-fluid" />
+            <img
+                className="w-100 h-100" 
+                src={image} alt={alt} />
             <span className="text-muted d-block">{title}</span>
             <div>
                 <h5 className="d-inline text-muted font-weight-bold">$</h5>
@@ -56,13 +58,11 @@ const SETTINGS = {
 
 const Product = ({
     location,
-    // items,
     data
 }) => {
 
     const items = data.allMarkdownRemark.edges;
 
-    console.log('data product page:', data);
   return (
     <TemplateWrapper2 location={location}>
         <div id="product">
@@ -76,7 +76,7 @@ const Product = ({
                                     <div
                                         className="align-items-start d-block bg-info framew d-flex align-items-center justify-content-center rounded-circle">
                                             <img 
-                                                src={getImage(item.node.frontmatter.cover)}
+                                                src={getImage(item.node.frontmatter.cover, "imageProd")}
                                                 alt={item.node.frontmatter.cover.alt}
                                                 className="framew__img img-fluid"
                                                 />
@@ -102,8 +102,8 @@ const Product = ({
                                 <div
                                     className="mr-3 align-items-start d-block bg-info framew-big d-flex align-items-center justify-content-center rounded-circle">
                                         <img 
-                                            src={getImage(item.node.frontmatter.cover)}
-                                            alt={item.node.frontmatter.cover.alt}
+                                            src={getImage(item.node.frontmatter.cover, "imageProd")}
+                                            alt={item.node.frontmatter.cover.altProd}
                                             className="framew-big__img img-fluid"
                                             />
                                 </div>
@@ -131,128 +131,6 @@ const Product = ({
         </div>
     </TemplateWrapper2>
   )
-}
-
-Product.defaultProps = {
-    // items: [{
-    //     image: "/img/icon-fajas-white.svg",
-    //     alt: "testimonial 1",
-    //     name: "Fajas",
-    //     url: "/",
-    //     subitems: [{
-    //         image: "/img/placeholder-image2.png",
-    //         alt: "testimonial 1",
-    //         title: "Faja abdominal.",
-    //         price: 123000
-    //     }, {
-    //         image: "/img/placeholder-image2.png",
-    //         alt: "testimonial 1",
-    //         title: "Faja rodillera.",
-    //         price: 123000
-    //     }, {
-    //         image: "/img/placeholder-image2.png",
-    //         alt: "testimonial 1",
-    //         title: "Faja rodillera con manga.",
-    //         price: 123000
-    //     },{
-    //         image: "/img/placeholder-image2.png",
-    //         alt: "testimonial 1",
-    //         title: "Faja abdominal.",
-    //         price: 123000
-    //     }, {
-    //         image: "/img/placeholder-image2.png",
-    //         alt: "testimonial 1",
-    //         title: "Faja rodillera.",
-    //         price: 123000
-    //     }, {
-    //         image: "/img/placeholder-image2.png",
-    //         alt: "testimonial 1",
-    //         title: "Faja rodillera con manga.",
-    //         price: 123000
-    //     }]
-    // },{
-    //     image: "/img/icon-brasier-band-white.svg",
-    //     alt: "testimonial 1",
-    //     name: "Bandas de brasier",
-    //     url: "/",
-    //     subitems: [{
-    //         image: "/img/placeholder-image2.png",
-    //         alt: "testimonial 1",
-    //         title: "Nombre del producto.",
-    //         price: 123000
-    //     }]
-    // },{
-    //     image: "/img/icon-table-abd-white.svg",
-    //     alt: "testimonial 1",
-    //     name: "Tablas abdominales",
-    //     url: "/",
-    //     subitems: [{
-    //         image: "/img/placeholder-image2.png",
-    //         alt: "testimonial 1",
-    //         title: "Nombre del producto.",
-    //         price: 123000
-    //     }]
-    // },{
-    //     image: "/img/icon-medias-white.svg",
-    //     alt: "testimonial 1",
-    //     name: "Medias anti embólicas o de compresión",
-    //     url: "/",
-    //     subitems: [{
-    //         image: "/img/placeholder-image2.png",
-    //         alt: "testimonial 1",
-    //         title: "Nombre del producto.",
-    //         price: 123000
-    //     }]
-    // },{
-    //     image: "/img/icon-espumas-white.svg",
-    //     alt: "testimonial 1",
-    //     name: "Espumas",
-    //     url: "/",
-    //     subitems: [{
-    //         image: "/img/placeholder-image2.png",
-    //         alt: "testimonial 1",
-    //         title: "Nombre del producto.",
-    //         price: 123000
-    //     }]
-    // },{
-    //     image: "/img/icon-mentonera-white.svg",
-    //     alt: "testimonial 1",
-    //     name: "Mentoneras",
-    //     url: "/",
-    //     subitems: [{
-    //         image: "/img/placeholder-image2.png",
-    //         alt: "testimonial 1",
-    //         title: "Nombre del producto.",
-    //         price: 123000
-    //     }]
-    // },{
-    //     image: "/img/icon-brasier-white.svg",
-    //     alt: "testimonial 1",
-    //     name: "Brasier quirurigico",
-    //     url: "/",
-    //     subitems: [{
-    //         image: "/img/placeholder-image2.png",
-    //         alt: "testimonial 1",
-    //         title: "Nombre del producto.",
-    //         price: 123000
-    //     }]
-    // }, {
-    //     image: "/img/icon-post-operatory-white.svg",
-    //     alt: "Medicamentos post operatorio",
-    //     name: "Medicamentos post operatorio",
-    //     url: "/",
-    //     subitems: [{
-    //         image: "/img/placeholder-image2.png",
-    //         alt: "testimonial 1",
-    //         title: "Anticoagulantes.",
-    //         price: 123000
-    //     }, {
-    //         image: "/img/placeholder-image2.png",
-    //         alt: "testimonial 1",
-    //         title: "Antibióticos para el dolor.",
-    //         price: 123000
-    //     }]
-    // }]
 }
 
 export default Product;
@@ -301,6 +179,16 @@ export const productQuery = graphql`
                             fluid {
                                 ...GatsbyImageSharpFluid
                             }
+                            }
+                            extension
+                            publicURL
+                        }
+                        altProd
+                        imageProd {
+                            childImageSharp {
+                                fluid {
+                                    ...GatsbyImageSharpFluid
+                                }
                             }
                             extension
                             publicURL
