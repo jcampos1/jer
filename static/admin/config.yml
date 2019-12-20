@@ -48,8 +48,8 @@ collections:
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "product-page"}
       - {label: "Nombre", name: name, widget: string}
-      - {label: "Imagen del producto", name: "cover", widget: object, fields: [{label: "Imagen", name: image, widget: image}, {label: "Texto alternativo a la imagen", name: alt, widget: string}]}
-      - {label: "Productos", name: "prod", widget: list, fields: [{label: "Nombre", name: name, widget: string}, {label: "Imagen", name: image, widget: image}, {label: "Texto alternativo", name: alt, widget: string}, {label: "Imagen para página de productos", name: imageProd, widget: image}, {label: "Texto alternativo para imagen de página de productos", name: altProd, widget: string}, {label: "Precio", name: "price", widget: string}]}
+      - {label: "Imagen del producto", name: "cover", widget: object, fields: [{label: "Imagen de la página principal", name: image, widget: image}, {label: "Texto alternativo a la imagen principal", name: alt, widget: string}, {label: "Imagen para página de productos", name: imageProd, widget: image}, {label: "Texto alternativo para imagen de página de productos", name: altProd, widget: string}]}
+      - {label: "Productos", name: "prod", widget: list, fields: [{label: "Nombre", name: name, widget: string}, {label: "Imagen", name: image, widget: image}, {label: "Texto alternativo", name: alt, widget: string}, {label: "Precio", name: "price", widget: string}]}
 
   - name: "pages"
     label: "Pages"
