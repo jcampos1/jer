@@ -4,6 +4,7 @@ import { Carousel } from 'react-responsive-carousel';
 import { Link } from 'gatsby';
 import Feature2 from '../../components/Feature2';
 import { graphql, StaticQuery } from 'gatsby';
+import { getImage } from '../../utils';
 
 const Item = ({
     name,
@@ -30,7 +31,7 @@ const Item = ({
                 </span>
             </div>
             <Link 
-                to={`/product/#${name}`}
+                to={url}
                 style={{backgroundColor: "#71ffd2"}}
                 className="btn px-4 text-muted d-none d-md-block">
                 Ver mas
@@ -40,7 +41,7 @@ const Item = ({
             </Link>
             <Link 
                 style={{backgroundColor: "#71ffd2"}}
-                to={`/product/#${name}`} 
+                to={url} 
                 className="btn btn-sm px-4 text-muted d-block d-md-none">
                 Ver mas
                 <span
@@ -60,47 +61,8 @@ const Products = ({
 }) => {
     const [productsSet, setProductsSet] = useState([]);
 
-    const items = [{
-        image: "/img/icon-fajas.svg",
-        alt: "testimonial 1",
-        name: "Fajas",
-        url: "/",
-    },{
-        image: "/img/icon-brasier-band.svg",
-        alt: "testimonial 1",
-        name: "Bandas de brasier",
-        url: "/",
-    },{
-        image: "/img/icon-table-abd.svg",
-        alt: "testimonial 1",
-        name: "Tablas abdominales",
-        url: "/",
-    },{
-        image: "/img/icon-medias.svg",
-        alt: "testimonial 1",
-        name: "Medias anti embólicas o de compresión",
-        url: "/",
-    },{
-        image: "/img/icon-espumas.svg",
-        alt: "testimonial 1",
-        name: "Espumas",
-        url: "/",
-    },{
-        image: "/img/icon-mentonera.svg",
-        alt: "testimonial 1",
-        name: "Mentoneras",
-        url: "/",
-    },{
-        image: "/img/icon-brasier.svg",
-        alt: "testimonial 1",
-        name: "Brasier quirurigico",
-        url: "/",
-    }, {
-        image: "/img/icon-post-operatory.svg",
-        alt: "Medicamentos post operatorio",
-        name: "Medicamentos post operatorio",
-        url: "/",
-    }];
+    const items = data.allMarkdownRemark.edges;
+
     useEffect(() => {
         let aux = [];
         const len = items.length;
@@ -114,7 +76,6 @@ const Products = ({
         setProductsSet(aux);
     }, []);
 
-    console.log('query to products :', data);
     return (
         <section
             id="products"
@@ -144,9 +105,10 @@ const Products = ({
                                 key={`proditem${index}`} 
                                 className="col-lg-6 mb-4">
                                 <Item 
-                                    name={item.name} 
-                                    image={item.image}
-                                    alt={item.alt}
+                                    name={item.node.frontmatter.name} 
+                                    image={getImage(item.node.frontmatter.cover)}
+                                    alt={item.node.frontmatter.cover.alt}
+                                    url={item.node.fields.slug}
                                     />
                             </div>
                         ))
@@ -161,17 +123,21 @@ const Products = ({
                                 style={{backgroundColor: "transparent"}} 
                                 className="row px-3 px-sm-5 px-md-0">
                                 {
-                                    _products.map((elem, index2) => (
-                                        <div
-                                            key={`proditem3${index}${index2}`}
-                                            className="col-md-6 mb-5">
-                                            <Item 
-                                                name={elem.name}
-                                                image={elem.image}
-                                                alt={elem.alt} 
-                                                />
-                                        </div>
-                                    ))
+                                    _products.map((elem, index2) => {
+                                        console.log('elem :', elem);
+                                        return (
+                                            <div
+                                                key={`proditem3${index}${index2}`}
+                                                className="col-md-6 mb-5">
+                                                <Item 
+                                                    name={elem.node.frontmatter.name}
+                                                    image={getImage(elem.node.frontmatter.cover)}
+                                                    alt={elem.node.frontmatter.cover.alt} 
+                                                    url={elem.node.fields.slug}
+                                                    />
+                                            </div>
+                                        )
+                                    })
                                 }
                             </div>
                         ))
@@ -184,47 +150,47 @@ const Products = ({
 
 Products.defaultProps = {
     title: "PRODUCTOS",
-    items: [{
-        image: "/img/icon-fajas.svg",
-        alt: "testimonial 1",
-        name: "Fajas",
-        url: "/",
-    },{
-        image: "/img/icon-brasier-band.svg",
-        alt: "testimonial 1",
-        name: "Bandas de brasier",
-        url: "/",
-    },{
-        image: "/img/icon-table-abd.svg",
-        alt: "testimonial 1",
-        name: "Tablas abdominales",
-        url: "/",
-    },{
-        image: "/img/icon-medias.svg",
-        alt: "testimonial 1",
-        name: "Medias anti embólicas o de compresión",
-        url: "/",
-    },{
-        image: "/img/icon-espumas.svg",
-        alt: "testimonial 1",
-        name: "Espumas",
-        url: "/",
-    },{
-        image: "/img/icon-mentonera.svg",
-        alt: "testimonial 1",
-        name: "Mentoneras",
-        url: "/",
-    },{
-        image: "/img/icon-brasier.svg",
-        alt: "testimonial 1",
-        name: "Brasier quirurigico",
-        url: "/",
-    }, {
-        image: "/img/icon-post-operatory.svg",
-        alt: "Medicamentos post operatorio",
-        name: "Medicamentos post operatorio",
-        url: "/",
-    }]
+    // items: [{
+    //     image: "/img/icon-fajas.svg",
+    //     alt: "testimonial 1",
+    //     name: "Fajas",
+    //     url: "/",
+    // },{
+    //     image: "/img/icon-brasier-band.svg",
+    //     alt: "testimonial 1",
+    //     name: "Bandas de brasier",
+    //     url: "/",
+    // },{
+    //     image: "/img/icon-table-abd.svg",
+    //     alt: "testimonial 1",
+    //     name: "Tablas abdominales",
+    //     url: "/",
+    // },{
+    //     image: "/img/icon-medias.svg",
+    //     alt: "testimonial 1",
+    //     name: "Medias anti embólicas o de compresión",
+    //     url: "/",
+    // },{
+    //     image: "/img/icon-espumas.svg",
+    //     alt: "testimonial 1",
+    //     name: "Espumas",
+    //     url: "/",
+    // },{
+    //     image: "/img/icon-mentonera.svg",
+    //     alt: "testimonial 1",
+    //     name: "Mentoneras",
+    //     url: "/",
+    // },{
+    //     image: "/img/icon-brasier.svg",
+    //     alt: "testimonial 1",
+    //     name: "Brasier quirurigico",
+    //     url: "/",
+    // }, {
+    //     image: "/img/icon-post-operatory.svg",
+    //     alt: "Medicamentos post operatorio",
+    //     name: "Medicamentos post operatorio",
+    //     url: "/",
+    // }]
 }
 
 export default props => (
@@ -232,7 +198,7 @@ export default props => (
       query={graphql`
         query ProductsQuery {
             allMarkdownRemark(
-                filter: { frontmatter: { templateKey: { eq: "product-post" } } }
+                filter: { frontmatter: { templateKey: { eq: "product-page" } } }
               ) {
                 edges {
                     node {
@@ -240,8 +206,8 @@ export default props => (
                             slug
                         }
                         frontmatter {
-                            title
-                            thumbnail{
+                            name
+                            cover {
                                 alt
                                 image {
                                     childImageSharp {
@@ -249,10 +215,13 @@ export default props => (
                                         ...GatsbyImageSharpFluid
                                       }
                                     }
+                                    extension
+                                    publicURL
                                   }
                             }
-                            procedures {
+                            prod {
                                 name
+                                price
                             }
                         }
                     }
