@@ -3,7 +3,7 @@ templateKey: blog-post
 featuredimage: /img/blog3.png
 altFeatured: gfhfh
 description: gfhfghfh
-title: Lorem ipsum dolor sit amet
+title: Lorem ipsum dolor sit amet 1
 date: 2020-01-14T16:03:50.181Z
 author:
   alt: fdgdgdfg
