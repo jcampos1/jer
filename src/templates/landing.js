@@ -15,7 +15,6 @@ const Landing = ({
 }) => {
   const { resumeProfile: profile, testimonials } = data.markdownRemark.frontmatter;
 
-  console.log('data :', data);
   return (
     <TemplateWrapper2 location={location}>
         <section

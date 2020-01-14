@@ -15,12 +15,6 @@ const Post = ({
     date,
     slug
 }) => {
-    console.log('image :', image);
-    console.log('alt :', alt);
-    console.log('title :', title);
-    console.log('author :', author);
-    console.log('date :', date);
-    console.log('slug :', slug);
     return (
         <section
           className="shadow-sm blog-page jumbotron jumbotron-fluid p-0 m-0 position-relative">

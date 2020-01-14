@@ -53,7 +53,7 @@ const Procedures = ({
                                         style={{
                                             cursor: "pointer"
                                         }}
-                                        onClick={() => { console.log('item.node :', item.node); setSelected(item.node); }}>
+                                        onClick={() => setSelected(item.node)}>
                                         <div
                                             className="card border-0">
                                             <img 

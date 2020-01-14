@@ -41,8 +41,6 @@ const SocialNetworks = ({
     //     }
     // });
 
-    console.log('_networks :', _networks);
-
     return (
         <div 
             id="social-networks"

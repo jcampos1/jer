@@ -16,7 +16,6 @@ const Profile = ({
     const image = data.markdownRemark.frontmatter.image.childImageSharp.fluid.src;
     const imageMobile = data.markdownRemark.frontmatter.imageMobile.childImageSharp.fluid.src;
 
-    console.log('data :', data);
   return (
     <TemplateWrapper2 location={location}>
         <section

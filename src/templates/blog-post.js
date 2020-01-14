@@ -4,23 +4,25 @@ import { Link } from 'gatsby'
 import TemplateWrapper2 from '../components/Layout2'
 import Feature2 from '../components/Feature2'
 import ButtonMore from '../components/ButtonMore'
+import showdown from 'showdown';
+
+const converter = new showdown.Converter()
 
 const BlogPost2 = ({
-    drName,
-    networks,
     location,
-    post,
     data
 }) => {
-    console.log('data blog post 2:', data);
     const {altCover, date, title, author} = data.markdownRemark.frontmatter;
     const image = data.markdownRemark.frontmatter.coverImage.childImageSharp.fluid.src;
+    const body = data.markdownRemark.html;
+
+    const posts = data.allMarkdownRemark.edges;
 
     return (
     <TemplateWrapper2 location={location}>
         <div id="blog-post">
             <section
-            className="jumbotron jumbotron-fluid p-0 m-0 position-relative">
+                className="jumbotron jumbotron-fluid p-0 m-0 position-relative">
                 <img 
                     className="img-fluid jumbo__cover w-100 position-relative shadow-sm"
                     src={image}
@@ -48,42 +50,37 @@ const BlogPost2 = ({
                     <div className="d-flex align-items-center text-muted mx-auto mx-md-0">
                         <img 
                             className="icon-meta"
-                            src="/img/icon-author.svg"
-                            alt="icon author" />
+                            src={author.photo.childImageSharp.fluid.src}
+                            alt={author.alt} />
                             {author.name}
                     </div>
                     <div className="text-muted mt-5">
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipiscing elit cursus cubilia morbi nascetur, maecenas libero vehicula mauris litora sem phasellus fermentum vitae nisi. Tristique augue eleifend potenti congue senectus fermentum vehicula malesuada nullam ante pellentesque posuere lobortis, inceptos consequat venenatis libero lacus penatibus pharetra tempor pretium eros aliquet viverra, primis orci vulputate nascetur platea placerat morbi integer ad accumsan quam quis.
-                        </p>
-                        <p>
-                            Cursus tempor natoque risus nisi conubia vitae fringilla proin, velit tortor pharetra eu viverra litora. Etiam suscipit pharetra dictum ridiculus odio hendrerit pellentesque sapien sollicitudin magna, montes vivamus maecenas posuere vel integer varius id potenti, euismod nibh parturient diam phasellus erat dapibus sociosqu quisque. Ullamcorper faucibus litora laoreet non duis ut nascetur nunc, felis massa phasellus tincidunt bibendum varius porta, mollis eu hac nullam posuere vulputate eget. Odio praesent duis pellentesque tempor orci semper sodales lobortis, integer inceptos mattis mus nibh netus pulvinar natoque suscipit, leo felis ullamcorper montes cubilia a fermentum.
-                        </p>
+                        <div dangerouslySetInnerHTML={{ __html: converter.makeHtml(body) }} />
                     </div>
                 </div>
             </section>
-            {/* <section className="container-fluid bg-light">
+            <section className="container-fluid bg-light">
                 <div className="d-flex justify-content-center font-weight-bold">
                     <Feature2 title="MÁS BLOGS" />
                 </div>
                 <div className="container py-5">
                     <div className="row">
                         {
-                            post.map((p, index) => (
+                            posts.map((p, index) => (
                                 <div
                                     key={`post${index}`} 
-                                    className="col-lg-6 mb-5 mb-lg-0 d-flex flex-column align-items-center">
+                                    className="col-lg-6 mb-5 mb-lg-0 d-flex flex-column align-items-center mt-3">
                                     <img 
                                         className="shadow-sm w-100"
-                                        src={p.image}
-                                        alt="blog" />
+                                        src={p.node.frontmatter.featuredimage.childImageSharp.fluid.src}
+                                        alt={p.node.frontmatter.altFeatured} />
                                     <div className="d-block px-2 mr-auto">
-                                        <h5 className="text-muted font-weight-bold my-4">Lorem ipsum dolor sit amet</h5>
+                                        <h5 className="text-muted font-weight-bold my-4">{p.node.frontmatter.title}</h5>
                                         <div className="d-flex align-items-center text-muted">
                                             <img 
                                                 className="icon-meta"
-                                                src="/img/icon-author.svg"
-                                                alt="icon author" />
+                                                src={p.node.frontmatter.author.photo.childImageSharp.fluid.src}
+                                                alt={p.node.frontmatter.author.alt} />
                                                 {p.author}
                                         </div>
                                         <div className="d-flex align-items-center text-muted mt-4">
@@ -91,10 +88,10 @@ const BlogPost2 = ({
                                                 className="icon-meta"
                                                 src="/img/icon-date.svg"
                                                 alt="icon date" />
-                                                {p.date}
+                                                {p.node.frontmatter.date}
                                         </div>
                                         <div className="mt-5">
-                                            <ButtonMore />
+                                            <ButtonMore to={p.node.fields.slug}/>
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +100,7 @@ const BlogPost2 = ({
                         
                     </div>
                 </div>
-            </section> */}
+            </section>
         </div>
     </TemplateWrapper2>
   )
@@ -139,6 +136,37 @@ export const blogpost2Query = graphql`
             alt
         }
       }
+    }
+    allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "blog-post" } } }) {
+        edges {
+            node {
+                fields {
+                    slug
+                }
+                frontmatter {
+                    title
+                    author {
+                        name
+                        photo {
+                            childImageSharp {
+                                fluid {
+                                    ...GatsbyImageSharpFluid
+                                }
+                            }
+                        }
+                    }
+                    date(formatString: "DD/MM/YYYY")
+                    featuredimage {
+                        childImageSharp {
+                            fluid {
+                                ...GatsbyImageSharpFluid
+                            }
+                        }
+                      }
+                      altFeatured
+                }
+            }
+        }
     }
   }
 `

@@ -8,10 +8,8 @@ const ProcedurePost = ({
     location,
     data
 }) => {
-    console.log('data :', data);
     const { title, cover, procedures: items } = data.markdownRemark.frontmatter;
     const image = cover.image.childImageSharp.fluid.src;
-    console.log('data.markdownRemark.fields.slug :', data.markdownRemark.fields.slug);
 
     return (
         <TemplateWrapper2 location={location}>

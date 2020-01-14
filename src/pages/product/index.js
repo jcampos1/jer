@@ -124,7 +124,6 @@ const Products = ({
                                 className="row px-3 px-sm-5 px-md-0">
                                 {
                                     _products.map((elem, index2) => {
-                                        console.log('elem :', elem);
                                         return (
                                             <div
                                                 key={`proditem3${index}${index2}`}
