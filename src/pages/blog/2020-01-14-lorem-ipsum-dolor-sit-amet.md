@@ -5,7 +5,7 @@ altFeatured: texto alternativo aqui
 description: >-
   Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
   ligula eget dolor. Aenean massa. Cum sociis natoque
-title: Lorem ipsum dolor sit amet
+title: Lorem ipsum dolor sit amet 3
 date: 2020-01-14T15:55:45.530Z
 author:
   alt: texto alternativo auqi
