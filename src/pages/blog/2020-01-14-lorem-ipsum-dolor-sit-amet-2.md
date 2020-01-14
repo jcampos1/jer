@@ -8,7 +8,7 @@ date: 2020-01-14T16:03:50.181Z
 author:
   alt: fdgdgdfg
   name: Gerswin Pineda
-  photo: /img/placeholder-image2.png
+  photo: /img/author-image.png
 featuredpost: true
 coverImage: /img/blog2-big.png
 altCover: fdgfdgdf
