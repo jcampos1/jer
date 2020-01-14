@@ -12,9 +12,9 @@ author:
   name: Mayerson Jimenez
   photo: /img/placeholder-image2.png
 featuredpost: true
-coverImage: /img/blog2-big.png
+coverImage: /img/blog3-big.png
 altCover: fsgdfgdfgdf
-listImage: /img/blog2-big.png
+listImage: /img/blog3-big.png
 altList: fdgdfgfdg
 tags:
   - dsfdsfds
