@@ -5,6 +5,7 @@ import TemplateWrapper2 from '../components/Layout2'
 import Feature2 from '../components/Feature2'
 import SocialNetworks from '../components/SocialNetworks'
 import ButtonMore from '../components/ButtonMore';
+import { graphql } from 'gatsby';
 
 const Post = ({
     image
@@ -49,21 +50,44 @@ const Post = ({
 const BlogPage = ({
     drName,
     networks,
-    location
+    location,
+    data
 }) => {
-  return (
-    <TemplateWrapper2 location={location}>
-        <div className="mb-3 mb-md-5">
-            <Post image="/img/blog1-big.png" />
-        </div>
-        <div className="mb-3 mb-md-5">
-            <Post image="/img/blog2-big.png" />
-        </div>
-        <div className="mb-3 mb-md-5">
-            <Post image="/img/blog3-big.png" />
-        </div>
-    </TemplateWrapper2>
-  )
+    console.log('data blog :', data);
+    return (
+        <TemplateWrapper2 location={location}>
+            <div className="mb-3 mb-md-5">
+                <Post image="/img/blog1-big.png" />
+            </div>
+            <div className="mb-3 mb-md-5">
+                <Post image="/img/blog2-big.png" />
+            </div>
+            <div className="mb-3 mb-md-5">
+                <Post image="/img/blog3-big.png" />
+            </div>
+        </TemplateWrapper2>
+    )
 }
 
-export default BlogPage
+export default BlogPage;
+
+export const pageQuery = graphql`
+  query BlogPage {
+    allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "blog-post" } } }) {
+        edges {
+            node {
+                fields {
+                    slug
+                }
+                frontmatter {
+                    title
+                    author {
+                        name
+                    }
+                    listImage
+                }
+            }
+        }
+    }
+  }
+`

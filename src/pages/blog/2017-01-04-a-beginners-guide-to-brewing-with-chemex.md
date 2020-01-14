@@ -5,6 +5,10 @@ description: Una descripción
 date: 2017-01-04T15:04:10.000Z
 featuredpost: false
 featuredimage: /img/chapinero.png
+listImage: /img/chapinero.png
+author:
+  name: Junior Campos
+  image: /img/cirugias-faciales.png
 tags:
   - brewing
   - chemex

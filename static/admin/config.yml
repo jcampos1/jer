@@ -20,14 +20,16 @@ collections:
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "blog-post"}
       - {label: "Imagen previa al blog", name: "featuredimage", widget: image}
-      - {label: "Texto alternativo", name: alt, widget: string}
+      - {label: "Texto alternativo", name: altFeatured, widget: string}
       - {label: "Resumen previo al blog", name: "description", widget: "text"}
       - {label: "Titulo del blog", name: "title", widget: "string"}
       - {label: "Fecha", name: "date", widget: "datetime"}
       - {label: "Autor", name: "author", widget: "object", fields: [{label: "Nombre", name: "name", widget: "string"}, {label: "Foto del autor", name: "photo", widget: image}, {label: "Texto alternativo", name: alt, widget: string}]}
       - {label: "Featured Post", name: "featuredpost", widget: "boolean"}
       - {label: "Imagen de portada", name: "coverImage", widget: image}
-      - {label: "Texto alternativo", name: alt, widget: string}
+      - {label: "Texto alternativo", name: altCover, widget: string}
+      - {label: "Imagen a mostrar en lista de blog", name: "listImage", widget: image}
+      - {label: "Texto alternativo", name: altList, widget: string}
       - {label: "Contenido", name: "body", widget: "markdown"}
       - {label: "Tags", name: "tags", widget: "list"}
   
