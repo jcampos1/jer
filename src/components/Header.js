@@ -16,7 +16,8 @@ const links = [{
     to: "#products"
 },{
     name: "Blog",
-    to: "#blog"
+    to: "/blog-page",
+    redirect: true
 }];
 
 const Header = ({
@@ -57,11 +58,21 @@ const Header = ({
                                     <li 
                                         key={`link${index}`} 
                                         className="nav-item ml-md-4">
-                                        <a
-                                            href={item.to}
-                                            className={`nav-link ${location.pathname === item.to ? "active" : ""} text-muted font-weight-bold pb-0`}>
-                                            {item.name}
-                                        </a>
+                                        {
+                                            item.redirect ? (
+                                                <Link 
+                                                    to={item.to}
+                                                    className={`nav-link ${location.pathname === item.to ? "active" : ""} text-muted font-weight-bold pb-0`}>
+                                                    {item.name}
+                                                </Link>
+                                            ) : (
+                                                <a
+                                                    href={item.to}
+                                                    className={`nav-link ${location.pathname === item.to ? "active" : ""} text-muted font-weight-bold pb-0`}>
+                                                    {item.name}
+                                                </a>
+                                            )
+                                        }
                                     </li>
                                 ))
                             }

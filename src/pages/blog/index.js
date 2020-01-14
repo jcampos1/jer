@@ -1,10 +1,13 @@
 import React from 'react'
 import Feature2 from '../../components/Feature2';
+import { graphql, StaticQuery, Link } from 'gatsby';
 
 const BlogSection = ({
     title,
-    items
+    data
 }) => {
+    const posts = data.allMarkdownRemark.edges.slice(0, 3);
+
     return (
         <>
             {/* Displayed in desk */}
@@ -17,45 +20,48 @@ const BlogSection = ({
                     </div>
                     <div className="row">
                         {
-                            items.map((item, index) => (
-                                <div
-                                    key={`blog${index}`} 
-                                    className="col-md-6 col-lg-4 mb-5 mb-lg-0 px-4 px-sm-5 px-md-3">
-                                    <div
-                                        style={{
-                                            backgroundImage: `url(${item.image})`,
-                                            backgroundRepeat: "no-repeat",
-                                            backgroundSize: "cover",
-                                            height: "26rem",
-                                        }}
-                                        className="shadow-sm position-relative"
-                                        >
+                            posts.map((item, index) => (
+                                <Link 
+                                    key={`blog${index}`}
+                                    className="col-md-6 col-lg-4 mb-5 mb-lg-0 px-4 px-sm-5 px-md-3"
+                                    to={item.node.fields.slug}>
+                                    <div 
+                                        className="d-block">
                                         <div
                                             style={{
-                                                bottom: "0", 
-                                                left: "0", 
-                                                height: "9rem", 
-                                                
-                                            }} 
-                                            className="text-white d-flex flex-column justify-content-center position-absolute w-100"
+                                                backgroundImage: `url(${item.node.frontmatter.featuredimage.childImageSharp.fluid.src})`,
+                                                backgroundRepeat: "no-repeat",
+                                                backgroundSize: "cover",
+                                                height: "26rem",
+                                            }}
+                                            className="shadow-sm position-relative"
                                             >
-                                                <div style={{
-                                                    top: "0",
-                                                    left: "0",
-                                                    opacity: ".8",
-                                                    backgroundColor: "#17a4d6"
+                                            <div
+                                                style={{
+                                                    bottom: "0", 
+                                                    left: "0", 
+                                                    height: "9rem", 
+                                                    
                                                 }} 
-                                                className="w-100 h-100 position-absolute" />
-                                                <span
-                                                    style={{height: "5px", width: "4rem", zIndex: "1"}} 
-                                                    className="mx-3 bg-white rounded d-block" />
-                                                <p
-                                                    className="px-3 mt-3 c-pointer" 
-                                                    style={{zIndex: "1"}}>{item.description}</p>
+                                                className="text-white d-flex flex-column justify-content-center position-absolute w-100"
+                                                >
+                                                    <div style={{
+                                                        top: "0",
+                                                        left: "0",
+                                                        opacity: ".8",
+                                                        backgroundColor: "#17a4d6"
+                                                    }} 
+                                                    className="w-100 h-100 position-absolute" />
+                                                    <span
+                                                        style={{height: "5px", width: "4rem", zIndex: "1"}} 
+                                                        className="mx-3 bg-white rounded d-block" />
+                                                    <p
+                                                        className="px-3 mt-3 c-pointer" 
+                                                        style={{zIndex: "1"}}>{item.node.frontmatter.description}</p>
+                                            </div>
                                         </div>
-                                            
                                     </div>
-                                </div>
+                                </Link> 
                             ))
                         }
                     </div>
@@ -65,22 +71,33 @@ const BlogSection = ({
     )
 }
 
-BlogSection.defaultProps = {
-    title: "BLOG",
-    items: [{
-        image: "/img/blog1.png",
-        alt: "blog 1",
-        description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque"
-    },{
-        image: "/img/blog2.png",
-        alt: "blog 2",
-        title: "Lorem impsum",
-        description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque"
-    },{
-        image: "/img/blog3.png",
-        alt: "blog 3",
-        description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque"
-    }]
-}
-
-export default BlogSection;
+export default props => (
+    <StaticQuery
+      query={graphql`
+        query BlogSection {
+            allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "blog-post" } }}) {
+                edges {
+                    node {
+                        fields {
+                            slug
+                        }
+                        frontmatter {
+                            title
+                            featuredimage {
+                                childImageSharp {
+                                    fluid {
+                                        ...GatsbyImageSharpFluid
+                                    }
+                                }
+                            }
+                            description
+                            altFeatured
+                        }
+                    }
+                }
+            }
+        }
+      `}
+      render={(data, count) => <BlogSection data={data} count={count} title="BLOG" {...props} />}
+    />
+  )

@@ -9,17 +9,22 @@ const BlogPost2 = ({
     drName,
     networks,
     location,
-    post
+    post,
+    data
 }) => {
-  return (
+    console.log('data blog post 2:', data);
+    const {altCover, date, title, author} = data.markdownRemark.frontmatter;
+    const image = data.markdownRemark.frontmatter.coverImage.childImageSharp.fluid.src;
+
+    return (
     <TemplateWrapper2 location={location}>
         <div id="blog-post">
             <section
             className="jumbotron jumbotron-fluid p-0 m-0 position-relative">
                 <img 
                     className="img-fluid jumbo__cover w-100 position-relative shadow-sm"
-                    src="/img/blog1-big.png"
-                    alt="cover" />
+                    src={image}
+                    alt={altCover} />
             </section>
             <section className="d-flex flex-column flex-md-row container py-5">
                 {/* AUTHOR IMAGE */}
@@ -31,20 +36,21 @@ const BlogPost2 = ({
                         alt="author image" />
                 </div>
                 <div className="d-flex flex-column">
-                    <h2 className="mb-4 mx-auto mx-md-0 text-muted font-weight-bold">Lorem ipsum dolor sit amet</h2>
+                    <h2 className="mb-4 mx-auto mx-md-0 text-muted font-weight-bold">{title}</h2>
                     <div className="d-flex align-items-center text-muted mx-auto mx-md-0">
                         <img 
                             className="icon-meta"
                             src="/img/icon-date.svg"
                             alt="icon date" />
-                            2h ago
+                            {/* 2h ago */}
+                            {date}
                     </div>
                     <div className="d-flex align-items-center text-muted mx-auto mx-md-0">
                         <img 
                             className="icon-meta"
                             src="/img/icon-author.svg"
                             alt="icon author" />
-                            Autor del blog
+                            {author.name}
                     </div>
                     <div className="text-muted mt-5">
                         <p>
@@ -56,7 +62,7 @@ const BlogPost2 = ({
                     </div>
                 </div>
             </section>
-            <section className="container-fluid bg-light">
+            {/* <section className="container-fluid bg-light">
                 <div className="d-flex justify-content-center font-weight-bold">
                     <Feature2 title="MÁS BLOGS" />
                 </div>
@@ -97,21 +103,42 @@ const BlogPost2 = ({
                         
                     </div>
                 </div>
-            </section>
+            </section> */}
         </div>
     </TemplateWrapper2>
   )
 }
 
-BlogPost2.defaultProps = {
-    post: [{
-        author: "Autor del blog",
-        date: "2h ago",
-        image: "/img/blog2.png",
-    }, {
-        author: "Autor del blog",
-        date: "2h ago",
-        image: "/img/blog3.png",
-    }]
-}
 export default BlogPost2
+
+export const blogpost2Query = graphql`
+  query BlogPostByID($id: String!) {
+    markdownRemark(id: { eq: $id }) {
+      id
+      html
+      frontmatter {
+        coverImage {
+            childImageSharp {
+                fluid {
+                    ...GatsbyImageSharpFluid
+                }
+            }
+        }
+        altCover
+        title
+        date(formatString: "DD/MM/YYYY")
+        author {
+            name
+            photo {
+                childImageSharp {
+                    fluid {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }
+            alt
+        }
+      }
+    }
+  }
+`
