@@ -5,9 +5,9 @@ import TemplateWrapper2 from '../components/Layout2'
 import Feature2 from '../components/Feature2'
 import Presentation from '../components/Presentation'
 import Comments from '../components/Comments'
-import BlogSection from '../components/BlogSection';
 import Procedures from '../pages/procedure';
 import Products from '../pages/product/index';
+import BlogSection from '../pages/blog/index';
 
 const Landing = ({
   location,

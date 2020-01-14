@@ -15,7 +15,7 @@ const Subitem = ({
         <div
             className="mr-3">
             <img
-                className="w-100 h-100" 
+                className="w-100" 
                 src={image} alt={alt} />
             <span className="text-muted d-block">{title}</span>
             <div>
@@ -35,25 +35,7 @@ const SETTINGS = {
     slidesToShow: 3,
     slidesToScroll: 3,
     centerMode: true,
-    adaptiveHeight: true,
-    responsive: [
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          dots: true
-        }
-      },
-      {
-          breakpoint: 300,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            dots: true
-          }
-        }
-    ]
+    adaptiveHeight: true
 }
 
 const Product = ({

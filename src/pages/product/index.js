@@ -74,7 +74,7 @@ const Products = ({
             }   
         }
         setProductsSet(aux);
-    }, []);
+    }, [items]);
 
     return (
         <section
