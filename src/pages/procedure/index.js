@@ -118,7 +118,7 @@ const Procedures = ({
             </section>
 
             {/* Displayed in mobile */}
-            <div className="container d-block d-md-none px-5 pt-3 pb-5">
+            <div className="container d-block d-md-none px-4 pt-3 pb-5">
                 <div className="d-flex justify-content-center font-weight-bold">
                     <Feature2 title={title} />
                 </div>
