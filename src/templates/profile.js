@@ -114,6 +114,7 @@ export const profilePageQuery = graphql`
             } 
         }
         altMobile
+        description
         networks { 
             wathsapp
             instagram
