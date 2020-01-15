@@ -1,12 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { ProfileTemplate } from '../../templates/profile';
 
 const ProfilePreview = ({ entry, widgetFor }) => {
     console.log('entry.getIn:', entry.getIn(['data']).toJS());
+    const data = entry.getIn(['data']).toJS();
+    const {
+        alt, 
+        altMobile, 
+        networks,
+        image,
+        imageMobile,
+        description,
+        drName
+    } = data;
     return (
-        <div>
-            PREVIEW
-        </div>
+        <ProfileTemplate 
+            alt={alt}
+            altMobile={altMobile} 
+            networks={networks}
+            image={image}
+            imageMobile={imageMobile}
+            description={description}
+            drName={drName} />
     )
 }
 

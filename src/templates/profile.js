@@ -38,22 +38,6 @@ export const ProfileTemplate = ({
             <div
                 className="profile__content-text mt-0 mt-sm-2 mt-md-5">
                 <div dangerouslySetInnerHTML={{ __html: converter.makeHtml(description) }} />
-{/* 
-                <p className="mb-3 mb-md-5">
-                    Soy cirujana plástica reconstructiva y estética, egresada de la Universidad Militar Nueva Granada de Bogotá y miembro de la Sociedad Colombiana de Cirugía Plástica. Estudié 6 años medicina general y un año de rural.
-                </p>
-                <p className="mb-3 mb-md-5">
-                    Tengo 2 especializaciones, una en microcirugía en
-                    el hospital Chang Gung memorial de Taiwán durante
-                    1 año, y otra en cirugía plástica reconstructiva y
-                    estética durante 4 años.
-                </p>
-                <p className="mb-3 mb-md-5">
-                    Para mi han sido 12 años cambiando vidas de hombres 
-                    y mujeres con reconstrucciones y microcirugías de 
-                    gran complicación, así como con cirugías plásticas y estéticas necesarias para mejorar tanto la salud como la autoestima,
-                    ambas áreas necesarias para lograr la mejor versión de cada persona.
-                </p> */}
                 <SocialNetworks 
                     networks={networks}
                     isSimple={false} />
