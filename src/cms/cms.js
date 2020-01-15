@@ -13,7 +13,7 @@ CMS.registerMediaLibrary(uploadcare)
 CMS.registerMediaLibrary(cloudinary)
 
 // CMS.registerPreviewTemplate('index', IndexPagePreview)
-CMS.registerPreviewTemplate('about', AboutPagePreview)
+// CMS.registerPreviewTemplate('about', AboutPagePreview)
 CMS.registerPreviewTemplate('profile', ProfilePreview)
 CMS.registerPreviewTemplate('procedure', ProcedurePostPreview)
 // CMS.registerPreviewTemplate('products', ProductPagePreview)

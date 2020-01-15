@@ -88,13 +88,13 @@ collections:
           - {label: "Texto alternativo a la imagen pequeña", name: altMobile, widget: string}
           - {label: "Descripción", name: description, widget: "markdown"}
           - {label: "Redes sociales", name: networks, widget: object, fields: [{label: "Wathsapp", name: wathsapp, widget: string}, {label: "Url de instagram", name: instagram, widget: string}, {label: "Url de youtube", name: youtube, widget: string}, {label: "Url de facebook", name: facebook, widget: string}]}
-      - file: "src/pages/about/index.md"
-        label: "About"
-        name: "about"
-        fields:
-          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "about-page"}
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Body", name: "body", widget: "markdown"}
+      # - file: "src/pages/about/index.md"
+      #   label: "About"
+      #   name: "about"
+      #   fields:
+      #     - {label: "Template Key", name: "templateKey", widget: "hidden", default: "about-page"}
+      #     - {label: "Title", name: "title", widget: "string"}
+      #     - {label: "Body", name: "body", widget: "markdown"}
       # - file: "src/pages/products/index.md"
       #   label: "Products Page"
       #   name: "products"

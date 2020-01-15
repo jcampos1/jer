@@ -28,7 +28,6 @@ const Landing = ({
 
         {/* Resume Info doctor */}
         <Presentation
-        ion 
           drName={profile.name}
           profilePicture={{
             image: profile.image.childImageSharp.fluid.src,
@@ -43,7 +42,7 @@ const Landing = ({
 
         {/* Testimonials */}
         <Comments 
-          testimonials={testimonials.slice(0, 3)}/>
+          testimonials={testimonials.slice(0, 3)} />
 
         {/* Products */}
         <Products />
