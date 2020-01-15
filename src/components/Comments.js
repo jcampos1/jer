@@ -8,10 +8,9 @@ const Comments = ({
     testimonials
 }) => {
     return (
-        <>
+        <div id="testimonials">
             {/* Displayed in desk */}
             <section
-                id="testimonials"
                 style={{backgroundColor: "#f4f5fa"}} 
                 className="container-fluid m-0 px-0 py-5 d-none d-md-block">
                 <div className="container">
@@ -65,7 +64,8 @@ const Comments = ({
             <div
                 style={{backgroundColor: "#f4f5fa"}} 
                 className="container-fluid d-block d-md-none px-3 px-sm-5 pt-3 pb-5">
-                <div className="container px-sm-5 py-3">
+                <div
+                    className="container px-sm-5 py-3">
                     <div className="d-flex justify-content-center font-weight-bold">
                         <Feature2 title={title} />
                     </div>
@@ -110,7 +110,7 @@ const Comments = ({
                     </Carousel>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
