@@ -59,7 +59,7 @@ const Header = ({
                                         item.redirect ? (
                                             <Link 
                                                 to={item.to}
-                                                className={`nav-link ${location.pathname === item.to ? "active" : ""} text-muted font-weight-bold pb-0`}>
+                                                className={`nav-link ${location && location.pathname === item.to ? "active" : ""} text-muted font-weight-bold pb-0`}>
                                                 {item.name}
                                             </Link>
                                         ) : (
@@ -67,7 +67,7 @@ const Header = ({
                                                 smooth={true}
                                                 duration={500}
                                                 to={item.to}
-                                                className={`c-pointer nav-link ${location.pathname.includes(item.to.replace("#", "/")) ? "active" : ""} text-muted font-weight-bold pb-0`}>
+                                                className={`c-pointer nav-link ${location && location.pathname.includes(item.to.replace("#", "/")) ? "active" : ""} text-muted font-weight-bold pb-0`}>
                                                 {item.name}
                                             </LinkScroll>
                                         )
