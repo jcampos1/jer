@@ -2,6 +2,9 @@ import React from 'react'
 import TemplateWrapper2 from '../components/Layout2'
 import Feature2 from '../components/Feature2'
 import SocialNetworks from '../components/SocialNetworks'
+import showdown from 'showdown';
+
+const converter = new showdown.Converter()
 
 export const ProfileTemplate = ({
   alt, 
@@ -9,6 +12,7 @@ export const ProfileTemplate = ({
   networks,
   image,
   imageMobile,
+  description,
   drName
 }) => {
   return (
@@ -33,6 +37,8 @@ export const ProfileTemplate = ({
                 style={{color: "white"}} />
             <div
                 className="profile__content-text mt-0 mt-sm-2 mt-md-5">
+                <div dangerouslySetInnerHTML={{ __html: converter.makeHtml(description) }} />
+{/* 
                 <p className="mb-3 mb-md-5">
                     Soy cirujana plástica reconstructiva y estética, egresada de la Universidad Militar Nueva Granada de Bogotá y miembro de la Sociedad Colombiana de Cirugía Plástica. Estudié 6 años medicina general y un año de rural.
                 </p>
@@ -47,7 +53,7 @@ export const ProfileTemplate = ({
                     y mujeres con reconstrucciones y microcirugías de 
                     gran complicación, así como con cirugías plásticas y estéticas necesarias para mejorar tanto la salud como la autoestima,
                     ambas áreas necesarias para lograr la mejor versión de cada persona.
-                </p>
+                </p> */}
                 <SocialNetworks 
                     networks={networks}
                     isSimple={false} />
@@ -62,7 +68,7 @@ const Profile = ({
     location,
     data
 }) => {
-    const { alt, altMobile, networks } =  data.markdownRemark.frontmatter;
+    const { alt, altMobile, networks, description } =  data.markdownRemark.frontmatter;
     const image = data.markdownRemark.frontmatter.image.childImageSharp.fluid.src;
     const imageMobile = data.markdownRemark.frontmatter.imageMobile.childImageSharp.fluid.src;
 
@@ -74,6 +80,7 @@ const Profile = ({
           networks={networks}
           image={image}
           imageMobile={imageMobile}
+          description={description}
           drName={drName}
         />
     </TemplateWrapper2>
