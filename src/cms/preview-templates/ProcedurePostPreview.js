@@ -1,11 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { ProfileTemplate } from '../../templates/profile';
+import { ProcedurePostTemplate } from '../../templates/procedure-post';
 
 const ProcedurePostPreview = ({ entry, widgetFor }) => {
     console.log('entry.getIn:', entry.getIn(['data']).toJS());
     const data = entry.getIn(['data']).toJS();
-    return (<>PREVIEW PROCEDURE POST</>)
+    const { title, cover, procedures: items } = data;
+    const image = cover.image;
+
+    return (
+        <ProcedurePostTemplate 
+            title={title}
+            cover={cover}
+            procedures={items}
+            image={image}/>
+    )
 }
 
 ProcedurePostPreview.propTypes = {

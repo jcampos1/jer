@@ -34,7 +34,7 @@ export const ProcedurePostTemplate = ({
                   items.map((item, index) => (
                       <div className="col-md-6 col-lg-4 mb-4">
                           <ItemCard 
-                              image={item.image.childImageSharp.fluid.src}
+                              image={item.image.childImageSharp ? item.image.childImageSharp.fluid.src : item.image}
                               alt={item.alt}
                               title={item.name}
                               resume={item.description}
