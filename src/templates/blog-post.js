@@ -8,19 +8,16 @@ import showdown from 'showdown';
 
 const converter = new showdown.Converter()
 
-const BlogPost2 = ({
-    location,
-    data
+export const BlogPost2Template = ({
+    altCover, 
+    date, 
+    title, 
+    author,
+    image,
+    body
 }) => {
-    const {altCover, date, title, author} = data.markdownRemark.frontmatter;
-    const image = data.markdownRemark.frontmatter.coverImage.childImageSharp.fluid.src;
-    const body = data.markdownRemark.html;
-
-    const posts = data.allMarkdownRemark.edges;
-
     return (
-    <TemplateWrapper2 location={location}>
-        <div id="blog-post">
+        <>
             <section
                 className="jumbotron jumbotron-fluid p-0 m-0 position-relative">
                 <img 
@@ -50,7 +47,7 @@ const BlogPost2 = ({
                     <div className="d-flex align-items-center text-muted mx-auto mx-md-0">
                         <img 
                             className="icon-meta"
-                            src={author.photo.childImageSharp.fluid.src}
+                            src={author.photo.childImageSharp ? author.photo.childImageSharp.fluid.src : author.photo}
                             alt={author.alt} />
                             {author.name}
                     </div>
@@ -59,6 +56,34 @@ const BlogPost2 = ({
                     </div>
                 </div>
             </section>
+        </>
+    )
+}
+
+const BlogPost2 = ({
+    location,
+    data
+}) => {
+    const {altCover, date, title, author} = data.markdownRemark.frontmatter;
+    
+    const image = data.markdownRemark.frontmatter.coverImage.childImageSharp 
+        ? data.markdownRemark.frontmatter.coverImage.childImageSharp.fluid.src
+        : data.markdownRemark.frontmatter.coverImage;
+        
+    const body = data.markdownRemark.html;
+
+    const posts = data.allMarkdownRemark.edges;
+
+    return (
+    <TemplateWrapper2 location={location}>
+        <div id="blog-post">
+            <BlogPost2Template 
+                altCover={altCover} 
+                date={date} 
+                title={title} 
+                author={author} 
+                image={image} 
+                body={body}  />
             <section className="container-fluid bg-light">
                 <div className="d-flex justify-content-center font-weight-bold">
                     <Feature2 title="MÁS BLOGS" />

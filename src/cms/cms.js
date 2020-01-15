@@ -3,7 +3,7 @@ import uploadcare from 'netlify-cms-media-library-uploadcare'
 import cloudinary from 'netlify-cms-media-library-cloudinary'
 
 import AboutPagePreview from './preview-templates/AboutPagePreview'
-// import BlogPostPreview from './preview-templates/BlogPostPreview'
+import BlogPostPreview from './preview-templates/BlogPostPreview'
 // // import ProductPagePreview from './preview-templates/ProductPagePreview'
 import IndexPagePreview from './preview-templates/IndexPagePreview'
 import ProfilePreview from './preview-templates/ProfilePreview';
@@ -17,4 +17,4 @@ CMS.registerPreviewTemplate('landing', IndexPagePreview)
 CMS.registerPreviewTemplate('profile', ProfilePreview)
 CMS.registerPreviewTemplate('procedure', ProcedurePostPreview)
 // CMS.registerPreviewTemplate('products', ProductPagePreview)
-// CMS.registerPreviewTemplate('blog', BlogPostPreview)
+CMS.registerPreviewTemplate('blog', BlogPostPreview)
