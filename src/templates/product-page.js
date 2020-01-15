@@ -1,9 +1,7 @@
 import React from 'react'
 import TemplateWrapper2 from '../components/Layout2'
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
 import { getImage } from '../utils';
+import { Link as LinkScroll } from "react-scroll";
 
 const Subitem = ({
     image,
@@ -12,37 +10,25 @@ const Subitem = ({
     price
 }) => {
     return (
-        <div
-            className="mr-3">
+        <div>
             <img
                 className="w-100" 
                 src={image} alt={alt} />
             <span className="text-muted d-block">{title}</span>
             <div>
-                <h5 className="d-inline text-muted font-weight-bold">$</h5>
-                <h4 className="d-inline text-muted font-weight-bold">
+                <h6 className="d-inline text-muted font-weight-bold">$</h6>
+                <h5 className="d-inline text-muted font-weight-bold">
                     {price}
-                </h4>
+                </h5>
             </div>
         </div>
     )
-}
-
-const SETTINGS = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    centerMode: true,
-    adaptiveHeight: true
 }
 
 const Product = ({
     location,
     data
 }) => {
-
     const items = data.allMarkdownRemark.edges;
 
   return (
@@ -53,7 +39,11 @@ const Product = ({
                 <div className="d-flex justify-content-between flex-wrap">
                     {
                         items.map((item, index) => (
-                            <a href={`#${item.node.frontmatter.name}`}>
+                            <LinkScroll 
+                                className="c-pointer"
+                                duration={500}
+                                smooth={true} 
+                                to={`${item.node.frontmatter.name}`}>
                                 <div className="mx-auto d-flex flex-column align-items-center justify-content-start mb-3 mr-sm-3 mr-md-4">
                                     <div
                                         className="align-items-start d-block bg-info framew d-flex align-items-center justify-content-center rounded-circle">
@@ -69,7 +59,7 @@ const Product = ({
                                         {item.node.frontmatter.name}
                                     </span>
                                 </div>
-                            </a>
+                            </LinkScroll>
                         ))
                     }
                 </div>
@@ -94,18 +84,20 @@ const Product = ({
                                     {item.node.frontmatter.name}
                                 </h3>
                             </div>
-                            <Slider {...SETTINGS}>
-                            {
-                                    item.node.frontmatter.prod.map((sub, index2) => (
-                                        <Subitem 
-                                            key={`prod${index}${index2}`}
-                                            image={getImage(sub)}
-                                            alt={sub.alt}
-                                            title={sub.title}
-                                            price={sub.price} />
-                                    ))
+                            <div className="row d-flex justify-content-center">
+                                {
+                                        item.node.frontmatter.prod.map((sub, index2) => ( 
+                                            <div className="col-sm-6 col-md-4 col-lg-3 mt-3">
+                                                <Subitem 
+                                                    key={`prod${index}${index2}`}
+                                                    image={getImage(sub)}
+                                                    alt={sub.alt}
+                                                    title={sub.title}
+                                                    price={sub.price} />
+                                            </div>
+                                        ))
                                 }
-                            </Slider>
+                            </div>
                         </div>
                     </section>
                 ))
