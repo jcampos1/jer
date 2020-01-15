@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { ProcedurePostTemplate } from '../../templates/procedure-post';
 
 const ProcedurePostPreview = ({ entry, widgetFor }) => {
-    console.log('entry.getIn:', entry.getIn(['data']).toJS());
     const data = entry.getIn(['data']).toJS();
     const { title, cover, procedures: items } = data;
     const image = cover.image;
