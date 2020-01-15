@@ -1,6 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import TemplateWrapper2 from '../components/Layout2'
 import Feature2 from '../components/Feature2'
 import Presentation from '../components/Presentation'
@@ -8,6 +7,60 @@ import Comments from '../components/Comments'
 import Procedures from '../pages/procedure';
 import Products from '../pages/product/index';
 import BlogSection from '../pages/blog/index';
+
+export const LandingTemplate = ({
+  resumeProfile: profile, 
+  testimonials,
+  isPreview = false
+}) => {
+  return (
+    <>
+      <section
+        id="jumbo" 
+        className="jumbotron jumbotron-fluid p-0 m-0 position-relative">
+        <img 
+            className="jumbo__cover w-100 h-100"
+            src="/img/cover.png"
+            alt="cover" />
+      </section>
+
+      {/* Resume Info doctor */}
+      <Presentation
+        drName={profile.name}
+        profilePicture={{
+          image: profile.image.childImageSharp ? profile.image.childImageSharp.fluid.src : profile.image,
+          alt: profile.alt
+        }}
+        networks={profile.networks}
+        description={profile.description}
+        />
+
+      {/* Procedures */}
+      {
+        !isPreview && (
+          <Procedures />
+        )
+      }
+      {/* Testimonials */}
+      <Comments 
+        testimonials={testimonials.slice(0, 3)} />
+
+      {/* Products */}
+      {
+        !isPreview && (
+          <Products />
+        )
+      }
+
+      {/* Blog */}
+      {
+        !isPreview && (
+          <BlogSection />
+        )
+      }
+    </>
+  )
+};
 
 const Landing = ({
   location,
@@ -17,38 +70,10 @@ const Landing = ({
 
   return (
     <TemplateWrapper2 location={location}>
-        <section
-          id="jumbo" 
-          className="jumbotron jumbotron-fluid p-0 m-0 position-relative">
-          <img 
-              className="jumbo__cover w-100 h-100"
-              src="/img/cover.png"
-              alt="cover" />
-        </section>
-
-        {/* Resume Info doctor */}
-        <Presentation
-          drName={profile.name}
-          profilePicture={{
-            image: profile.image.childImageSharp.fluid.src,
-            alt: profile.alt
-          }}
-          networks={profile.networks}
-          description={profile.description}
-          />
-
-        {/* Procedures */}
-        <Procedures />
-
-        {/* Testimonials */}
-        <Comments 
-          testimonials={testimonials.slice(0, 3)} />
-
-        {/* Products */}
-        <Products />
-
-        {/* Blog */}
-        <BlogSection />
+        <LandingTemplate 
+          resumeProfile={profile} 
+          testimonials={testimonials}
+        />
     </TemplateWrapper2>
   )
 }

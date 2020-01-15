@@ -12,7 +12,7 @@ import ProcedurePostPreview from './preview-templates/ProcedurePostPreview';
 CMS.registerMediaLibrary(uploadcare)
 CMS.registerMediaLibrary(cloudinary)
 
-// CMS.registerPreviewTemplate('index', IndexPagePreview)
+CMS.registerPreviewTemplate('index', IndexPagePreview)
 // CMS.registerPreviewTemplate('about', AboutPagePreview)
 CMS.registerPreviewTemplate('profile', ProfilePreview)
 CMS.registerPreviewTemplate('procedure', ProcedurePostPreview)

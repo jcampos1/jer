@@ -21,7 +21,7 @@ const Comments = ({
                         {
                             testimonials.map((item, index) => {
                                 const {alt, resume, title} = item;
-                                const image = item.image.childImageSharp.fluid.src;
+                                const image = item.image.childImageSharp ? item.image.childImageSharp.fluid.src : item.image;
                                 return (
                                     <div
                                         key={`test${index}`} 
@@ -73,7 +73,7 @@ const Comments = ({
                         {
                             testimonials.map((item, index) => {
                                 const {alt, resume, title} = item;
-                                const image = item.image.childImageSharp.fluid.src;
+                                const image = item.image.childImageSharp ? item.image.childImageSharp.fluid.src : item.image;
                                 return(
                                     <div
                                         key={`test2${index}`}
