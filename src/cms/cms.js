@@ -7,6 +7,7 @@ import AboutPagePreview from './preview-templates/AboutPagePreview'
 // // import ProductPagePreview from './preview-templates/ProductPagePreview'
 // import IndexPagePreview from './preview-templates/IndexPagePreview'
 import ProfilePreview from './preview-templates/ProfilePreview';
+import ProcedurePostPreview from './preview-templates/ProcedurePostPreview';
 
 CMS.registerMediaLibrary(uploadcare)
 CMS.registerMediaLibrary(cloudinary)
@@ -14,5 +15,6 @@ CMS.registerMediaLibrary(cloudinary)
 // CMS.registerPreviewTemplate('index', IndexPagePreview)
 CMS.registerPreviewTemplate('about', AboutPagePreview)
 CMS.registerPreviewTemplate('profile', ProfilePreview)
+CMS.registerPreviewTemplate('procedure', ProcedurePostPreview)
 // CMS.registerPreviewTemplate('products', ProductPagePreview)
 // CMS.registerPreviewTemplate('blog', BlogPostPreview)

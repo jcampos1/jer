@@ -4,6 +4,50 @@ import ItemCard from '../components/ItemCard'
 import { graphql } from 'gatsby';
 import Procedures from '../pages/procedure'
 
+export const ProcedurePostTemplate = ({
+  title, 
+  cover, 
+  procedures: items,
+  image
+}) => {
+  return (
+    <>
+      <section
+        id="procedure" 
+        className="jumbotron jumbotron-fluid p-0 m-0 position-relative">
+        <img 
+            style={{objectFit: "cover"}}
+            className="img-fluid jumbo__cover w-100 position-relative"
+            src={image}
+            alt={cover.alt} />
+        <div
+            className="procedure__title">
+            <div
+                className="mt-3 text-uppercase text-center">
+                {title}
+            </div>
+        </div>
+      </section>
+      <div className="container py-5">
+          <div className="row">
+              {
+                  items.map((item, index) => (
+                      <div className="col-md-6 col-lg-4 mb-4">
+                          <ItemCard 
+                              image={item.image.childImageSharp.fluid.src}
+                              alt={item.alt}
+                              title={item.name}
+                              resume={item.description}
+                              />
+                      </div>
+                  ))
+              }
+          </div>
+      </div>
+    </>
+  )
+}
+
 const ProcedurePost = ({
     location,
     data
@@ -13,39 +57,12 @@ const ProcedurePost = ({
 
     return (
         <TemplateWrapper2 location={location}>
-            <section
-                id="procedure" 
-                className="jumbotron jumbotron-fluid p-0 m-0 position-relative">
-                <img 
-                    style={{objectFit: "cover"}}
-                    className="img-fluid jumbo__cover w-100 position-relative"
-                    src={image}
-                    alt={cover.alt} />
-                <div
-                    className="procedure__title">
-                    <div
-                        className="mt-3 text-uppercase text-center">
-                        {title}
-                    </div>
-                </div>
-            </section>
-            <div className="container py-5">
-                <div className="row">
-                    {
-                        items.map((item, index) => (
-                            <div className="col-md-6 col-lg-4 mb-4">
-                                <ItemCard 
-                                    image={item.image.childImageSharp.fluid.src}
-                                    alt={item.alt}
-                                    title={item.name}
-                                    resume={item.description}
-                                    />
-                            </div>
-                        ))
-                    }
-                </div>
-            </div>
-            <Procedures exludeSlug={data.markdownRemark.fields.slug} />
+          <ProcedurePostTemplate 
+              title={title}
+              cover={cover}
+              procedures={items}
+              image={image} />
+          <Procedures exludeSlug={data.markdownRemark.fields.slug} />
         </TemplateWrapper2>
     )
 }
