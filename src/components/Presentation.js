@@ -16,7 +16,7 @@ const Presentation = ({
         <>
             {/* displayed in desk */}
             <section
-                id="presentation"
+                id="profile"
                 style={{backgroundColor: "#f4f5fa"}} 
                 className="container-fluid m-0 px-0 py-5">
                 <div className="container">

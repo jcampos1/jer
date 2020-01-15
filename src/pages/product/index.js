@@ -78,7 +78,7 @@ const Products = ({
 
     return (
         <section
-            id="products"
+            id="product"
             className="container-fluid m-0 px-0 position-relative pb-5">
             <img 
                 style={{opacity: ".2", zIndex: "-100", top: "0", left: "0"}}

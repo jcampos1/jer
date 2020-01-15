@@ -4,16 +4,16 @@ import { Link as LinkScroll } from "react-scroll";
 
 const links = [{
     name: "Dra Carolina Carvajal",
-    to: "presentation"
+    to: "profile"
 },{
     name: "Procedimientos",
-    to: "procedures"
+    to: "procedure"
 },{
     name: "Testimonios",
     to: "testimonials"
 }, {
     name: "Productos",
-    to: "products"
+    to: "product"
 },{
     name: "Blog",
     to: "/blog-page",
@@ -67,7 +67,7 @@ const Header = ({
                                                 smooth={true}
                                                 duration={500}
                                                 to={item.to}
-                                                className={`c-pointer nav-link ${location.pathname === item.to ? "active" : ""} text-muted font-weight-bold pb-0`}>
+                                                className={`c-pointer nav-link ${location.pathname.includes(item.to.replace("#", "/")) ? "active" : ""} text-muted font-weight-bold pb-0`}>
                                                 {item.name}
                                             </LinkScroll>
                                         )

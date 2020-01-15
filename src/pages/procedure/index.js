@@ -31,7 +31,7 @@ const Procedures = ({
 
     return (
         <div
-            id="procedures" 
+            id="procedure" 
             className={className}>
             {/* Displayed in desk */}
             <section className={`container-fluid m-0 px-0 py-5 d-none d-md-block ${exludeSlug ? "bg-light" : ""}`}>
