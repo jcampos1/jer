@@ -4,13 +4,18 @@ import { LandingTemplate } from '../../templates/landing';
 
 const IndexPagePreview = ({ entry, getAsset }) => {
   const data = entry.getIn(['data']).toJS()
-  const { resumeProfile: profile, testimonials } = data;
+  const { 
+    bannerTitle,
+    charList,
+    contacts 
+  } = data;
 
   if (data) {
     return (
       <LandingTemplate
-        resumeProfile={profile} 
-        testimonials={testimonials}
+        bannerTitle={bannerTitle}
+        charList={charList}
+        contacts={contacts}
         isPreview={true}
       />
     )
