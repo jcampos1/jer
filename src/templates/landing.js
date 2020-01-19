@@ -7,6 +7,7 @@ import Comments from '../components/Comments'
 import Procedures from '../pages/procedure';
 import Products from '../pages/product/index';
 import BlogSection from '../pages/blog/index';
+import Contacts from '../components/Contacts'
 
 export const LandingTemplate = ({
   resumeProfile: profile, 
@@ -17,10 +18,26 @@ export const LandingTemplate = ({
     <>
       <section
         id="jumbo" 
-        className="jumbotron jumbotron-fluid p-0 m-0 position-relative">
+        className="cover jumbotron jumbotron-fluid p-0 m-0 position-relative">
+        <div
+          className="cover__box">
+          <h1 className="mb-4">
+              Una educación que no compara, que valora cada niño por sus capacidades y las estimula.
+          </h1>
+          <div
+            className="cover__box__list">
+            <div>Ingles intensivo</div>
+            <div>Educación personalizada</div>
+            <div>Excelentes resultados en pruebas saber</div>
+          </div>
+        </div>
         <img 
-            className="jumbo__cover w-100 h-100"
+            className="jumbo__cover w-100 h-100 d-none d-md-block"
             src="/img/cover.png"
+            alt="cover" />
+          <img 
+            className="jumbo__cover w-100 h-100 d-block d-md-none"
+            src="/img/coverMobile.png"
             alt="cover" />
       </section>
 
@@ -35,22 +52,12 @@ export const LandingTemplate = ({
         description={profile.description}
         />
 
-      {/* Procedures */}
-      {
-        !isPreview && (
-          <Procedures />
-        )
-      }
       {/* Testimonials */}
       <Comments 
         testimonials={testimonials.slice(0, 3)} />
 
       {/* Products */}
-      {
-        !isPreview && (
-          <Products />
-        )
-      }
+      <Products />
 
       {/* Blog */}
       {
@@ -58,6 +65,7 @@ export const LandingTemplate = ({
           <BlogSection />
         )
       }
+      <Contacts />
     </>
   )
 };

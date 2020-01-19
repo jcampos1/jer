@@ -16,52 +16,24 @@ const Presentation = ({
         <>
             {/* displayed in desk */}
             <section
-                id="profile"
-                style={{backgroundColor: "#f4f5fa"}} 
-                className="container-fluid m-0 px-0 py-5">
-                <div className="container">
-                    <img 
-                        style={{width: "200px"}}
-                        className="img-fluid d-block d-md-none mx-auto"
-                        src={profilePicture.image} 
-                        alt={profilePicture.alt} />
+                id="about"
+                className="container-fluid m-0 px-0 py-5 d-flex flex-column">
+                <div className="container d-flex flex-column align-items-center">
                     <div className="d-flex justify-content-center font-weight-bold px-3 px-md-0">
-                        <Feature2 title={drName} />
-                    </div>
-                    <div className="d-flex justify-content-between align-items-center">
-                        <div className="w-50 text-justify text-muted px-3 px-md-0 d-none d-md-block">
-                            <div
-                                dangerouslySetInnerHTML={{ __html: converter.makeHtml(description) }} />
-                            <SocialNetworks networks={networks} />
-                            <div className="mt-3">
-                                <ButtonMore to="/profile" />
-                            </div>
-                        </div>
-                        <div className="w-100 text-justify text-muted px-3 px-md-0 d-block d-md-none">
-                            <div
-                                dangerouslySetInnerHTML={{ __html: converter.makeHtml(description) }} />
-                            <SocialNetworks networks={networks} />
-                            <div className="d-flex justify-content-center mt-3">
-                                <ButtonMore to="/profile" />
-                            </div>
-                        </div>
-                        <div className="d-none d-md-block">
-                            <img 
-                                style={{width: "250px"}}
-                                className="img-fluid ml-auto"
-                                src={profilePicture.image} 
-                                alt={profilePicture.alt} />
-                        </div>
-                        
+                        <Feature2 title="Nosotros" />
                     </div>
                 </div>
+                <video 
+                    controls={true}
+                    className="m-auto" 
+                    src="/img/video.mp4" />
             </section>
         </>
     )
 }
 
 Presentation.defaultProps = {
-    drName: "Dra CAROLINA CARVAJAL",
+    drName: "Nosotros",
     networks: [{
         image: "/img/wathsapp.svg",
         name: "wathsapp",

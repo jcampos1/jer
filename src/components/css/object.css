@@ -27,6 +27,46 @@
 }
 
 @media (max-width: 768px) {
+    /* FOOTER */
+    .footer .social-networks {
+        width: 50%;
+        margin-right: 3rem !important;
+    }
+
+    .footer .phones {
+        width: 50%;
+        text-align: right;
+    }
+
+    /* COVER */
+    .cover .cover__box {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        transform: none;
+        background-color: white;
+        padding: 1.5rem;
+    }
+
+    .cover .cover__box .cover__box__list {
+        font-size: 17px;
+    }
+
+    /* ABOUT */
+    #about video {
+        width: 70%;
+    }
+
+    /* HEADER */
+    #header .header__logo {
+        width: 60px;
+    }
+    
+    #header .navbar {
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+    }
 
     /* PROFILE */
 
@@ -68,6 +108,30 @@
 
     h3 {
         font-size: 1rem;
+    }
+
+    /* FORM */
+    #form .form-hubspot {
+        width: 280px;
+    }
+
+    #form .form-hubspot input, #form .form-hubspot select { 
+        height: 2rem;
+    }
+
+    /* ABOUT */
+    #about video {
+        width: 100%;
+    }
+
+    /* HEADER */
+    #header .header__logo {
+        width: 50px;
+    }
+    
+    #header .navbar {
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
     }
 
     /* PRODUCTS */

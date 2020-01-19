@@ -1,6 +1,48 @@
 import React from 'react'
 import Feature2 from '../../components/Feature2';
 import { graphql, StaticQuery, Link } from 'gatsby';
+import ButtonMore from '../../components/ButtonMore';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+
+const Item = ({
+    title,
+    image,
+    alt,
+    description,
+    url
+}) => {
+    return (
+        <div className="item rounded">
+            <img 
+                src={image}
+                alt={alt}
+                className="img-fluid"
+                style={{backgroundSize: "cover"}} />
+            <div
+                style={{backgroundColor: "#007387"}} 
+                className="item__box border p-3">
+                <h5 className="font-weight-bold text-white py-3">
+                    {title}
+                </h5>
+                <ButtonMore
+                    style={{backgroundColor: "#d8e500", color: "#202335", borderRadius: "18px"}} 
+                    to="/" />
+            </div>
+        </div>
+    )
+}
+
+const data2 = [{
+    image: "/img/noticia1.png",
+    title:"Excepteur sint occaecat cupidatat",
+}, {
+    image: "/img/noticia2.png",
+    title:"Excepteur sint occaecat cupidatat",
+}, {
+    image: "/img/noticia3.png",
+    title:"Excepteur sint occaecat cupidatat",
+}];
 
 const BlogSection = ({
     title,
@@ -16,54 +58,46 @@ const BlogSection = ({
                 className="container-fluid m-0 px-0 py-5 bg-light">
                 <div className="container">
                     <div className="d-flex justify-content-center font-weight-bold">
-                        <Feature2 title={title} />
+                        <Feature2 title="Noticias" />
                     </div>
-                    <div className="row">
-                        {
-                            posts.map((item, index) => (
-                                <Link 
-                                    key={`blog${index}`}
-                                    className="col-md-6 col-lg-4 mb-5 mb-lg-0 px-4 px-sm-5 px-md-3"
-                                    to={item.node.fields.slug}>
-                                    <div 
-                                        className="d-block">
+                    <div className="d-none d-md-block">
+                        <div className="row mt-5 pb-4">
+                            {
+                                data2.map((item, index) => {
+                                    return (
                                         <div
-                                            style={{
-                                                backgroundImage: `url(${item.node.frontmatter.featuredimage.childImageSharp.fluid.src})`,
-                                                backgroundRepeat: "no-repeat",
-                                                backgroundSize: "cover",
-                                                height: "26rem",
-                                            }}
-                                            className="shadow-sm position-relative"
-                                            >
-                                            <div
-                                                style={{
-                                                    bottom: "0", 
-                                                    left: "0", 
-                                                    height: "9rem", 
-                                                    
-                                                }} 
-                                                className="text-white d-flex flex-column justify-content-center position-absolute w-100"
-                                                >
-                                                    <div style={{
-                                                        top: "0",
-                                                        left: "0",
-                                                        opacity: ".8",
-                                                        backgroundColor: "#17a4d6"
-                                                    }} 
-                                                    className="w-100 h-100 position-absolute" />
-                                                    <span
-                                                        style={{height: "5px", width: "4rem", zIndex: "1"}} 
-                                                        className="mx-3 bg-white rounded d-block" />
-                                                    <p
-                                                        className="px-3 mt-3 c-pointer" 
-                                                        style={{zIndex: "1"}}>{item.node.frontmatter.description}</p>
-                                            </div>
+                                            key={`prop${index}`} 
+                                            className="col-md-4">
+                                            <Item 
+                                                image={item.image}
+                                                title={item.title}
+                                                to={null} />
                                         </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
+                    {/* Displayed in mobile */}
+                    <div className="d-block d-md-none">
+                        <Carousel showStatus={false} showThumbs={false} emulateTouch>
+                            {
+                                data2.map((item, index) => (
+                                    <div
+                                        style={{backgroundColor: "transparent"}} 
+                                        className="row px-3 px-sm-5 px-md-0">
+                                            <div
+                                                key={`prop${index}`} 
+                                                className="col-md-4">
+                                                <Item 
+                                                    image={item.image}
+                                                    title={item.title}
+                                                    to={null} />
+                                            </div>
                                     </div>
-                                </Link> 
-                            ))
-                        }
+                                ))
+                            }
+                        </Carousel>
                     </div>
                 </div>
             </section>

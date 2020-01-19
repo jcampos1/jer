@@ -17,30 +17,18 @@ const schema = Yup.object().shape({
         .required("Este campo es requerido.")
   });
 
-const procedures = [{
-    value: "Bichetmomia",
-    label: "Bichetmomia"
+const levels = [{
+    value: "garden",
+    label: "Jardín infantil y preescolar"
 }, {
-    value: "Bichetmomia",
-    label: "Bichetmomia"
+    value: "primary",
+    label: "Primaria"
 }, {
-    value: "Bichetmomia",
-    label: "Bichetmomia"
+    value: "secondary",
+    label: "Secundaría"
 }, {
-    value: "Gluteoplastia",
-    label: "Gluteoplastia"
-}, {
-    value: "Liposucción",
-    label: "Liposucción"
-}, {
-    value: "Reconstrucción",
-    label: "Reconstrucción"
-}, {
-    value: "Tratamientos no quirúrgicos",
-    label: "Tratamientos no quirúrgicos"
-}, {
-    value: "Otros",
-    label: "Otros"
+    value: "media",
+    label: "Media y Bachillerato"
 }];
 
 
@@ -59,25 +47,7 @@ const FormSection = ({
                 //     backgroundRepeat: "none",
                 // }}
                 id="form" 
-                className="container-fluid m-0 px-0 py-5 bg-light position-relative">
-                <img 
-                    style={{
-                        top: "0", 
-                        left: "0"
-                    }}
-                    src="/img/bg-form.png"
-                    alt="product bg"
-                    className="w-100 h-100 position-absolute d-none d-md-block"
-                />
-                <img 
-                    style={{
-                        top: "0", 
-                        left: "0"
-                    }}
-                    src="/img/bg-form.png"
-                    alt="product bg"
-                    className="w-100 h-100 position-absolute d-block d-md-none"
-                    />
+                className="container-fluid m-0 px-0 py-5 position-relative">
                 <div
                     className="container position-relative">
                     <div className="d-flex justify-content-center font-weight-bold">
@@ -86,26 +56,15 @@ const FormSection = ({
                     <div
                         style={{zIndex: "100"}} 
                         className="d-flex flex-column flex-md-row justify-content-between align-items-center">
-                        {/* CONTACTS */}
-                        <div className="h-100 order-2 order-md-1 mt-3 mt-md-0">
+                        {/* IMAGE */}
+                        <div className="h-100 mt-3 mt-md-0 mr-md-5 pr-md-5 mb-5 mb-md-0">
                             <img 
-                                style={{height: "140px", width: "400px"}}
-                                src="/img/email-card.png" 
-                                alt="email card"
-                                className="img-fluid d-block" />
-                            <img 
-                                style={{height: "140px", width: "400px"}}
-                                src="/img/phone-card.png" 
-                                alt="phone card"
-                                className="img-fluid d-block mt-3 mt-md-4" />
-                            <img 
-                                style={{height: "140px", width: "400px"}}
-                                src="/img/address-card.png" 
-                                alt="address card"
-                                className="img-fluid d-block mt-3 mt-md-4" />
+                                src="/img/prof-formulario.png"
+                                alt="fddfdf"
+                                className="img-fluid" />
                         </div>
                         {/* FORM */}
-                        <div className="order-1 order-md-2">
+                        <div>
                             <Formik
                                 initialValues={{
                                     name: "",
@@ -125,8 +84,26 @@ const FormSection = ({
                                     setFieldTouched,
                                     isValid
                                 }) => (
-                                    <div className="container-form bg-white">
-                                        <Form className="form-hubspot px-3 py-5">
+                                    <div
+                                        style={{backgroundColor: "#047487", borderRadius: "50px"}} 
+                                        className="container-form">
+                                        <Form className="form-hubspot px-3 py-3">
+                                            <img
+                                                width="80"
+                                                className="d-block img-fluid mx-auto mb-3"
+                                                src="/img/logo.svg" 
+                                                alt="placeholder image" 
+                                                />
+                                            <div className="text-white">
+                                                <div className="font-weight-bold text-center mb-3">Matriculas 2020</div>
+                                                <p 
+                                                    className="text-center px-md-3">
+                                                    <small>
+                                                        Nos estaremos comunicando en el menor tiempo posible con el fin de explicarle el proceso de matrícula del Colegio Jose Eustacio Rivera
+                                                    </small>
+                                                </p>
+                                            </div>
+                                            
                                             {/* NAME FIELD */}
                                             <div className="form-group">
                                                 <label> 
@@ -175,10 +152,10 @@ const FormSection = ({
                                                     </div>
                                                 )}
                                             </div>
-                                            {/* PROCEDURE TYPE */}
+                                            {/* LEVEL FIELD */}
                                             <div className="form-group mt-3">
                                                 <label> 
-                                                    Tipo de procedimiento.
+                                                    Nivel educativo.
                                                 </label>
                                                 <select
                                                     className="form-control"
@@ -191,9 +168,9 @@ const FormSection = ({
                                                     <option
                                                         disabled={true} 
                                                         value="" 
-                                                        label="Tipo de procedimiento." />
+                                                        label="Nivel educativo." />
                                                     {
-                                                        procedures.map((proc, index) => (
+                                                        levels.map((proc, index) => (
                                                             <option 
                                                                 key={`proc${index}`}
                                                                 value={proc.value} 
@@ -213,31 +190,31 @@ const FormSection = ({
                                                         name="terms"
                                                         render={({ field, form }) => {
                                                         return (
-                                                            <>
+                                                            <div className="d-flex align-items-center">
                                                                 <input 
-                                                                    className="form-check-input" 
+                                                                    className="form-check-input mt-0" 
                                                                     type="checkbox" 
                                                                     id="autoSizingCheck2"
                                                                     checked={field.value}
                                                                     {...field} />
-                                                                <label 
-                                                                    style={{opacity: ".4"}}
+                                                                <small 
+                                                                    style={{opacity: ".9"}}
                                                                     className="form-check-label" 
                                                                     for="autoSizingCheck2">
-                                                                    Términos y condiciones.
-                                                                </label>
-                                                            </>
+                                                                    He leído y acepto la política de privacidad de tratamiento de datos.
+                                                                </small>
+                                                            </div>
                                                         );
                                                     }}/>
                                                 </div>
                                             </div>
-                                            <button
+                                            <button 
                                                 onClick={() => handleSubmit(values)} 
                                                 disabled={!isValid || !values.terms}
-                                                style={{backgroundColor: "#71ffd2"}}
-                                                type="submit" 
-                                                className="btn px-4 mt-2">
-                                                Solicitar información
+                                                style={{top: "5px"}}
+                                                type="button" 
+                                                className="btn btn-sm btn__custom position-relative text-capitalize px-4 d-flex mx-auto">
+                                                Enviar
                                             </button>
                                         </Form>
                                     </div>
@@ -252,6 +229,6 @@ const FormSection = ({
 }
 
 FormSection.defaultProps = {
-    title: "SOLICITAR INFORMACIÓN"
+    title: "INSCRIPCIONES ABIERTAS"
 }
 export default FormSection;

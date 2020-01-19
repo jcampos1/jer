@@ -5,54 +5,54 @@ import { Link } from 'gatsby';
 import Feature2 from '../../components/Feature2';
 import { graphql, StaticQuery } from 'gatsby';
 import { getImage } from '../../utils';
+import ButtonMore from '../../components/ButtonMore';
 
 const Item = ({
-    name,
+    title,
     image,
     alt,
+    description,
     url
 }) => {
     return (
-        <div
-            style={{borderRadius: "14px"}} 
-            className="d-flex justify-content-between align-items-center bg-info px-4 py-3">
-            <div className="d-flex align-items-center">
-                <div
-                    className="framew d-flex align-items-center justify-content-center bg-white rounded-circle mr-sm-3">
-                        <img 
-                            src={image}
-                            alt={alt}
-                            className="framew__img img-fluid"
-                            />
-                </div>
-                <span
-                    className="framew__desc font-weight-bold text-white">
-                    {name}
-                </span>
+        <div className="item rounded">
+            <img 
+                src={image}
+                alt={alt}
+                className="img-fluid"
+                style={{backgroundSize: "cover"}} />
+            <div className="item__box border p-3">
+                <h6 className="font-weight-bold d-none d-md-block text-uppercase">
+                    {title}
+                </h6>
+                <h5 className="font-weight-bold d-block d-md-none text-uppercase">
+                    {title}
+                </h5>
+                <hr />
+                <p className="text-ellipsis">
+                    {description}
+                </p>
+                <ButtonMore to="/" />
             </div>
-            <Link 
-                to={url}
-                style={{backgroundColor: "#71ffd2"}}
-                className="btn px-4 text-muted d-none d-md-block">
-                Ver mas
-                <span
-                    style={{width: "18px", height: "18px", border: "solid 1px #707070"}} 
-                    className="d-inline-flex align-items-center justify-content-center rounded-circle ml-2">+</span>
-            </Link>
-            <Link 
-                style={{backgroundColor: "#71ffd2"}}
-                to={url} 
-                className="btn btn-sm px-4 text-muted d-block d-md-none">
-                Ver mas
-                <span
-                    style={{width: "18px", height: "18px", border: "solid 1px #707070"}} 
-                    className="d-inline-flex align-items-center justify-content-center rounded-circle ml-2">+</span>
-            </Link>
         </div>
     )
 }
 
 const MAX_PER_SLIDE = 4;
+
+const data2 = [{
+    image: "/img/propuesta1.png",
+    title:"Guarderia y jardin",
+    description: "Lo primero que un niño debe aprender es a ser feliz. Utilizamos una metodología en la que cada uno aprende a su ritmo y en contacto con la naturaleza. Honramos y respetamos el interés…"
+}, {
+    image: "/img/propuesta2.png",
+    title:"Preescolar y primaria",
+    description: "Buscamos interesar a los estudiantes en el aprendizaje a través de una metodología activa e innovadora basada en el respeto a los intereses y habilidades de cada uno que potencia la cooperación…"
+}, {
+    image: "/img/propuesta3.png",
+    title:"Media y bachillerato",
+    description: "Aprendizaje basado en problemas que promueve el pensamiento crítico y creativo. Respetamos la individualidad y la libertad del estudiante a fin de que logre el pleno desarrollo de sus ..."
+}];
 
 const Products = ({
     title,
@@ -78,66 +78,47 @@ const Products = ({
 
     return (
         <section
-            id="product"
+            id="proposal"
             className="container-fluid m-0 px-0 position-relative pb-5">
-            <img 
-                style={{opacity: ".2", zIndex: "-100", top: "0", left: "0"}}
-                src="/img/prod-bg.png"
-                alt="product bg"
-                className="w-100 h-100 position-absolute d-none d-md-block"
-                />
-            <img 
-                style={{opacity: ".2", zIndex: "-100", top: "0", left: "0"}}
-                src="/img/prod-bg-mobile.jpg"
-                alt="product bg"
-                className="w-100 h-100 position-absolute d-block d-md-none"
-                />
             <div className="container">
                 <div className="d-flex justify-content-center font-weight-bold py-3">
-                    <Feature2 title={title} />
+                    <Feature2 title="PROPUESTA DE FORMACIÓN INTEGRAL" />
                 </div>
-
-                {/* Displayed in desk */}
-                <div className="row px-5 px-md-0 d-none d-md-flex">
-                    {
-                        items.map((item, index) => (
-                            <div
-                                key={`proditem${index}`} 
-                                className="col-lg-6 mb-4">
-                                <Item 
-                                    name={item.node.frontmatter.name} 
-                                    image={getImage(item.node.frontmatter.cover)}
-                                    alt={item.node.frontmatter.cover.alt}
-                                    url={item.node.fields.slug}
-                                    />
-                            </div>
-                        ))
-                    }
+                <div className="d-none d-md-block">
+                    <div className="row mt-5 pb-4">
+                        {
+                            data2.map((item, index) => {
+                                return (
+                                    <div
+                                        key={`prop${index}`} 
+                                        className="col-md-4">
+                                        <Item 
+                                            image={item.image}
+                                            title={item.title}
+                                            description={item.description}
+                                            to={null} />
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
                 </div>
-
                 {/* Displayed in mobile */}
                 <Carousel className="d-block d-md-none" showStatus={false} showThumbs={false} emulateTouch>
                     {
-                        productsSet.map((_products, index) => (
+                        data2.map((item, index) => (
                             <div
                                 style={{backgroundColor: "transparent"}} 
                                 className="row px-3 px-sm-5 px-md-0">
-                                {
-                                    _products.map((elem, index2) => {
-                                        return (
-                                            <div
-                                                key={`proditem3${index}${index2}`}
-                                                className="col-md-6 mb-5">
-                                                <Item 
-                                                    name={elem.node.frontmatter.name}
-                                                    image={getImage(elem.node.frontmatter.cover)}
-                                                    alt={elem.node.frontmatter.cover.alt} 
-                                                    url={elem.node.fields.slug}
-                                                    />
-                                            </div>
-                                        )
-                                    })
-                                }
+                                <div
+                                    key={`prop${index}`} 
+                                    className="col-md-4">
+                                    <Item 
+                                        image={item.image}
+                                        title={item.title}
+                                        description={item.description}
+                                        to={null} />
+                                </div>
                             </div>
                         ))
                     }
@@ -148,7 +129,7 @@ const Products = ({
 }
 
 Products.defaultProps = {
-    title: "PRODUCTOS",
+    title: "PROPUESTA DE FORMACIÓN INTEGRAL",
     // items: [{
     //     image: "/img/icon-fajas.svg",
     //     alt: "testimonial 1",

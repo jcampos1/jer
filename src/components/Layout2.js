@@ -9,14 +9,15 @@ import './css/general.css';
 import './css/utilities.css';
 import './css/components.css';
 import './css/object.css';
+import './css/elements.css';
 import Footer2 from './Footer2'
 
 const TemplateWrapper2 = ({ children, location }) => {
   const { title, description } = useSiteMetadata()
 
   useEffect(() => {
-    // const popper = typeof window !== `undefined` ? require("../../node_modules/popper.js/dist/popper.min.js") : null
-    // const bootstrap = typeof window !== `undefined` ? require("../../node_modules/bootstrap/dist/js/bootstrap.min.js") : null
+    const popper = typeof window !== `undefined` ? require("../../node_modules/popper.js/dist/popper.min.js") : null
+    const bootstrap = typeof window !== `undefined` ? require("../../node_modules/bootstrap/dist/js/bootstrap.min.js") : null
   }, []);
 
   return (

@@ -3,21 +3,24 @@ import { Link } from 'gatsby'
 import { Link as LinkScroll } from "react-scroll";
 
 const links = [{
-    name: "Dra Carolina Carvajal",
+    name: "Oferta educativa",
     to: "profile"
 },{
-    name: "Procedimientos",
+    name: "Servicios",
     to: "procedure"
 },{
-    name: "Testimonios",
+    name: "Nosotros",
     to: "testimonials"
-}, {
-    name: "Productos",
-    to: "product"
 },{
     name: "Blog",
     to: "/blog-page",
     redirect: true
+}, {
+    name: "Circular",
+    to: "product"
+}, {
+    name: "Admisión",
+    to: "product"
 }];
 
 const Header = ({
@@ -30,8 +33,7 @@ const Header = ({
                 className="navbar navbar-expand-lg navbar-light px-5 border-bottom">
                 <Link className="navbar-brand" to="/">
                     <img
-                        width="150" 
-                        className="img-fluid"
+                        className="header__logo img-fluid"
                         src="/img/logo.svg" 
                         alt="placeholder image" 
                         />
@@ -79,14 +81,14 @@ const Header = ({
                     <button 
                         style={{top: "5px"}}
                         type="button" 
-                        className="btn btn-sm btn-info position-relative text-capitalize px-4 font-weight-bold d-flex mx-auto ml-lg-4 mr-lg-0">
+                        className="btn btn-sm btn__custom position-relative text-capitalize px-4 d-flex mx-auto ml-lg-4 mr-lg-0">
                             <LinkScroll 
                                 smooth={true}
                                 duration={500}
                                 to="form"
                                 style={{color: "white"}}
                                 >
-                                solicitar información
+                                Inscríbete
                             </LinkScroll>
                     </button>
                 </div>
