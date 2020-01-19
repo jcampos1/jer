@@ -1,6 +1,6 @@
 import React from 'react'
 import FormSection from './FormSection';
-import { Link } from 'gatsby';
+import { Link, StaticQuery, graphql } from 'gatsby';
 
 const navigationMap = [{
     name: "Oferta educativa",
@@ -41,7 +41,11 @@ const contacts = [{
     url: "/"
 }];
 
-const Footer2 = () => {
+const Footer2 = ({
+    data
+}) => {
+    const { phones } = data.markdownRemark.frontmatter.contacts;
+
     return (
         <div>
             {/* Form section */}
@@ -54,7 +58,7 @@ const Footer2 = () => {
                             width="80"
                             className="img-fluid"
                             src="/img/logo.svg" 
-                            alt="placeholder image" 
+                            alt="placeholder" 
                             />
                         <div>
                             {
@@ -99,8 +103,11 @@ const Footer2 = () => {
                             <hr className="bg-white mb-0 mb-md-3" />
                         </div>
                         <div className="phones d-flex flex-column mr-auto text-white font-weight-bold">
-                            <small>(+57) 317 372 40 33</small>
-                            <small>(+57) 311 251 17 40</small>
+                            {
+                                phones.map((item, index) => (
+                                    <small key={`pho${index}`}>{item.phone}</small>
+                                ))
+                            }
                         </div>
                     </div>
                 </div>
@@ -109,4 +116,21 @@ const Footer2 = () => {
     )
 }
 
-export default Footer2;
+export default props => (
+    <StaticQuery
+      query={graphql`
+        query Footer2 {
+            markdownRemark(frontmatter: { templateKey: { eq: "landing" } }) {
+                frontmatter {
+                    contacts {
+                        phones {
+                            phone
+                        }
+                    }
+                }
+            }
+        }
+      `}
+      render={(data, count) => <Footer2 data={data} count={count} {...props} />}
+    />
+  )

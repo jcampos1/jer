@@ -10,9 +10,11 @@ import BlogSection from '../pages/blog/index';
 import Contacts from '../components/Contacts'
 
 export const LandingTemplate = ({
-  resumeProfile: profile, 
-  testimonials,
-  isPreview = false
+  isPreview = false,
+  bannerTitle,
+  charList,
+  video,
+  contacts
 }) => {
   return (
     <>
@@ -22,13 +24,15 @@ export const LandingTemplate = ({
         <div
           className="cover__box">
           <h1 className="mb-4">
-              Una educación que no compara, que valora cada niño por sus capacidades y las estimula.
+              {bannerTitle}
           </h1>
           <div
             className="cover__box__list">
-            <div>Ingles intensivo</div>
-            <div>Educación personalizada</div>
-            <div>Excelentes resultados en pruebas saber</div>
+            {
+              charList.map((item, index) => (
+                <div key={`charlist${index}`}>{item.name}</div>
+              ))
+            }
           </div>
         </div>
         <img 
@@ -41,23 +45,20 @@ export const LandingTemplate = ({
             alt="cover" />
       </section>
 
-      {/* Resume Info doctor */}
+      {/* About us */}
       <Presentation
-        drName={profile.name}
-        profilePicture={{
-          image: profile.image.childImageSharp ? profile.image.childImageSharp.fluid.src : profile.image,
-          alt: profile.alt
-        }}
-        networks={profile.networks}
-        description={profile.description}
         />
 
-      {/* Testimonials */}
+      {/* Features list: Ingles intensivo, etc */}
       <Comments 
-        testimonials={testimonials.slice(0, 3)} />
+        charList={charList} />
 
-      {/* Products */}
-      <Products />
+      {/* Proposals: Guarderia y jardin, etc */}
+      {
+        !isPreview && (
+          <Products />
+        )
+      }
 
       {/* Blog */}
       {
@@ -65,7 +66,8 @@ export const LandingTemplate = ({
           <BlogSection />
         )
       }
-      <Contacts />
+      <Contacts 
+        contacts={contacts} />
     </>
   )
 };
@@ -74,13 +76,19 @@ const Landing = ({
   location,
   data
 }) => {
-  const { resumeProfile: profile, testimonials } = data.markdownRemark.frontmatter;
+  const { 
+    bannerTitle,
+    charList,
+    contacts 
+  } = data.markdownRemark.frontmatter;
 
   return (
-    <TemplateWrapper2 location={location}>
+    <TemplateWrapper2 
+      location={location}>
         <LandingTemplate 
-          resumeProfile={profile} 
-          testimonials={testimonials}
+          bannerTitle={bannerTitle}
+          charList={charList}
+          contacts={contacts}
         />
     </TemplateWrapper2>
   )
@@ -92,35 +100,34 @@ export const pageQuery = graphql`
   query Landing {
     markdownRemark(frontmatter: { templateKey: { eq: "landing" } }) {
       frontmatter {
-        testimonials {
-          title
-          image {
-            childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
+        bannerTitle
+        charList {
+          charImage {
+            image {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
               }
-            } 
+              publicURL 
+            }
+            alt
           }
-          alt
-          resume
-        }
-        resumeProfile {
-          name
           description
-          networks { 
-            wathsapp
-            instagram
-            youtube
-            facebook
+          name
+        }
+        contacts {
+          address
+          email
+          phones {
+            phone
           }
-          image {
-            childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-              }
-            } 
-          }
-          alt
+        }
+        networks {
+          twitter
+          instagram
+          youtube
+          facebook
         }
       }
     }

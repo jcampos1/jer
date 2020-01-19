@@ -2,6 +2,7 @@ import React from 'react'
 import Feature2 from './Feature2';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import { getImage } from '../utils';
 
 const Item = ({
     image,
@@ -31,23 +32,9 @@ const Item = ({
     )
 }
 
-const data = [{
-    image: "/img/educacion.svg",
-    title:"Educación Personalizada",
-    description: "Entendemos que cada estudiante es único por eso llevamos un seguimiento de las trayectorias estudiantiles de cada uno de ellos que nos permitan conocer."
-}, {
-    image: "/img/ingles.svg",
-    title:"Ingles intensivo",
-    description: "Entendemos que cada estudiante es único por eso llevamos un seguimiento de las trayectorias estudiantiles de cada uno de ellos que nos permitan conocer"
-}, {
-    image: "/img/icfes.svg",
-    title:"Excelentes resultados",
-    description: "Entendemos que cada estudiante es único por eso llevamos un seguimiento de las trayectorias estudiantiles de cada uno de ellos que nos permitan conocer"
-}];
-
 const Comments = ({
     title,
-    testimonials
+    charList
 }) => {
     return (
         <div id="testimonials">
@@ -66,16 +53,17 @@ const Comments = ({
                 </div>
                 <div className="row mt-5 pb-4">
                     {
-                        data.map((item, index) => {
+                        charList.map((item, index) => {
                             return (
                                 <div
                                     key={`serv${index}`} 
                                     style={{borderRight: "1px dashed white"}}
                                     className="col-md-4">
                                     <Item 
-                                        image={item.image}
-                                        title={item.title}
-                                        description={item.description} />
+                                        image={getImage(item.charImage)}
+                                        title={item.name}
+                                        description={item.description}
+                                        alt={item.charImage.alt} />
                                 </div>
                             )
                         })
@@ -98,16 +86,14 @@ const Comments = ({
                     </div>
                     <Carousel showStatus={false} showThumbs={false} emulateTouch>
                         {
-                            data.map((item, index) => {
-                                const {alt, resume, title} = item;
-                                const image = item.image.childImageSharp ? item.image.childImageSharp.fluid.src : item.image;
+                            charList.map((item, index) => {
                                 return(
                                     <div
                                         key={`serv2${index}`} 
                                         className="col-md-6 col-lg-4 mb-3 mb-lg-0">
                                         <Item 
-                                            image={item.image}
-                                            title={item.title}
+                                            image={getImage(item.charImage)}
+                                            title={item.name}
                                             description={item.description} />
                                     </div>
                                 )

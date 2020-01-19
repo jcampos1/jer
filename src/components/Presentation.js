@@ -7,10 +7,7 @@ import showdown from 'showdown'
 const converter = new showdown.Converter()
 
 const Presentation = ({
-    drName,
-    description,
-    networks,
-    profilePicture
+    video
 }) => {
     return (
         <>

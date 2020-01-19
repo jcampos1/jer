@@ -1,40 +1,17 @@
 import React from 'react';
 import Feature2 from './Feature2';
 
-const data = {
-    address: {
-        icon: "/img/placholder-image2.png",
-        alt: "kdlfldf",
-        text: "Dirección: La Calera a 9km de la calle 175 con la Cra 7a"
-    }, 
-    phones: {
-        icon: "/img/placholder-image2.png",
-        alt: "kdlfldf",
-        text: "8742201/ 317 3 72 40 33 / 311 2 51 17 40"
-    }, 
-    email: {
-        icon: "/img/placholder-image2.png",
-        alt: "kdlfldf",
-        text: "info@colegiojer.com"
-    }
-};
-
-
 const Contacts = ({
-    title
+    title,
+    contacts
 }) => {
-    const handleSubmit = data => {
-        console.log('data :', data);
-    }
+    const phonesCount = contacts.phones.length;
+    console.log('contacts :', contacts);
     return (
         <>
             {/* Displayed in desk */}
             <section
-                // style={{
-                //     backgroundImage: "url(/img/bg-form.png)",
-                //     backgroundRepeat: "none",
-                // }}
-                id="form" 
+                id="contacts" 
                 className="container-fluid m-0 px-0 py-5 position-relative">
                 <div
                     className="container position-relative">
@@ -48,24 +25,32 @@ const Contacts = ({
                             </h3>
                             <div className="d-flex mb-3">
                                 <img 
-                                    src={data.address.icon} 
-                                    alt={data.address.alt}
+                                    src="/img/placholder-image2.png" 
+                                    alt="alt pac"
                                     className="img-fluid mr-3" />
-                                <small>{data.address.text}</small> 
+                                <small>{contacts.address}</small> 
                             </div>
                             <div className="d-flex mb-3">
                                 <img 
-                                    src={data.phones.icon} 
-                                    alt={data.phones.alt}
+                                    src="/img/placholder-image2.png" 
+                                    alt="alt pac"
                                     className="img-fluid mr-3" />
-                                <small>{data.phones.text}</small> 
+                                {
+                                    contacts.phones.map((item, index) => (
+                                        <small
+                                            className="d-inline-block" 
+                                            key={`phone${index}`}>{item.phone}
+                                            {(index+1) < phonesCount ? " / " : ""}
+                                        </small>
+                                    ))
+                                }
                             </div>
                             <div className="d-flex mb-4">
                                 <img 
-                                    src={data.email.icon} 
-                                    alt={data.email.alt}
+                                    src="/img/placholder-image2.png" 
+                                    alt="alt pac"
                                     className="img-fluid mr-3" />
-                                <small>{data.email.text}</small> 
+                                <small>{contacts.email}</small> 
                             </div>
                             <img 
                                 src="/img/waze.png" 
