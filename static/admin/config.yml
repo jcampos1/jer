@@ -71,6 +71,7 @@ collections:
           - {label: "Lista de características mostradas en banner", name: "charList", widget: list, fields: [{label: "Imagen", name: "charImage", widget: "object", fields: [{label: "Imagen", name: "image", widget: image}, {label: "Texto alternativo a la imagen", name: alt, widget: string}]}, {label: "Nombre", name: name, widget: string}, {label: "Descripción breve", name: description, widget: text}]}
           - {label: "Video", name: "video", widget: file}
           - {label: "Datos de contactos", name: "contacts", widget: "object", fields: [{label: "Dirección", name: "address", widget: "text"},{label: "Teléfonos", name: "phones", widget: "list", fields: [{label: "Teléfono", name: "phone", widget: "string"}]}, {label: "Correo electrónico", name: "email", widget: "string"}]}
+          - {label: "Redes sociales", name: networks, widget: object, fields: [{label: "Url de twitter", name: twitter, widget: string}, {label: "Url de instagram", name: instagram, widget: string}, {label: "Url de youtube", name: youtube, widget: string}, {label: "Url de facebook", name: facebook, widget: string}]}
           # - {label: Image, name: image, widget: image}
           # - {label: Heading, name: heading, widget: string}
           # - {label: Subheading, name: subheading, widget: string}
