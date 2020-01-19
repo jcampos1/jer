@@ -63,12 +63,13 @@ collections:
       - file: "src/pages/index.md"
         label: "Página principal"
         name: "landing"
-        editor: 
-          preview: false
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "landing"}
           - {label: "Resumen de perfil", name: resumeProfile, widget: object, fields: [{label: "Nombre a mostrar", name: name, widget: string}, {label: "Descripción", name: description, widget: "markdown"}, {label: "", name: networks, widget: object, fields: [{label: "Wathsapp", name: wathsapp, widget: string}, {label: "Url de instagram", name: instagram, widget: string}, {label: "Url de youtube", name: youtube, widget: string}, {label: "Url de facebook", name: facebook, widget: string}]}, {label: "Imagen de perfil", name: image, widget: image}, {label: "Texto alternativo a la imagen", name: alt, widget: string}]}
           - {label: "Testimonios", name: "testimonials", widget: list, fields:[{label: "Titulo", name: title, widget: string}, {label: "Imagen a mostrar", name: image, widget: image}, {label: "Texto alternativo a la imagen", name: alt, widget: string}, {label: "Resumen", name: resume, widget: text}]}
+          - {label: "Título del banner principal", name: "bannerTitle", widget: "string"}
+          - {label: "Lista de características mostradas en banner", name: "charList", widget: list, fields: [{label: "Imagen", name: "charImage", widget: "object", fields: [{label: "Imagen", name: "image", widget: image}, {label: "Texto alternativo a la imagen", name: alt, widget: string}]}, {label: "Nombre", name: name, widget: string}, {label: "Descripción breve", name: description, widget: text}]}
+          - {label: "Video", name: "video", widget: file}
           # - {label: Image, name: image, widget: image}
           # - {label: Heading, name: heading, widget: string}
           # - {label: Subheading, name: subheading, widget: string}
