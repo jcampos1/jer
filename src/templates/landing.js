@@ -5,7 +5,7 @@ import Feature2 from '../components/Feature2'
 import Presentation from '../components/Presentation'
 import Comments from '../components/Comments'
 import Procedures from '../pages/procedure';
-import Products from '../pages/product/index';
+import Educative from '../pages/educative/index';
 import BlogSection from '../pages/blog/index';
 import Contacts from '../components/Contacts'
 
@@ -56,7 +56,7 @@ export const LandingTemplate = ({
       {/* Proposals: Guarderia y jardin, etc */}
       {
         !isPreview && (
-          <Products />
+          <Educative />
         )
       }
 
