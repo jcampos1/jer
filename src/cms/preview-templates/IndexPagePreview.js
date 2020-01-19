@@ -7,7 +7,8 @@ const IndexPagePreview = ({ entry, getAsset }) => {
   const { 
     bannerTitle,
     charList,
-    contacts 
+    contacts,
+    video 
   } = data;
 
   if (data) {
@@ -16,6 +17,7 @@ const IndexPagePreview = ({ entry, getAsset }) => {
         bannerTitle={bannerTitle}
         charList={charList}
         contacts={contacts}
+        video={video}
         isPreview={true}
       />
     )

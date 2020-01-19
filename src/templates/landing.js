@@ -46,8 +46,8 @@ export const LandingTemplate = ({
       </section>
 
       {/* About us */}
-      <Presentation
-        />
+      <Presentation 
+        video={video} />
 
       {/* Features list: Ingles intensivo, etc */}
       <Comments 
@@ -79,7 +79,8 @@ const Landing = ({
   const { 
     bannerTitle,
     charList,
-    contacts 
+    contacts ,
+    video
   } = data.markdownRemark.frontmatter;
 
   return (
@@ -87,6 +88,7 @@ const Landing = ({
       location={location}>
         <LandingTemplate 
           bannerTitle={bannerTitle}
+          video={video.publicURL}
           charList={charList}
           contacts={contacts}
         />
@@ -101,6 +103,9 @@ export const pageQuery = graphql`
     markdownRemark(frontmatter: { templateKey: { eq: "landing" } }) {
       frontmatter {
         bannerTitle
+        video {
+          publicURL
+        }
         charList {
           charImage {
             image {

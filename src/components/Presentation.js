@@ -23,7 +23,7 @@ const Presentation = ({
                 <video 
                     controls={true}
                     className="m-auto" 
-                    src="/img/video.mp4" />
+                    src={video} />
             </section>
         </>
     )
