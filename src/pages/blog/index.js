@@ -11,7 +11,7 @@ const Item = ({
     image,
     alt,
     description,
-    url
+    to
 }) => {
     return (
         <div className="item rounded">
@@ -28,7 +28,7 @@ const Item = ({
                 </h5>
                 <ButtonMore
                     style={{backgroundColor: "#d8e500", color: "#202335", borderRadius: "18px"}} 
-                    to="/" />
+                    to={to} />
             </div>
         </div>
     )
@@ -71,7 +71,7 @@ const BlogSection = ({
                                             key={`prop${index}`} 
                                             className="col-md-4">
                                             <Item 
-                                                image={getImage(item.node.frontmatter)}
+                                                image={getImage(item.node.frontmatter, "featuredimage")}
                                                 title={item.node.frontmatter.title}
                                                 to={item.node.fields.slug} />
                                         </div>
@@ -92,7 +92,7 @@ const BlogSection = ({
                                                 key={`prop${index}`} 
                                                 className="col-md-4">
                                                 <Item 
-                                                    image={getImage(item.node.frontmatter)}
+                                                    image={getImage(item.node.frontmatter, "featuredimage")}
                                                     title={item.node.frontmatter.title}
                                                     to={item.node.fields.slug} />
                                             </div>
