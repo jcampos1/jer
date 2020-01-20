@@ -13,7 +13,8 @@ const Post = ({
     title,
     author,
     date,
-    slug
+    slug,
+    description
 }) => {
     return (
         <section
@@ -28,24 +29,29 @@ const Post = ({
                 <h1 className="color-white font-weight-bold text-center">
                     {title}
                 </h1>
+                <p className="color-white text-center d-none d-lg-block mt-lg-5">
+                    {description}
+                </p>
                 <div className="mx-auto blog-page__content__meta p-2 p-md-3 d-flex alignn-items-center justify-content-center bg-white mt-3 mt-md-5">
                     <div className="text-muted text-uppercase mr-3 mr-md-5">
                         <img 
                             className="icon-meta"
                             src="/img/icon-author.svg"
                             alt="icon author" />
-                            {author}
+                            <span style={{color: "blue"}}>{author}</span>
                     </div>
                     <div className="text-muted">
                         <img 
                             className="icon-meta"
                             src="/img/icon-date.svg"
                             alt="icon author" />
-                            {date}
+                            <span style={{color: "blue"}}>{date}</span>
                     </div>
                 </div>
                 <div className="d-flex justify-content-center mt-3 mt-md-5">
-                    <ButtonMore to={slug}/>
+                    <ButtonMore
+                        isShowIcon={false} 
+                        className="btn btn-info font-weight-bold px-4 color-white" to={slug}/>
                 </div>
             </div>
         </section>
@@ -73,7 +79,8 @@ const BlogPage = ({
                             title={item.node.frontmatter.title}
                             author={item.node.frontmatter.author.name}
                             date={item.node.frontmatter.date}
-                            slug={item.node.fields.slug} />
+                            slug={item.node.fields.slug}
+                            description={item.node.frontmatter.description} />
                     </div>
                 ))
             }
@@ -93,6 +100,7 @@ export const pageQuery = graphql`
                 }
                 frontmatter {
                     title
+                    description
                     author {
                         name
                     }

@@ -15,7 +15,7 @@ author:
 featuredpost: true
 coverImage: /img/blog2-big.png
 altCover: dsfdsfdsf
-listImage: /img/blog2-big.png
+listImage: /img/blog2Page.png
 altList: sssfddsf
 tags:
   - asdsadsad

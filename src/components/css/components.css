@@ -46,7 +46,7 @@
     /* background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
     background-image: linear-gradient(90deg, #fff, #fff), linear-gradient(115deg, #71ffd2, #075ecf); */
-    background-color: #d8e500;
+    background-color: #95c11f;
 }
 
 /* HEADER */
@@ -194,7 +194,7 @@
     letter-spacing: 0.4px;
     opacity: .68;
     width: 80%;
-    border-radius: 10px;
+    border-radius: 2rem;
 }
 
 /* BLOG POST */
