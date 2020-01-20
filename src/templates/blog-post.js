@@ -72,7 +72,7 @@ const BlogPost2 = ({
         
     const body = data.markdownRemark.html;
 
-    const posts = data.allMarkdownRemark.edges;
+    // const posts = data.allMarkdownRemark.edges;
 
     return (
     <TemplateWrapper2 location={location}>
@@ -84,7 +84,7 @@ const BlogPost2 = ({
                 author={author} 
                 image={image} 
                 body={body}  />
-            <section className="container-fluid bg-light">
+            {/* <section className="container-fluid bg-light">
                 <div className="d-flex justify-content-center font-weight-bold">
                     <Feature2 title="MÁS BLOGS" />
                 </div>
@@ -125,7 +125,7 @@ const BlogPost2 = ({
                         
                     </div>
                 </div>
-            </section>
+            </section> */}
         </div>
     </TemplateWrapper2>
   )
@@ -161,37 +161,6 @@ export const blogpost2Query = graphql`
             alt
         }
       }
-    }
-    allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "blog-post" } } }) {
-        edges {
-            node {
-                fields {
-                    slug
-                }
-                frontmatter {
-                    title
-                    author {
-                        name
-                        photo {
-                            childImageSharp {
-                                fluid {
-                                    ...GatsbyImageSharpFluid
-                                }
-                            }
-                        }
-                    }
-                    date(formatString: "DD/MM/YYYY")
-                    featuredimage {
-                        childImageSharp {
-                            fluid {
-                                ...GatsbyImageSharpFluid
-                            }
-                        }
-                      }
-                      altFeatured
-                }
-            }
-        }
     }
   }
 `

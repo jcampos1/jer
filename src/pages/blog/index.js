@@ -51,7 +51,6 @@ const BlogSection = ({
 }) => {
     const posts = data.allMarkdownRemark.edges.slice(0, 3);
 
-    console.log('posts :', posts);
     return (
         <>
             {/* Displayed in desk */}
