@@ -4,6 +4,7 @@ import { graphql, StaticQuery, Link } from 'gatsby';
 import ButtonMore from '../../components/ButtonMore';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import { getImage } from '../../utils';
 
 const Item = ({
     title,
@@ -50,6 +51,7 @@ const BlogSection = ({
 }) => {
     const posts = data.allMarkdownRemark.edges.slice(0, 3);
 
+    console.log('posts :', posts);
     return (
         <>
             {/* Displayed in desk */}
@@ -63,15 +65,15 @@ const BlogSection = ({
                     <div className="d-none d-md-block">
                         <div className="row mt-5 pb-4">
                             {
-                                data2.map((item, index) => {
+                                posts.map((item, index) => {
                                     return (
                                         <div
                                             key={`prop${index}`} 
                                             className="col-md-4">
                                             <Item 
-                                                image={item.image}
-                                                title={item.title}
-                                                to={null} />
+                                                image={getImage(item.node.frontmatter)}
+                                                title={item.node.frontmatter.title}
+                                                to={item.node.fields.slug} />
                                         </div>
                                     )
                                 })
@@ -82,7 +84,7 @@ const BlogSection = ({
                     <div className="d-block d-md-none">
                         <Carousel showStatus={false} showThumbs={false} emulateTouch>
                             {
-                                data2.map((item, index) => (
+                                posts.map((item, index) => (
                                     <div
                                         style={{backgroundColor: "transparent"}} 
                                         className="row px-3 px-sm-5 px-md-0">
@@ -90,9 +92,9 @@ const BlogSection = ({
                                                 key={`prop${index}`} 
                                                 className="col-md-4">
                                                 <Item 
-                                                    image={item.image}
-                                                    title={item.title}
-                                                    to={null} />
+                                                    image={getImage(item.node.frontmatter)}
+                                                    title={item.node.frontmatter.title}
+                                                    to={item.node.fields.slug} />
                                             </div>
                                     </div>
                                 ))
@@ -109,7 +111,10 @@ export default props => (
     <StaticQuery
       query={graphql`
         query BlogSection {
-            allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "blog-post" } }}) {
+            allMarkdownRemark(
+                sort: { order: DESC, fields: [frontmatter___date] }
+                filter: { frontmatter: { templateKey: { eq: "blog-post" } }}
+            ) {
                 edges {
                     node {
                         fields {
