@@ -58,7 +58,7 @@ const BlogSection = ({
                 className="container-fluid m-0 px-0 py-5 bg-light">
                 <div className="container">
                     <div className="d-flex justify-content-center font-weight-bold">
-                        <Feature2 title="Noticias" />
+                        <Feature2 title="Blog" />
                     </div>
                     <div className="d-none d-md-block">
                         <div className="row mt-5 pb-4">

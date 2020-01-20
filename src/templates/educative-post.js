@@ -5,13 +5,25 @@ import { graphql } from 'gatsby';
 import Procedures from '../pages/procedure'
 
 export const EducativePostTemplate = ({
+    title,
+    resume,
+    title2,
+    subtitle,
+    description2
 }) => {
   return (
     <>
       <section
         id="educative-post" 
         className="jumbotron jumbotron-fluid p-0 m-0 position-relative">
-        post a mostrar
+        <div className="row">
+            <div className="col-md-6 col-lg-5">
+                <h1></h1>
+            </div>
+            <div className="col-md-6 col-lg-7">
+
+            </div>
+        </div>
       </section>
     </>
   )
@@ -29,3 +41,29 @@ const EducativePost = ({
 }
 
 export default EducativePost;
+
+export const EducativePostQuery = graphql`
+  query EducativePostByID($id: String!) {
+    markdownRemark(id: { eq: $id }) {
+        fields {
+            slug
+        }
+        frontmatter {
+            title
+            thumbnail {
+                alt
+                image {
+                    childImageSharp {
+                      fluid {
+                        ...GatsbyImageSharpFluid
+                      }
+                    }
+                    extension
+                    publicURL
+                  }
+            }
+            resume
+        }
+    }
+  }
+`

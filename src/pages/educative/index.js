@@ -12,7 +12,7 @@ const Item = ({
     image,
     alt,
     description,
-    url
+    to
 }) => {
     return (
         <div className="item rounded">
@@ -32,47 +32,16 @@ const Item = ({
                 <p className="text-ellipsis">
                     {description}
                 </p>
-                <ButtonMore to="/" />
+                <ButtonMore to={to} />
             </div>
         </div>
     )
 }
 
-const MAX_PER_SLIDE = 4;
-
-const data2 = [{
-    image: "/img/propuesta1.png",
-    title:"Guarderia y jardin",
-    description: "Lo primero que un niño debe aprender es a ser feliz. Utilizamos una metodología en la que cada uno aprende a su ritmo y en contacto con la naturaleza. Honramos y respetamos el interés…"
-}, {
-    image: "/img/propuesta2.png",
-    title:"Preescolar y primaria",
-    description: "Buscamos interesar a los estudiantes en el aprendizaje a través de una metodología activa e innovadora basada en el respeto a los intereses y habilidades de cada uno que potencia la cooperación…"
-}, {
-    image: "/img/propuesta3.png",
-    title:"Media y bachillerato",
-    description: "Aprendizaje basado en problemas que promueve el pensamiento crítico y creativo. Respetamos la individualidad y la libertad del estudiante a fin de que logre el pleno desarrollo de sus ..."
-}];
-
 const Educative = ({
     data
 }) => {
-    const [productsSet, setProductsSet] = useState([]);
-
-    const items = data.allMarkdownRemark.edges;
-
-    useEffect(() => {
-        let aux = [];
-        const len = items.length;
-        if(len > 0) {
-            const count = Math.ceil(len / MAX_PER_SLIDE);
-            for (let index = 0; index < count; index++) {
-                const prodSet = items.slice(index*MAX_PER_SLIDE, (index+1)*MAX_PER_SLIDE);
-                aux.push(prodSet);
-            }   
-        }
-        setProductsSet(aux);
-    }, [items]);
+    const proposals = data.allMarkdownRemark.edges;
 
     return (
         <section
@@ -85,16 +54,16 @@ const Educative = ({
                 <div className="d-none d-md-block">
                     <div className="row mt-5 pb-4">
                         {
-                            data2.map((item, index) => {
+                            proposals.map((item, index) => {
                                 return (
                                     <div
                                         key={`prop${index}`} 
                                         className="col-md-4">
                                         <Item 
-                                            image={item.image}
-                                            title={item.title}
-                                            description={item.description}
-                                            to={null} />
+                                            image={getImage(item.node.frontmatter.thumbnail)}
+                                            title={item.node.frontmatter.title}
+                                            description={item.node.frontmatter.resume}
+                                            to={item.node.fields.slug} />
                                     </div>
                                 )
                             })
@@ -104,7 +73,7 @@ const Educative = ({
                 {/* Displayed in mobile */}
                 <Carousel className="d-block d-md-none" showStatus={false} showThumbs={false} emulateTouch>
                     {
-                        data2.map((item, index) => (
+                        proposals.map((item, index) => (
                             <div
                                 style={{backgroundColor: "transparent"}} 
                                 className="row px-3 px-sm-5 px-md-0">
@@ -112,10 +81,10 @@ const Educative = ({
                                     key={`prop${index}`} 
                                     className="col-md-4">
                                     <Item 
-                                        image={item.image}
-                                        title={item.title}
-                                        description={item.description}
-                                        to={null} />
+                                        image={getImage(item.node.frontmatter.thumbnail)}
+                                        title={item.node.frontmatter.title}
+                                        description={item.node.frontmatter.resume}
+                                        to={item.node.fields.slug} />
                                 </div>
                             </div>
                         ))
@@ -131,7 +100,7 @@ export default props => (
       query={graphql`
         query EducativeQuery {
             allMarkdownRemark(
-                filter: { frontmatter: { templateKey: { eq: "product-page" } } }
+                filter: { frontmatter: { templateKey: { eq: "educative-post" } } }
               ) {
                 edges {
                     node {
@@ -139,8 +108,8 @@ export default props => (
                             slug
                         }
                         frontmatter {
-                            name
-                            cover {
+                            title
+                            thumbnail {
                                 alt
                                 image {
                                     childImageSharp {
@@ -152,10 +121,7 @@ export default props => (
                                     publicURL
                                   }
                             }
-                            prod {
-                                name
-                                price
-                            }
+                            resume
                         }
                     }
                 }
