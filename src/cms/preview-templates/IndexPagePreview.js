@@ -6,6 +6,7 @@ const IndexPagePreview = ({ entry, getAsset }) => {
   const data = entry.getIn(['data']).toJS()
   const { 
     bannerTitle,
+    bannerDescription,
     charList,
     contacts,
     video 
@@ -15,6 +16,7 @@ const IndexPagePreview = ({ entry, getAsset }) => {
     return (
       <LandingTemplate
         bannerTitle={bannerTitle}
+        bannerDescription={bannerDescription}
         charList={charList}
         contacts={contacts}
         video={video}

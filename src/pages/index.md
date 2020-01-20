@@ -1,8 +1,9 @@
 ---
 templateKey: landing
 bannerTitle: >-
-  Una educación que no compara, que valora cada niño por sus capacidades y las
-  estimula.
+  ¡Bienvenidos al año escolar 2020 del Colegio JER!
+bannerDescription: >-
+  Son casi 60 años educando la mente y el corazón en los niños y adolescentes de nuestra institución.
 charList:
   - charImage:
       alt: dfdfd

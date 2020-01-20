@@ -12,6 +12,7 @@ import Contacts from '../components/Contacts'
 export const LandingTemplate = ({
   isPreview = false,
   bannerTitle,
+  bannerDescription,
   charList,
   video,
   contacts
@@ -24,16 +25,19 @@ export const LandingTemplate = ({
         <div
           className="cover__box">
           <h1 className="mb-4">
-              {bannerTitle}
+            <span className="font-weight-bold">{bannerTitle}</span><br />
           </h1>
-          <div
+          <h3 className="font-weight-bold" style={{color: "#007387"}}>
+            {bannerDescription}
+          </h3>
+          {/* <div
             className="cover__box__list">
             {
               charList.map((item, index) => (
                 <div key={`charlist${index}`}>{item.name}</div>
               ))
             }
-          </div>
+          </div> */}
         </div>
         <img 
             className="jumbo__cover w-100 h-100 d-none d-md-block"
@@ -78,6 +82,7 @@ const Landing = ({
 }) => {
   const { 
     bannerTitle,
+    bannerDescription,
     charList,
     contacts ,
     video
@@ -88,6 +93,7 @@ const Landing = ({
       location={location}>
         <LandingTemplate 
           bannerTitle={bannerTitle}
+          bannerDescription={bannerDescription}
           video={video.publicURL}
           charList={charList}
           contacts={contacts}
@@ -103,6 +109,7 @@ export const pageQuery = graphql`
     markdownRemark(frontmatter: { templateKey: { eq: "landing" } }) {
       frontmatter {
         bannerTitle
+        bannerDescription
         video {
           publicURL
         }

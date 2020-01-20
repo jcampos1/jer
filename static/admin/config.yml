@@ -96,6 +96,7 @@ collections:
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "landing"}
           - {label: "Título del banner principal", name: "bannerTitle", widget: "string"}
+          - {label: "Descripción del banner principal", name: "bannerDescription", widget: "string"}
           - {label: "Lista de características mostradas en banner", name: "charList", widget: list, fields: [{label: "Imagen", name: "charImage", widget: "object", fields: [{label: "Imagen", name: "image", widget: image}, {label: "Texto alternativo a la imagen", name: alt, widget: string}]}, {label: "Nombre", name: name, widget: string}, {label: "Descripción breve", name: description, widget: text}]}
           - {label: "Video", name: "video", widget: file}
           - {label: "Datos de contactos", name: "contacts", widget: "object", fields: [{label: "Dirección", name: "address", widget: "text"},{label: "Teléfonos", name: "phones", widget: "list", fields: [{label: "Teléfono", name: "phone", widget: "string"}]}, {label: "Correo electrónico", name: "email", widget: "string"}]}
