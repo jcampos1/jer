@@ -53,6 +53,13 @@ export const BlogPost2Template = ({
                     </div>
                     <div className="text-muted mt-5">
                         <div dangerouslySetInnerHTML={{ __html: converter.makeHtml(body) }} />
+                        <div className="d-flex justify-content-center mt-5">
+                            <a 
+                                href="#"
+                                className="btn btn-sm btn__custom-primary color-white py-2 px-5">
+                                DESCARAGAR DESPRENDIBLE
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>

@@ -4,3 +4,10 @@ button.btn__custom {
     color: white;
     font-weight: bold;
 }
+
+button.btn__custom-primary, a.btn__custom-primary {
+    border-radius: 1rem;
+    background-color: #00ace2;
+    color: white;
+    font-weight: bold;
+}
