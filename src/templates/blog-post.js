@@ -17,11 +17,6 @@ export const BlogPost2Template = ({
     body,
     isPreview = false
 }) => {
-    console.log('date :', date);
-    console.log('title :', title);
-    console.log('author :', author);
-    console.log('image :', image);
-    console.log('body :', body);
     return (
         <div id="blog-post">
             <section
