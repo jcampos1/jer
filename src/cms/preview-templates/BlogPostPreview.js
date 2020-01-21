@@ -17,6 +17,7 @@ const BlogPostPreview = ({ entry, widgetFor }) => {
             author={author} 
             image={image} 
             body={body}
+            isPreview={true}
         />
     )
 }

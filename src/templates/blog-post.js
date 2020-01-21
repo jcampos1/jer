@@ -14,7 +14,8 @@ export const BlogPost2Template = ({
     title, 
     author,
     image,
-    body
+    body,
+    isPreview = false
 }) => {
     console.log('date :', date);
     console.log('title :', title);
@@ -22,7 +23,7 @@ export const BlogPost2Template = ({
     console.log('image :', image);
     console.log('body :', body);
     return (
-        <>
+        <div id="blog-post">
             <section
                 className="jumbotron jumbotron-fluid p-0 m-0 position-relative">
                 <img 
@@ -41,13 +42,17 @@ export const BlogPost2Template = ({
                 </div>
                 <div className="d-flex flex-column">
                     <h2 className="mb-4 mx-auto mx-md-0 text-muted font-weight-bold">{title}</h2>
-                    {/* <div className="d-flex align-items-center text-muted mx-auto mx-md-0">
-                        <img 
-                            className="icon-meta"
-                            src="/img/icon-date.svg"
-                            alt="icon date" />
-                            {date}
-                    </div> */}
+                    {
+                        !isPreview && (
+                            <div className="d-flex align-items-center text-muted mx-auto mx-md-0">
+                                <img 
+                                    className="icon-meta"
+                                    src="/img/icon-date.svg"
+                                    alt="icon date" />
+                                    {date}
+                            </div>
+                        )
+                    }
                     <div className="d-flex align-items-center text-muted mx-auto mx-md-0">
                         <img 
                             className="icon-meta"
@@ -67,7 +72,7 @@ export const BlogPost2Template = ({
                     </div>
                 </div>
             </section>
-        </>
+        </div>
     )
 }
 
@@ -87,15 +92,13 @@ const BlogPost2 = ({
 
     return (
     <TemplateWrapper2 location={location}>
-        <div id="blog-post">
-            <BlogPost2Template 
-                altCover={altCover} 
-                date={date} 
-                title={title} 
-                author={author} 
-                image={image} 
-                body={body}  />
-        </div>
+        <BlogPost2Template 
+            altCover={altCover} 
+            date={date} 
+            title={title} 
+            author={author} 
+            image={image} 
+            body={body}  />
     </TemplateWrapper2>
   )
 }
