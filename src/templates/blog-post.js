@@ -48,7 +48,7 @@ export const BlogPost2Template = ({
                             alt="icon date" />
                             {date}
                     </div> */}
-                    {/* <div className="d-flex align-items-center text-muted mx-auto mx-md-0">
+                    <div className="d-flex align-items-center text-muted mx-auto mx-md-0">
                         <img 
                             className="icon-meta"
                             src={author.photo.childImageSharp ? author.photo.childImageSharp.fluid.src : author.photo}
@@ -64,7 +64,7 @@ export const BlogPost2Template = ({
                                 DESCARAGAR DESPRENDIBLE
                             </a>
                         </div>
-                    </div> */}
+                    </div>
                 </div>
             </section>
         </>
