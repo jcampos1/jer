@@ -40,14 +40,14 @@ export const BlogPost2Template = ({
                         alt="author image" />
                 </div>
                 <div className="d-flex flex-column">
-                    <h2 className="mb-4 mx-auto mx-md-0 text-muted font-weight-bold">{title}</h2>
+                    {/* <h2 className="mb-4 mx-auto mx-md-0 text-muted font-weight-bold">{title}</h2>
                     <div className="d-flex align-items-center text-muted mx-auto mx-md-0">
                         <img 
                             className="icon-meta"
                             src="/img/icon-date.svg"
                             alt="icon date" />
                             {date}
-                    </div>
+                    </div> */}
                     {/* <div className="d-flex align-items-center text-muted mx-auto mx-md-0">
                         <img 
                             className="icon-meta"

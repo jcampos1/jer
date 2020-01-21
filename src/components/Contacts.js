@@ -25,14 +25,18 @@ const Contacts = ({
                             </h3>
                             <div className="d-flex mb-3">
                                 <img 
-                                    src="/img/placholder-image2.png" 
+                                    width="25"
+                                    height="25"
+                                    src="/img/location.svg" 
                                     alt="alt pac"
                                     className="img-fluid mr-3" />
                                 <small>{contacts.address}</small> 
                             </div>
                             <div className="d-flex mb-3">
                                 <img 
-                                    src="/img/placholder-image2.png" 
+                                    width="25"
+                                    height="25"
+                                    src="/img/phone.svg" 
                                     alt="alt pac"
                                     className="img-fluid mr-3" />
                                 {
@@ -47,7 +51,9 @@ const Contacts = ({
                             </div>
                             <div className="d-flex mb-4">
                                 <img 
-                                    src="/img/placholder-image2.png" 
+                                    width="25"
+                                    height="25"
+                                    src="/img/web-site.svg" 
                                     alt="alt pac"
                                     className="img-fluid mr-3" />
                                 <small>{contacts.email}</small> 
