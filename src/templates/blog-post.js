@@ -27,7 +27,7 @@ export const BlogPost2Template = ({
             </section>
             <section className="d-flex flex-column flex-md-row container py-5">
                 {/* AUTHOR IMAGE */}
-                <div
+                {/* <div
                     className="mx-auto ml-md-0 mr-md-5 mb-4 mb-md-0 border-image border-image-frame rounded-circle d-flex justify-content-center align-items-center p-3" 
                     >
                     <img 
@@ -41,7 +41,6 @@ export const BlogPost2Template = ({
                             className="icon-meta"
                             src="/img/icon-date.svg"
                             alt="icon date" />
-                            {/* 2h ago */}
                             {date}
                     </div>
                     <div className="d-flex align-items-center text-muted mx-auto mx-md-0">
@@ -61,7 +60,7 @@ export const BlogPost2Template = ({
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </section>
         </>
     )
@@ -91,48 +90,6 @@ const BlogPost2 = ({
                 author={author} 
                 image={image} 
                 body={body}  />
-            {/* <section className="container-fluid bg-light">
-                <div className="d-flex justify-content-center font-weight-bold">
-                    <Feature2 title="MÁS BLOGS" />
-                </div>
-                <div className="container py-5">
-                    <div className="row">
-                        {
-                            posts.map((p, index) => (
-                                <div
-                                    key={`post${index}`} 
-                                    className="col-lg-6 mb-5 mb-lg-0 d-flex flex-column align-items-center mt-3">
-                                    <img 
-                                        className="shadow-sm w-100"
-                                        src={p.node.frontmatter.featuredimage.childImageSharp.fluid.src}
-                                        alt={p.node.frontmatter.altFeatured} />
-                                    <div className="d-block px-2 mr-auto">
-                                        <h5 className="text-muted font-weight-bold my-4">{p.node.frontmatter.title}</h5>
-                                        <div className="d-flex align-items-center text-muted">
-                                            <img 
-                                                className="icon-meta"
-                                                src={p.node.frontmatter.author.photo.childImageSharp.fluid.src}
-                                                alt={p.node.frontmatter.author.alt} />
-                                                {p.author}
-                                        </div>
-                                        <div className="d-flex align-items-center text-muted mt-4">
-                                            <img 
-                                                className="icon-meta"
-                                                src="/img/icon-date.svg"
-                                                alt="icon date" />
-                                                {p.node.frontmatter.date}
-                                        </div>
-                                        <div className="mt-5">
-                                            <ButtonMore to={p.node.fields.slug}/>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))
-                        }
-                        
-                    </div>
-                </div>
-            </section> */}
         </div>
     </TemplateWrapper2>
   )
