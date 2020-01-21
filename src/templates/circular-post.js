@@ -18,7 +18,7 @@ export const CircularPostTemplate = ({
     isPreview = false
 }) => {
     return (
-        <>
+        <div id="blog-post">
             <section
                 className="jumbotron jumbotron-fluid p-0 m-0 position-relative">
                 <img 
@@ -67,7 +67,7 @@ export const CircularPostTemplate = ({
                     </div>
                 </div>
             </section>
-        </>
+        </div>
     )
 }
 
@@ -87,15 +87,13 @@ const CircularPost = ({
 
     return (
     <TemplateWrapper2 location={location}>
-        <div id="blog-post">
-            <CircularPostTemplate 
-                altCover={altCover} 
-                date={date} 
-                title={title} 
-                author={author} 
-                image={image} 
-                body={body}  />
-        </div>
+        <CircularPostTemplate 
+            altCover={altCover} 
+            date={date} 
+            title={title} 
+            author={author} 
+            image={image} 
+            body={body}  />
     </TemplateWrapper2>
   )
 }
