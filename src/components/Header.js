@@ -17,7 +17,8 @@ const links = [{
     redirect: true
 }, {
     name: "Circular",
-    to: "product"
+    to: "/circular-page",
+    redirect: true
 }, {
     name: "Admisión",
     to: "product"

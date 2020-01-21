@@ -13,7 +13,7 @@ author:
 featuredpost: true
 coverImage: /img/blog1-big.png
 altCover: dsdfsdf
-listImage: /img/blog3Page.png
+listImage: /img/propuesta3.png
 altList: dsfdsfsdf
 tags:
   - cxvcxv

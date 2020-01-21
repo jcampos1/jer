@@ -6,117 +6,120 @@ import Feature2 from '../components/Feature2'
 import SocialNetworks from '../components/SocialNetworks'
 import ButtonMore from '../components/ButtonMore';
 import { graphql } from 'gatsby';
+import { getImage } from '../utils';
+import Paginator from '../components/Paginator'
 
-const Post = ({
+const Item = ({
+    title,
     image,
     alt,
-    title,
-    author,
-    date,
-    slug,
-    description
+    description,
+    to
 }) => {
     return (
-        <section
-          className="shadow-sm blog-page jumbotron jumbotron-fluid p-0 m-0 position-relative">
+        <div className="item rounded">
             <img 
-                style={{objectFit: "cover"}}
-                className="img-fluid jumbo__cover w-100 position-relative"
                 src={image}
-                alt={alt} />
-            <div
-                className="blog-page__content">
-                <h1 className="color-white font-weight-bold text-center">
+                alt={alt}
+                className="img-fluid"
+                style={{backgroundSize: "cover"}} />
+            <div className="item__box border p-3">
+                <h6 className="font-weight-bold d-none d-md-block text-uppercase">
                     {title}
-                </h1>
-                <p className="color-white text-center d-none d-lg-block mt-lg-5">
+                </h6>
+                <h5 className="font-weight-bold d-block d-md-none text-uppercase">
+                    {title}
+                </h5>
+                <hr />
+                <p className="text-ellipsis">
                     {description}
                 </p>
-                <div className="mx-auto blog-page__content__meta p-2 p-md-3 d-flex alignn-items-center justify-content-center bg-white mt-3 mt-md-5">
-                    <div className="text-muted text-uppercase mr-3 mr-md-5">
-                        <img 
-                            className="icon-meta"
-                            src="/img/icon-author.svg"
-                            alt="icon author" />
-                            <span style={{color: "blue"}}>{author}</span>
-                    </div>
-                    <div className="text-muted">
-                        <img 
-                            className="icon-meta"
-                            src="/img/icon-date.svg"
-                            alt="icon author" />
-                            <span style={{color: "blue"}}>{date}</span>
-                    </div>
-                </div>
-                <div className="d-flex justify-content-center mt-3 mt-md-5">
-                    <ButtonMore
-                        isShowIcon={false} 
-                        className="btn btn-info font-weight-bold px-4 color-white" to={slug}/>
-                </div>
+                <ButtonMore to={to} />
             </div>
-        </section>
+        </div>
     )
 }
 
+export const CircularPageTemplate = ({
+    posts
+}) => {
+    return (
+        <div className="container">
+            <div className="d-flex justify-content-center">
+                <Feature2 title="Eventos del colegio" />
+            </div>
+            <p 
+                style={{position: "relative", top: "-1rem"}}
+                className="px-md-3 px-lg-5 m-lg-5 text-center">
+                Aquí encontrarás información del Colegio José Esustacio Rivera, sobre sus eventos, ferias, entrega de boletines, salidas pedagógicas y recreativas, evaluaciones, asambleas de padres, etc.
+            </p>
+            <div className="row mt-5">
+                {
+                    posts.map((item, index) => (
+                        <div 
+                            key={`post${index}`}
+                            className="col-md-4 mb-3 mb-md-5">
+                            <Item 
+                                image={getImage(item.node.frontmatter, "listImage")}
+                                alt={item.node.frontmatter.altList}
+                                title={item.node.frontmatter.title}
+                                date={item.node.frontmatter.date}
+                                to={item.node.fields.slug}
+                                description={item.node.frontmatter.description} />
+                        </div>
+                    ))
+                }
+            </div>
+        </div>  
+    )
+}
 const CircularPage = ({
-    drName,
-    networks,
     location,
     data
 }) => {
-    // const posts = data.allMarkdownRemark.edges;
+    const posts = data ? data.allMarkdownRemark.edges : [];
+    const { totalCount } = data ? data.allMarkdownRemark : 1; 
 
     return (
         <TemplateWrapper2 location={location}>
-            {/* {
-                posts.map((item, index) => (
-                    <div 
-                        key={`post${index}`}
-                        className="mb-3 mb-md-5">
-                        <Post 
-                            image={item.node.frontmatter.listImage.childImageSharp.fluid.src}
-                            alt={item.node.frontmatter.altList}
-                            title={item.node.frontmatter.title}
-                            author={item.node.frontmatter.author.name}
-                            date={item.node.frontmatter.date}
-                            slug={item.node.fields.slug}
-                            description={item.node.frontmatter.description} />
-                    </div>
-                ))
-            } */}
-            <>PÁGINA DE CIRCULAR</>
+            <CircularPageTemplate posts={posts} />
+            <Paginator 
+                totalItem={totalCount}
+                location={location} />
         </TemplateWrapper2>
     )
 }
 
 export default CircularPage;
 
-// export const pageQuery = graphql`
-//   query CircularPage {
-//     allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "circular-post" } } }) {
-//         edges {
-//             node {
-//                 fields {
-//                     slug
-//                 }
-//                 frontmatter {
-//                     title
-//                     description
-//                     author {
-//                         name
-//                     }
-//                     date(formatString: "DD/MM/YYYY")
-//                     listImage {
-//                         childImageSharp {
-//                             fluid {
-//                                 ...GatsbyImageSharpFluid
-//                             }
-//                         }
-//                       }
-//                       altList
-//                 }
-//             }
-//         }
-//     }
-//   }
-// `
+export const pageQuery = graphql`
+  query CircularPage($skip: Int!, $limit: Int!) {
+    allMarkdownRemark(
+        filter: { frontmatter: { templateKey: { eq: "circular-post" } } }
+        limit: $limit
+        skip: $skip
+    ) {
+        totalCount
+        edges {
+            node {
+                fields {
+                    slug
+                }
+                frontmatter {
+                    title
+                    description
+                    date(formatString: "DD/MM/YYYY")
+                    listImage {
+                        childImageSharp {
+                            fluid {
+                                ...GatsbyImageSharpFluid
+                            }
+                        }
+                      }
+                      altList
+                }
+            }
+        }
+    }
+  }
+`

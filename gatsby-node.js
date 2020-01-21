@@ -3,8 +3,57 @@ const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 const { fmImagesToRelative } = require('gatsby-remark-relative-images')
 
-exports.createPages = ({ actions, graphql }) => {
+exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
+
+  // CIRCULAR PAGE PAGINATION
+  const result = await graphql(
+    `
+      {
+        allMarkdownRemark(
+          filter: { frontmatter: { templateKey: { eq: "circular-post" } } }
+          sort: { fields: [frontmatter___date], order: DESC }
+          limit: 1000
+        ) {
+          totalCount
+          edges {
+            node {
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+                description
+                date(formatString: "DD/MM/YYYY")
+                altList
+              }
+            }
+          }
+        }
+      }
+ `
+  )
+  if (result.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`)
+    return
+  }
+
+  // CREATE CIRCULAR PAGE
+  const posts = result.data.allMarkdownRemark.edges
+  const postsPerPage = 6
+  const numPages = Math.ceil(posts.length / postsPerPage)
+  Array.from({ length: numPages }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/circular-page` : `/circular-page/${i + 1}`,
+      component: path.resolve("./src/templates/circular-page.js"),
+      context: {
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        numPages,
+        currentPage: i + 1,
+      },
+    })
+  })
 
   return graphql(`
     {
