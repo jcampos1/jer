@@ -8,6 +8,7 @@ import BlogPostPreview from './preview-templates/BlogPostPreview'
 import IndexPagePreview from './preview-templates/IndexPagePreview'
 import ProfilePreview from './preview-templates/ProfilePreview';
 import ProcedurePostPreview from './preview-templates/ProcedurePostPreview';
+import CircularPostPreview from './preview-templates/CircularPostPreview';
 
 CMS.registerMediaLibrary(uploadcare)
 CMS.registerMediaLibrary(cloudinary)
@@ -18,3 +19,4 @@ CMS.registerPreviewTemplate('profile', ProfilePreview)
 CMS.registerPreviewTemplate('procedure', ProcedurePostPreview)
 // CMS.registerPreviewTemplate('products', ProductPagePreview)
 CMS.registerPreviewTemplate('blog', BlogPostPreview)
+CMS.registerPreviewTemplate('circular', CircularPostPreview)

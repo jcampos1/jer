@@ -21,11 +21,13 @@ const Item = ({
                 className="img-fluid"
                 style={{backgroundSize: "cover"}} />
             <div
-                style={{backgroundColor: "#007387"}} 
+                style={{backgroundColor: "#007387", height: "150px"}} 
                 className="item__box border p-3">
-                <h5 className="font-weight-bold text-white py-3">
+                <div
+                    style={{height: "70px"}} 
+                    className="text-white py-3 text-ellipsis-sm mb-2">
                     {title}
-                </h5>
+                </div>
                 <ButtonMore
                     style={{backgroundColor: "#d8e500", color: "#202335", borderRadius: "18px"}} 
                     to={to} />
