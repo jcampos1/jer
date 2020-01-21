@@ -50,7 +50,7 @@ const TemplateWrapper2 = ({ children, location }) => {
           href={`${withPrefix('/')}img/safari-pinned-tab.svg`}
           color="#ff4400"
         />
-        {/* <link rel="canonical" href="/circular-page" /> */}
+        <link rel="canonical" href="/circular-page" />
         <meta name="theme-color" content="#fff" />
 
         <meta property="og:type" content="business.business" />
