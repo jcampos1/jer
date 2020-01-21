@@ -16,6 +16,11 @@ export const BlogPost2Template = ({
     image,
     body
 }) => {
+    console.log('date :', date);
+    console.log('title :', title);
+    console.log('author :', author);
+    console.log('image :', image);
+    console.log('body :', body);
     return (
         <>
             <section
@@ -27,7 +32,7 @@ export const BlogPost2Template = ({
             </section>
             <section className="d-flex flex-column flex-md-row container py-5">
                 {/* AUTHOR IMAGE */}
-                {/* <div
+                <div
                     className="mx-auto ml-md-0 mr-md-5 mb-4 mb-md-0 border-image border-image-frame rounded-circle d-flex justify-content-center align-items-center p-3" 
                     >
                     <img 
@@ -43,7 +48,7 @@ export const BlogPost2Template = ({
                             alt="icon date" />
                             {date}
                     </div>
-                    <div className="d-flex align-items-center text-muted mx-auto mx-md-0">
+                    {/* <div className="d-flex align-items-center text-muted mx-auto mx-md-0">
                         <img 
                             className="icon-meta"
                             src={author.photo.childImageSharp ? author.photo.childImageSharp.fluid.src : author.photo}
@@ -59,8 +64,8 @@ export const BlogPost2Template = ({
                                 DESCARAGAR DESPRENDIBLE
                             </a>
                         </div>
-                    </div>
-                </div> */}
+                    </div> */}
+                </div>
             </section>
         </>
     )

@@ -49,8 +49,8 @@ export const CircularPageTemplate = ({
                 <Feature2 title="Eventos del colegio" />
             </div>
             <p 
-                style={{position: "relative", top: "-1rem"}}
-                className="px-md-3 px-lg-5 m-lg-5 text-center">
+                style={{position: "relative", top: "-1rem", backgroundColor: "#d8e500"}}
+                className="border py-3 px-md-3 px-lg-5 m-lg-5 text-center">
                 Aquí encontrarás información del Colegio José Esustacio Rivera, sobre sus eventos, ferias, entrega de boletines, salidas pedagógicas y recreativas, evaluaciones, asambleas de padres, etc.
             </p>
             <div className="row mt-5">
