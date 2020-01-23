@@ -24,7 +24,7 @@ const Item = ({
                 style={{backgroundColor: "#007387", height: "150px"}} 
                 className="item__box border p-3">
                 <div
-                    style={{height: "70px"}} 
+                    style={{height: "78px"}} 
                     className="text-white py-3 text-ellipsis-sm mb-2">
                     {title}
                 </div>

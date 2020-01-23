@@ -1,0 +1,4 @@
+---
+templateKey: 'admission'
+path: /admission
+---

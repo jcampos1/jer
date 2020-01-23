@@ -21,7 +21,8 @@ const links = [{
     redirect: true
 }, {
     name: "Admisión",
-    to: "product"
+    to: "/admission",
+    redirect: true
 }];
 
 const Header = ({
