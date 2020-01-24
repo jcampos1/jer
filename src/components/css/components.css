@@ -6,6 +6,14 @@
 }
 
 /* DOCUMENTS */
+.help-doc .help-doc-window {
+    display: none;
+}
+
+.help-doc:hover .help-doc-window {
+    display: block;
+}
+
 .document .document__box {
     top: 0;
     left: 0;

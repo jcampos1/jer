@@ -83,13 +83,28 @@ const Document = ({
                     className="btn btn-lg color-white rounded-pill px-5 w-100 position-relative">
                     {title}
                 </button>
-                <img 
-                    width="40"
-                    height="40"
-                    src="/img/help.svg"
-                    alt="help"
-                    className="position-absolute"
-                    style={{zIndex: "10000", left: "-1rem", top: ".5rem"}} />
+                <div
+                    style={{top: "0"}} 
+                    className="position-absolute help-doc">
+                    <div 
+                        className="position-absolute"
+                        style={{zIndex: "10000", left: "-1rem", top: ".5rem"}}>
+                        <img 
+                            width="40"
+                            height="40"
+                            src="/img/help.svg"
+                            alt="help" />
+                    </div>
+                    <div 
+                        className="position-absolute help-doc-window"
+                        style={{zIndex: "10000", left: "1rem", top: "0"}}>
+                        <img 
+                            width="200"
+                            height="100"
+                            src="/img/window-help.svg"
+                            alt="help" />
+                </div>
+                </div>
                 {
                     ((doc === "1" && isOpenDocs1) || (doc === "2" && isOpenDocs2)) && (
                         <div
