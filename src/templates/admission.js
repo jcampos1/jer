@@ -7,147 +7,10 @@ import SocialNetworks from '../components/SocialNetworks'
 import ButtonMore from '../components/ButtonMore';
 import { graphql } from 'gatsby';
 import Services from '../pages/services'
+import { getImage } from '../utils';
+import showdown from 'showdown';
 
-const data = {
-    section1: {
-        description: "",
-        image: {image: "/img/admission.png", alt: "sdsdsd"},
-        ejes: [{title: "Desarrollo integral del estudiante"}, {title: "La excelencia académica "}]
-    },
-    section2: {
-        image: {image: "/img/admission2.png", alt: "sdsdsd"},
-        items: [{
-            title: "Horario de clases:",
-            description: "lunes a viernes de 7:30 a.m. a 3:00 p.m."
-        }, {
-            title: "Tamaño de grupos",
-            description: null,
-            lst: [{
-                title: "Preescolar 15 estudiantes por grupo."
-            }, {
-                title: "Primaria, máximo 20 estudiantes por grupo."
-            }, {
-                title: "Bachillerato, máximo 25 estudiantes por grupo."
-            }]
-        }, {
-            title: "Actividades lúdicas deportivas",
-            description: "Fútbol, voleibol y tenis."
-        }, {
-            title: "Actividades lúdicas artísticas",
-            description: "Música, teatro, artes plásticas, clases de cocineritos (preescolar y primaria)."
-        }, {
-            title: "Uniformes escolares",
-            description: "Utilizamos dos (2) uniformes, uno de diario y otro de deportes. Los uniformes los pueden ubicar en el Almacén Disgonal, C.C. Cedritos, local 2002.  "
-        }]
-    },
-    section3: {
-        image: {image: "/img/admission3.png", alt: "sdsdsd"},
-        title: "Jardín infantil y preescolar",
-        items: [{
-            title: "Peekaboo",
-            description: null,
-            lst: [{
-                title: "Guardería (1 año y medio a 2 años)"
-            }, {
-                title: "Párvulos (2 a 3 años)"
-            }]
-        }, {
-            title: "Educación formal",
-            description: null,
-            lst: [{
-                title: "Pre- Jardín (3 a 4 años)"
-            }, {
-                title: "Jardín (4 a 5 años)"
-            },{
-                title: "Transición (5 a 6 años)"
-            }]
-        }, {
-            title: "Primaria",
-            description: "(1ero a 5to grado)",
-        }, {
-            title: "Secundaría",
-            description: "(6to a 9no grado)",
-        },{
-            title: "Media o Bachillerato",
-            description: "(10mo a 11vo grado)",
-        }]
-    },
-    section4: {
-        steps: [{
-            numImage: {
-                image: "/img/one-green.svg",
-                alt: "fdfd"
-            },
-            description: "Agenda una visita para conocer el colegio llamando a nuestro número 317 3724033"
-        }, {
-            numImage: {
-                image: "/img/two-green.svg",
-                alt: "fdfd"
-            },
-            description: "Diligencia el formulario de inscripción aquí (valor 65 mil pesos)."
-        }, {
-            numImage: {
-                image: "/img/three-green.svg",
-                alt: "fdfd"
-            },
-            description: "Asiste a la entrevista familiar con el formulario de inscripción"
-        }, {
-            numImage: {
-                image: "/img/four-green.svg",
-                alt: "fdfd"
-            },
-            description: "Al dia siguiente de la entrevista te enviamos la cart de respuesta vía email"
-        }]
-    },
-    section5: {
-        steps: [{
-            numImage: {
-                image: "/img/one-white.svg",
-                alt: "fdfd"
-            },
-            description: "Una vez admitido debes cancelar la matrícula consignando en el Banco Av. Villas, CUENTA DE AHORRO #030 058 085, a nombre del Colegio José Eustacio Rivera."
-        }, {
-            numImage: {
-                image: "/img/two-white.svg",
-                alt: "fdfd"
-            },
-            description: "Entrega de los documentos completos del estudiante."
-        }, {
-            numImage: {
-                image: "/img/three-white.svg",
-                alt: "fdfd"
-            },
-            description: "Firma de matrícula con Rectoría."
-        }]
-    },
-    section6: {
-        costs: [{
-            image: {
-                image: "/img/matricula.svg",
-                alt: "fdfd"
-            },
-            title: "Matricula"
-        },{
-            image: {
-                image: "/img/service2.svg",
-                alt: "fdfd"
-            },
-            title: "Transporte"
-        },{
-            image: {
-                image: "/img/service1.svg",
-                alt: "fdfd"
-            },
-            title: "Alimento"
-        },{
-            image: {
-                image: "/img/pension.svg",
-                alt: "fdfd"
-            },
-            title: "Pensión"
-        }]
-    }
-}
+const converter = new showdown.Converter()
 
 const stepsStyles = {
     width: "60px",
@@ -161,7 +24,7 @@ const StepAdmission = ({
 }) => {
     return (
         <div
-            style={{border: "4px solid #d8e500", borderRadius: "1.2rem"}} 
+            style={{border: "4px solid #d8e500", borderRadius: "1.2rem", fontSize: ".8rem"}} 
             className="d-flex align-items-center pl-5 pr-3 py-3 color-white h-100 position-relative">
             <img 
                 src={image} 
@@ -177,7 +40,7 @@ const StepMatri = ({
 }) => {
     return (
         <div
-            style={{border: "4px solid #31404b", borderRadius: "1.2rem"}} 
+            style={{border: "4px solid #31404b", borderRadius: "1.2rem", fontSize: ".8rem"}} 
             className="d-flex align-items-center pl-5 pr-3 py-3 h-100 position-relative">
             <img 
                 src={image} 
@@ -192,6 +55,7 @@ const Document = ({
     title,
     image,
     alt,
+    content,
     backgroundPrimary,
     backgroundSecondary,
     doc = "1",
@@ -233,22 +97,9 @@ const Document = ({
                                 backgroundColor: backgroundSecondary
                             }} 
                             className="document__box pb-4 px-4 w-100 text-left d-flex flex-column">
-                            <small>
-                                1. Tres (3) fotografías 3x4 marcadas por detrás con el nombre del estudiante y grado a cursar.
-                            </small>
-                            <small>2. Registro civil de nacimiento legible.</small>
-                            <small>3. Fotocopia del documento de identidad ampliada al 150 %.</small>
-                            <small>4. Tarjeta de identidad si el estudiante ya cumplió 7 años de edad, y cédula de ciudadanía o contraseña si ya es mayor de edad. </small>
-                            <small>4. Tarjeta de identidad si el estudiante ya cumplió 7 años de edad, y cédula de ciudadanía o contraseña si ya es mayor de edad.</small>
-                            <small>5. Fotocopia del carnet de la EPS o certificación de afiliación del estudiante.</small>
-                            <small>6. Fotocopia de las cedulas de los padres del estudiante, ampliadas al 150 %.</small>
-                            <small>7. Certificado médico menor a 30 días de expedido.</small>
-                            <small>8. Esquema de vacunas (preescolar y primaria).</small>
-                            <small>9. Paz y salvo por todo concepto, expedido por el colegio anterior.</small>
-                            <small>10. Constancia de convivencia escolar.</small>
-                            <small>11. Copia retiro de SIMAT.</small>
-                            <small>12. Boletín final (niños desde transición hasta 5to grado).</small>
-                            <small>13. Fotocopias pago matrícula y asociación de padres marcada con el nombre del estudiante y grado a cursar.</small>
+                            <div
+                                style={{fontSize: ".7rem", lineHeight: "1.4"}} 
+                                dangerouslySetInnerHTML={{ __html: converter.makeHtml(content) }} />
                             <button    
                                 onClick={toggle}
                                 className="btn btn-sm rounded-pill bg-white mx-auto px-3" 
@@ -269,7 +120,8 @@ export const AdmissionPageTemplate = ({
     section3,
     section4,
     section5,
-    section6
+    section6,
+    section7
 }) => {
     const [isOpenDocs1, setIsOpenDocs1] = useState(false);
     const [isOpenDocs2, setIsOpenDocs2] = useState(false);
@@ -294,12 +146,7 @@ export const AdmissionPageTemplate = ({
                 </div>
                 <div className="row">
                     <div className="col-lg-6 px-3 px-lg-5 d-flex flex-column justify-content-center">
-                        <p>
-                            José Eustacio Rivera es un colegio privado bilingüe y campestre de calendario A, con resultados ICFES muy superior (A+), que está ubicado en la Calera, Bogotá y que lleva casi 60 años de trayectoria educando a los niños en la felicidad y la autoestima mediante una educación personalizada. (ver más).
-                        </p>
-                        <p>
-                            Nuestra propuesta pedagógica se basa en una educación con sentido y alegría, y esta, a su vez, está basada en dos ejes:
-                        </p>
+                        <div dangerouslySetInnerHTML={{ __html: converter.makeHtml(section1.description) }} />
                         {
                             section1.ejes.map((item, index) => (
                                 <div 
@@ -308,7 +155,7 @@ export const AdmissionPageTemplate = ({
                                     <span className="mr-3">{index +1}.{" "}{item.title}</span>
                                     <ButtonMore 
                                         to="/admission"
-                                        isShowIcon={false}
+                                        isShowIcon={false}  
                                         inlineStyles={{color: "white", backgroundColor: "#94c11f", border: "0"}} />
                                 </div>
                             ))
@@ -365,6 +212,7 @@ export const AdmissionPageTemplate = ({
                     </div>
                 </div>
             </div>
+            {/* EDUCATIVE OFFERT */}
             <section 
                 className="container-fluid m-0 px-0 py-5 mt-5 position-relative">
                 <img 
@@ -380,6 +228,13 @@ export const AdmissionPageTemplate = ({
                             title="Oferta educativa"
                             primaryColor="#D8E500"
                             secondaryColor="white" />
+                    </div>
+                    <div className="row">
+                        <div className="col-12 px-3 px-lg-5">
+                            <div
+                                style={{color: "#95c11f"}}
+                                className="font-weight-bold">{section3.title}</div>
+                        </div>
                     </div>
                     <div className="row">
                         <div className="col-lg-6 px-3 px-lg-5 d-flex flex-column justify-content-center">
@@ -506,9 +361,10 @@ export const AdmissionPageTemplate = ({
                             style={{zIndex: "1000"}} 
                             className="col-lg-6 mt-3">
                             <Document 
-                                title="Documentos para admisión"
-                                image="/img/doc1.svg"
-                                alt="fdfdf"
+                                title={section7.admission.title}
+                                image={section7.admission.image.image}
+                                alt={section7.admission.image.alt}
+                                content={section7.admission.content}
                                 backgroundPrimary="rgb(4, 116, 135)"
                                 backgroundSecondary="#88C7D2"
                                 toggle={toggleDoc1}
@@ -521,9 +377,10 @@ export const AdmissionPageTemplate = ({
                             style={{zIndex: "1000"}}  
                             className="col-lg-6 mt-3">
                             <Document 
-                                title="Documentos para matricula"
-                                image="/img/doc2.svg"
-                                alt="fdfdf"
+                                title={section7.matri.title}
+                                image={section7.matri.image.image}
+                                alt={section7.matri.image.alt}
+                                content={section7.matri.content}
                                 backgroundPrimary="#95c11f"
                                 backgroundSecondary="#D1EF81"
                                 toggle={toggleDoc2}
@@ -544,10 +401,9 @@ export const AdmissionPageTemplate = ({
                                     height="70" />
                             </div>
                             <div className="col-md-8 col-lg-9 d-flex align-items-center">
-                                <p className="color-white mb-0">
-                                    <span className="font-weight-bold">Nota: </span>
-                                    Los anteriores documentos reposarán en la secretaría académica como parte de la información histórica del estudiante, por tal motivo no se hará devolución de los mismos.
-                                </p>
+                                <div
+                                    className="color-white"
+                                    dangerouslySetInnerHTML={{ __html: converter.makeHtml(section7.notes) }} />
                             </div>
                     </div>
                 </div>
@@ -598,21 +454,261 @@ export const AdmissionPageTemplate = ({
 
 const AdmissionPage = ({
     location,
-    // data
+    data
 }) => {
+    const { 
+        section1: _section1, 
+        section2: _section2, 
+        section3: _section3, 
+        section4: _section4, 
+        section5: _section5, 
+        section6: _section6,
+        section7: _section7
+    } = data.markdownRemark.frontmatter;
+
+    console.log('data :', data);
+    const section1 = {
+        ..._section1,
+        image: { 
+            image: getImage(_section1.image),
+            alt: _section1.image.alt
+        }
+    };
+
+    const section2 = {
+        ..._section2,
+        image: { 
+            image: getImage(_section2.image),
+            alt: _section2.image.alt
+        }
+    }
+
+    const section3 = {
+        ..._section3,
+        image: { 
+            image: getImage(_section3.image),
+            alt: _section3.image.alt
+        }
+    }
+
+    const section4 = {
+        ..._section4,
+        steps: _section4.steps.map(st => ({
+            ...st,
+            numImage: {
+                ...st.numImage,
+                image: getImage(st.numImage)
+            }
+        }))
+    }
+
+    const section5 = {
+        ..._section5,
+        steps: _section5.steps.map(st => ({
+            ...st,
+            numImage: {
+                ...st.numImage,
+                image: getImage(st.numImage)
+            }
+        }))
+    }
+
+    const section6 = {
+        ..._section6,
+        costs: _section6.costs.map(cs => ({
+            ...cs,
+            image: {
+                ...cs.image,
+                image: getImage(cs.image)
+            }
+        }))
+    }
+
+    const section7 = {
+        ..._section7,
+        admission: {
+            ..._section7.admission,
+            image: {
+                ..._section7.admission.image,
+                image: getImage(_section7.admission.image)
+            }
+        },
+        matri: {
+            ..._section7.matri,
+            image: {
+                ..._section7.matri.image,
+                image: getImage(_section7.matri.image)
+            }
+        }
+    }
 
     return (
         <TemplateWrapper2 location={location}>
             <AdmissionPageTemplate 
-                section1={data.section1}
-                section2={data.section2}
-                section3={data.section3}
-                section4={data.section4} 
-                section5={data.section5} 
-                section6={data.section6} 
+                section1={section1}
+                section2={section2}
+                section3={section3}
+                section4={section4} 
+                section5={section5} 
+                section6={section6} 
+                section7={section7}
                 />
         </TemplateWrapper2>
     )
 }
 
 export default AdmissionPage;
+
+export const pageQuery = graphql`
+  query Admission {
+    markdownRemark(frontmatter: { templateKey: { eq: "admission" } }) {
+      frontmatter {
+        section1 {
+            description
+            ejes {
+                title
+            }
+            image {
+                image {
+                  childImageSharp {
+                    fluid {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                  publicURL 
+                }
+                alt
+            }
+        }
+
+        section2 {
+            image {
+                image {
+                  childImageSharp {
+                    fluid {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                  publicURL 
+                }
+                alt
+            }
+            items {
+                title
+                description
+                lst {
+                    title
+                }
+            }
+        }
+
+        section3 {
+            title
+            image {
+                image {
+                  childImageSharp {
+                    fluid {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                  publicURL 
+                }
+                alt
+            }
+            items {
+                title
+                description
+                lst {
+                    title
+                }
+            }
+        }
+
+        section4 {
+            steps {
+                description
+                numImage {
+                    image {
+                      childImageSharp {
+                        fluid {
+                          ...GatsbyImageSharpFluid
+                        }
+                      }
+                      publicURL 
+                    }
+                    alt
+                }
+            }
+        }
+
+        section5 {
+            steps {
+                description
+                numImage {
+                    image {
+                      childImageSharp {
+                        fluid {
+                          ...GatsbyImageSharpFluid
+                        }
+                      }
+                      publicURL 
+                    }
+                    alt
+                }
+            }
+        }
+
+        section6 {
+            costs {
+                title
+                image {
+                    image {
+                      childImageSharp {
+                        fluid {
+                          ...GatsbyImageSharpFluid
+                        }
+                      }
+                      publicURL 
+                    }
+                    alt
+                }
+            }
+        }
+
+        section7 {
+            notes
+            admission {
+                title
+                content
+                image {
+                    image {
+                      childImageSharp {
+                        fluid {
+                          ...GatsbyImageSharpFluid
+                        }
+                      }
+                      publicURL 
+                    }
+                    alt
+                }
+            }
+            matri {
+                title
+                content
+                image {
+                    image {
+                      childImageSharp {
+                        fluid {
+                          ...GatsbyImageSharpFluid
+                        }
+                      }
+                      publicURL 
+                    }
+                    alt
+                }
+            }
+        }
+      }
+    }
+  }
+`
