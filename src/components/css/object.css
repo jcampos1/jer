@@ -27,6 +27,12 @@
 }
 
 @media (max-width: 992px) {
+    /* DOCUMENTS */
+    .document .document__box {
+        position: relative !important;
+        top: -3rem !important;
+    }
+
     /* HEADER */
     
     #header .navbar {
@@ -63,6 +69,11 @@
 }
 
 @media (max-width: 768px) {
+    /* COSTS */
+    .cost .cost-note {
+        width: 100%;
+    }
+    
     /* FOOTER */
     .footer .social-networks {
         width: 50%;

@@ -1,3 +1,39 @@
+/* COSTS */
+.cost .cost-note {
+    border-radius: 1rem; 
+    background-color: #31404B;
+    width: 75%;
+}
+
+/* DOCUMENTS */
+.document .document__box {
+    top: 0;
+    left: 0;
+    z-index: -100;
+    border-radius: 2rem;
+    position: absolute;
+    padding-top: 4rem;
+    line-height: 2;
+    padding-bottom: 1.5rem;
+}
+
+/* SERVICES */
+
+#services {
+    z-index: -1000;
+}
+
+.photo-frame-serv {
+    top: 15px;
+    right: -15px;
+    width: 100%;
+    height: 95% !important;
+    border-radius: 33px;
+    z-index: -1;
+    background-color: #31404B;
+    z-index: -1;
+}
+
 /* COVER */
 
 .cover .cover__box {
