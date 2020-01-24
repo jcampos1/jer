@@ -70,10 +70,10 @@
 
 @media (max-width: 768px) {
     /* COSTS */
-    .cost .cost-note {
+    .cost-note {
         width: 100%;
     }
-    
+
     /* FOOTER */
     .footer .social-networks {
         width: 50%;

@@ -506,7 +506,7 @@ export const AdmissionPageTemplate = ({
                             style={{zIndex: "1000"}} 
                             className="col-lg-6 mt-3">
                             <Document 
-                                title="Documentos para matricula"
+                                title="Documentos para admisión"
                                 image="/img/doc1.svg"
                                 alt="fdfdf"
                                 backgroundPrimary="rgb(4, 116, 135)"
@@ -533,14 +533,8 @@ export const AdmissionPageTemplate = ({
                                  />
                         </div>
                     </div>
-                </div>
-            </section>
-            {/* EDUCATIVE COST */}
-            <section 
-                className="container-fluid m-0 px-0 py-5 position-relative cost">
-                <div className="container">
                     <div 
-                        className="row py-3 py-md-4 px-3 px-lg-5 mx-auto cost-note">
+                        className="row py-3 py-md-4 px-3 px-lg-5 mx-auto cost-note mt-5">
                             <div className="col-md-4 col-lg-3 d-flex align-items-center">
                                 <img 
                                     src="/img/alert.svg" 
@@ -556,6 +550,12 @@ export const AdmissionPageTemplate = ({
                                 </p>
                             </div>
                     </div>
+                </div>
+            </section>
+            {/* EDUCATIVE COST */}
+            <section 
+                className="container-fluid m-0 px-0 py-5 position-relative">
+                <div className="container">
                     <div className="d-flex justify-content-center">
                         <Feature2 title="Costos educativos" />
                     </div>
