@@ -10,7 +10,8 @@ const links = [{
     to: "procedure"
 },{
     name: "Nosotros",
-    to: "testimonials"
+    to: "/about-us",
+    redirect: true
 },{
     name: "Blog",
     to: "/blog-page",

@@ -305,7 +305,13 @@ export const AdmissionPageTemplate = ({
                     style={{zIndex: "-100", top: "0", left: "0"}}
                     src="/img/bg-service.png"
                     alt="product bg"
-                    className="w-100 h-100 position-absolute"
+                    className="img-fluid w-100 h-100 jumbo__cover position-absolute d-none d-md-block"
+                    />
+                <img 
+                    style={{zIndex: "-100", top: "0", left: "0"}}
+                    src="/img/bg-service-sm.png"
+                    alt="bg service"
+                    className="img-fluid w-100 h-100 jumbo__cover position-absolute d-block d-md-none"
                     />
                 <div className="container">
                     <div className="d-flex justify-content-center font-weight-bold">

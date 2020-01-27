@@ -63,3 +63,13 @@
     border-radius: 5px;
     background-color: #007387;
 }
+
+/* COLORS */
+
+.color-1 {
+    color: #94c11f !important;
+}
+
+.bg-1 {
+    background-color: #94c11f !important;
+}
