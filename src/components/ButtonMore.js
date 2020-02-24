@@ -27,7 +27,7 @@ const ButtonMore = ({
                             width: "18px", 
                             height: "18px",
                             color: "white",
-                            backgroundColor: "#202335"
+                            backgroundColor: "#ff7060"
                         }} 
                         className="d-inline-flex align-items-center justify-content-center rounded-circle ml-2">+</span>
                 )

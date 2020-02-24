@@ -3,19 +3,17 @@ templateKey: blog-post
 featuredimage: /img/noticia2.png
 altFeatured: fsfsff
 description: >-
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam gravida purus
-  diam, ut aliquam massa varius eu. Quisque id nisl nisl. Nunc tincidunt varius
-  ipsum vitae ultricies
-title: Problemas del aprendizaje en niños
+  Los clientes anteriormente buscaban que los productos o servicios se ajustaran a su necesidad, solo en calidad y buen precio, pero a través de los años el cambio fue evidente, los consumidores ya no solo quieren buen precio y calidad, quieren que se les dé un trato especial, que se les atienda personalmente y ... 
+title: La importancia de un buen servicio de atención al cliente en los hoteles
 date: 2020-01-20T20:09:18.685Z
 author:
   alt: sdfdsfsdf
-  name: Mayerson Gimenez
-  photo: /img/author-image.png
+  name: Autor del blog
+  photo: /img/test1.png
 featuredpost: true
-coverImage: /img/blog2-big.png
+coverImage: /img/post1-cover.png
 altCover: dsfdsfdsf
-listImage: /img/blog2Page.png
+listImage: /img/post1.png
 altList: sssfddsf
 tags:
   - asdsadsad

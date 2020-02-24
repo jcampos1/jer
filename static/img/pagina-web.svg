@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <g id="mi_pagina_web_icono" data-name="mi pagina web icono" transform="translate(-206 -1670)">
+    <g id="Grupo_1063" data-name="Grupo 1063" transform="translate(206 1670)">
+      <g id="Rectángulo_1850" data-name="Rectángulo 1850" fill="none" stroke="#fff" stroke-width="2">
+        <rect width="64" height="45" rx="3" stroke="none"/>
+        <rect x="1" y="1" width="62" height="43" rx="2" fill="none"/>
+      </g>
+      <g id="Rectángulo_1851" data-name="Rectángulo 1851" transform="translate(0 8)" fill="none" stroke="#fff" stroke-width="2">
+        <rect width="64" height="30" stroke="none"/>
+        <rect x="1" y="1" width="62" height="28" fill="none"/>
+      </g>
+    </g>
+    <g id="Grupo_1064" data-name="Grupo 1064" transform="translate(207.394 1720.824)">
+      <g id="Trazado_812" data-name="Trazado 812" transform="translate(0 0)" fill="none">
+        <path d="M4.105,0h39l4.105,13.176H0Z" stroke="none"/>
+        <path d="M 5.576820373535156 1.999995231628418 L 2.717910766601563 11.17647552490234 L 44.49076461791992 11.17647552490234 L 41.63185501098633 1.999995231628418 L 5.576820373535156 1.999995231628418 M 4.105098724365234 -4.76837158203125e-06 L 43.10357666015625 -4.76837158203125e-06 L 47.20867919921875 13.17647552490234 L -3.814697265625e-06 13.17647552490234 L 4.105098724365234 -4.76837158203125e-06 Z" stroke="none" fill="#fff"/>
+      </g>
+      <g id="Rectángulo_1852" data-name="Rectángulo 1852" transform="translate(49.606 0.176)" fill="none" stroke="#fff" stroke-width="2">
+        <rect width="12" height="13" rx="2" stroke="none"/>
+        <rect x="1" y="1" width="10" height="11" rx="1" fill="none"/>
+      </g>
+    </g>
+  </g>
+</svg>

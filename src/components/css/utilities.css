@@ -1,3 +1,7 @@
+.invalid-feedback {
+    color: #024ca5 !important;
+}
+
 /* CAROUSEL */
 .carousel .slide {
     background: none !important;
@@ -67,9 +71,21 @@
 /* COLORS */
 
 .color-1 {
-    color: #94c11f !important;
+    color: #ef6c5f !important;
 }
 
 .bg-1 {
-    background-color: #94c11f !important;
+    background-color: #ef6c5f !important;
+}
+
+.color-2 {
+    color: blue !important;
+}
+
+.bg-bolor-2 {
+    background-color: blue !important;
+}
+
+.contorn {
+    border: 6px solid #ff7060 !important;
 }

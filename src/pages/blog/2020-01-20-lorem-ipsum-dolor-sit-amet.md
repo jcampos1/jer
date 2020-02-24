@@ -10,12 +10,12 @@ title: 'Jardines infantiles: educación de calidad durante la primera infancia'
 date: 2020-01-20T20:09:18.685Z
 author:
   alt: sdfdsfsdf
-  name: Dariana Rincón
-  photo: /img/author-image.png
+  name: Autor del blog
+  photo: /img/test3.png
 featuredpost: true
 coverImage: /img/blog1-big.png
 altCover: dsfdsfdsf
-listImage: /img/blog1Page.png
+listImage: /img/post3.png
 altList: sssfddsf
 tags:
   - dsfdsfds

@@ -3,116 +3,117 @@ import FormSection from './FormSection';
 import { Link, StaticQuery, graphql } from 'gatsby';
 
 const navigationMap = [{
-    name: "Oferta educativa",
-    to: "profile"
+    name: "Inicio",
+    to: "/"
 },{
-    name: "Servicios",
-    to: "procedure"
+    name: "Admin Hicome",
+    to: "/"
 },{
-    name: "Nosotros",
-    to: "testimonials"
-},{
-    name: "Blog",
-    to: "/blog-page",
-    redirect: true
+    name: "Características",
+    to: "/"
 }, {
-    name: "Circular",
-    to: "product"
+    name: "Clientes",
+    to: "/"
 }, {
-    name: "Admisión",
-    to: "product"
+    name: "Regístrate",
+    to: "/"
 }];
 
-const contacts = [{
-    icon: "/img/youtube.svg",
-    alt: "fddfd",
-    url: "/"
-}, {
-    icon: "/img/instagram.svg",
-    alt: "fddfd",
-    url: "/"
-}, {
-    icon: "/img/twitter.svg",
-    alt: "fddfd",
-    url: "/"
-}, {
-    icon: "/img/facebook.svg",
-    alt: "fddfd",
-    url: "/"
-}];
+const socialNetworks = {
+    whatsapp: {
+        image: "/img/ws.svg",
+        alt: "wathsapp"
+    }, 
+    instagram: {
+        image: "/img/instagram.svg",
+        alt: "wathsapp"
+    }, 
+    youtube: {
+        image: "/img/youtube.svg",
+        alt: "wathsapp"
+    }, 
+    facebook: {
+        image: "/img/facebook.svg",
+        alt: "wathsapp"
+    }
+};
 
 const Footer2 = ({
     data
 }) => {
-    const { phones } = data.markdownRemark.frontmatter.contacts;
+    const { phones, email } = data.markdownRemark.frontmatter.contacts;
+    const { 
+        networks 
+    } = data.markdownRemark.frontmatter;
 
     return (
-        <div>
-            {/* Form section */}
-            <FormSection />
-            <footer
-                className="footer px-3 px-md-5 py-3 w-100">
-                <div className="row">
-                    <div className="col-md-6 d-flex justify-content-between align-items-center mb-4 mb-md-0">
-                        <img
-                            width="80"
-                            className="img-fluid"
-                            src="/img/logo.svg" 
-                            alt="placeholder" 
-                            />
-                        <div>
-                            {
-                                navigationMap.slice(0,3).map((item, index) => (
-                                    <Link 
-                                        key={`nav${index}`}
-                                        to={item.to}
-                                        className={`nav-link font-weight-bold text-white pb-0`}>
-                                        {item.name}
-                                    </Link>
-                                ))
-                            }
-                        </div>
-                        
-                        <div>
-                            {
-                                navigationMap.slice(3,6).map((item, index) => (
-                                    <Link 
-                                        key={`nav${index}`}
-                                        to={item.to}
-                                        className={`nav-link font-weight-bold text-white pb-0`}>
-                                        {item.name}
-                                    </Link>
-                                ))
-                            }
-                        </div>
+        <footer
+            className="footer px-3 px-md-5 py-3 w-100 bg-1">
+            <div className="row text-white">
+                <div className="col-md-4 d-flex align-items-center d-block d-md-none mb-4">
+                    <img
+                        width="100"
+                        className="img-fluid mx-auto"
+                        src="/img/logo-footer.png" 
+                        alt="placeholder" 
+                        />
+                </div>
+                <div className="col-md-4">
+                    <div className="mb-4 d-flex align-items-center">
+                        <span className="mr-2 font-weight-bold">Contacto</span>
+                        <hr className="bg-white w-100" />
                     </div>
-                    <div className="contacts d-flex flex-row flex-md-column align-items-center col-md-3 col-lg-2 offset-md-3 offset-lg-4">
-                        <div className="social-networks mr-3 mr-md-0">
-                            <div className="d-flex align-items-center justify-content-between">
-                                {
-                                    contacts.map((item, index) => (
-                                        <a href={item.url}>
-                                            <img 
-                                                src={item.icon}
-                                                alt={item.alt}
-                                                className="img-fluid" />
-                                        </a>
-                                    ))
-                                }
-                            </div>
-                            <hr className="bg-white mb-0 mb-md-3" />
-                        </div>
-                        <div className="phones d-flex flex-column mr-auto text-white font-weight-bold">
-                            {
-                                phones.map((item, index) => (
-                                    <small key={`pho${index}`}>{item.phone}</small>
-                                ))
-                            }
-                        </div>
+                    <div className="d-flex align-items-center mb-3">
+                        <span>{email}</span>
+                    </div>
+                    <div className="d-flex flex-column justify-content-center">
+                        {
+                            phones.map(ph => (
+                                <span>{ph.phone}</span>
+                            ))
+                        }
+                    </div>
+                    <div className="d-flex align-items-center mt-3">
+                        {
+                            Object.keys(networks).map((net, index) => (
+                                <a href={networks[net]} target="_blank" without rel="noopener noreferrer">
+                                    <img
+                                        width="35px"
+                                        key={`red${index}}`} 
+                                        src={socialNetworks[net].image} 
+                                        alt={socialNetworks[net].alt} 
+                                        className="mx-auto mr-md-2" />
+                                </a>
+                            ))
+                        }
                     </div>
                 </div>
-            </footer>
-        </div>
+                <div className="col-md-4">
+                    <div className="mb-4 d-flex align-items-center">
+                        <span className="mr-2 font-weight-bold">Menu</span>
+                        <hr className="bg-white w-100" />
+                    </div>
+                    {
+                        navigationMap.map((item, index) => (
+                            <div className="d-flex align-items-center mb-2">
+                                <span
+                                    className="mr-2 bg-white rounded-circle" 
+                                    style={{width: "5px", height: "5px"}} />
+                                <span style={{opacity: ".8"}}>{item.name}</span>
+                            </div>
+                        ))
+                    }
+                </div>
+                <div className="col-md-4 d-md-flex align-items-center d-none">
+                    <img
+                        width="100"
+                        className="img-fluid ml-md-auto"
+                        src="/img/logo-footer.png" 
+                        alt="placeholder" 
+                        />
+                </div>
+            </div>
+        </footer>
     )
 }
 
@@ -123,9 +124,16 @@ export default props => (
             markdownRemark(frontmatter: { templateKey: { eq: "landing" } }) {
                 frontmatter {
                     contacts {
+                        email
                         phones {
                             phone
                         }
+                    }
+                    networks {
+                        facebook
+                        instagram
+                        whatsapp
+                        youtube
                     }
                 }
             }

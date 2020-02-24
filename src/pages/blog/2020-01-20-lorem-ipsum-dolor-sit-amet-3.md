@@ -3,21 +3,18 @@ templateKey: blog-post
 featuredimage: /img/noticia3.png
 altFeatured: fsfsff
 description: >-
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam gravida purus
-  diam, ut aliquam massa varius eu. Quisque id nisl nisl. Nunc tincidunt varius
-  ipsum vitae ultricies
+  Para iniciar, debemos aclarar que Facebook es la red social con mayor número de usuarios en todo el mundo, misma a la que actualmente ingresan más de 2 mil millones de usuarios al día, esto de acuerdo el informe presentado por WeAreSocial y Hootsuite. 
 title: >-
-  Educación personalizada: Las ventajas de trabajar las debilidades e impulsar
-  las fortalezas en los alumnos de preescolar, primaria y secundaria
+  Beneficios de tener página o Fan Page de Facebook para tu hospedaje
 date: 2020-01-20T20:09:18.685Z
 author:
   alt: sdfdsfsdf
-  name: Gerswin Pineda
-  photo: /img/author-image.png
+  name: Autor del blog
+  photo: /img/test2.png
 featuredpost: true
 coverImage: /img/blog3-big.png
 altCover: dsfdsfdsf
-listImage: /img/blog3Page.png
+listImage: /img/post2.png
 altList: sssfddsf
 tags:
   - dsfdsf

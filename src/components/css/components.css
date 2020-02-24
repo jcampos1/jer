@@ -1,3 +1,26 @@
+/* BUTONS */
+
+.form-mobile {
+    display: none;
+}
+
+.btn-border-2 {
+    border: 1px solid #024ca5;
+    color: #024ca5 !important;
+    font-weight: bold;
+}
+.btn-border-2:hover {
+    color: white !important;
+    background-color: #024ca5 !important;
+}
+
+.btn-fill-2 {
+    background-color: #024ca5 !important;
+    color: white !important;
+    font-weight: bold;
+}
+
+
 /* COSTS */
 .cost-note {
     border-radius: 1rem; 
@@ -44,26 +67,35 @@
 
 /* COVER */
 
+#jumbo .jumbo__cover {
+    height: fit-content !important;
+    object-fit: cover;
+}
+
 .cover .cover__box {
     position: absolute;
     top: 50%;
-    left: 2rem;
-    width: 500px;
-    transform: translate(0, -50%);
+    left: 10rem;
+    width: 550px;
+    transform: translate(0, 60%);
+    background-color: rgb(220,220,220); /* Fallback color */
+    background-color: rgba(220,220,220, 0.2); /* Black w/opacity/see-through */
+    color: white;
+    font-weight: bold;
+    z-index: 2;
+    padding: 20px;
 }
 
-.cover .cover__box .cover__box__list {
-    color: #636363; 
-    font-size: 21px;
+.cover .cover__form {
+    position: absolute;
+    top: 50%;
+    right: 10rem;
+    /* width: 550px; */
+    transform: translate(0, -40%);
 }
+
 
 /* FOOTER */
-
-.footer {
-    background-color: #001321;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-}
 
 .footer .social-networks {
     width: 100%;
@@ -95,21 +127,20 @@
 
 /* HEADER */
 #header .header__logo {
-    width: 70px;
+    width: 200px;
 }
 
 #header .navbar {
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
+    /* border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px; */
     box-shadow: 0 6px 9px 0 rgba(0, 0, 0, 0.06);
     z-index: 100;
     position: relative;
 }
 
-#header .navbar-nav a.active {
+/* #header .navbar-nav a.active {
     color: #95c11f !important;
-    /* border-bottom: 1px solid #17a4d6; */
-}
+} */
 
 /* ABOUT */
 #about video {
@@ -216,14 +247,6 @@
 
 /* BLOG */
 
-.blog-page .blog-page__content {
-    position: absolute;
-    top: 50%; 
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
-}
-
 .blog-page .blog-page__content h1 { 
     font-size: 3rem;
 }
@@ -243,8 +266,33 @@
 
 /* BLOG POST */
 
+#blog-post .blog-post__author {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 100;
+        width: 100%;
+}
+
+#blog-post .blog-post__author-content {
+    position: relative;
+    top: -6rem;
+    width: 80%;
+}
+
+#blog-post .blog-post__container {
+    position: relative;
+    top: -6rem;
+}
+
+#blog-post .blog-post__body {
+    position: relative;
+    top: -6rem;
+}
+
 #blog-post .jumbotron img {
-    object-fit: cover;
+    object-fit: cover !important;
     height: 392px;
 } 
 
@@ -271,23 +319,16 @@
 }
 
 #form .form-hubspot {
-    width: 350px;
+    width: 400px;
     box-shadow: 0 1.5px 3px 0 rgba(0, 0, 0, 0.16);
-    background-color: #00ace2;
-    border-radius: 50px;
+    background-color: #ff7060;
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
     color: white;
 }
 
-#form .form-hubspot input, #form .form-hubspot select { 
-    font-size: 14px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.21;
-    letter-spacing: 0.09px;
-    text-align: left;
-    color: #6e6e6e;
-    height: 3rem;
+#form .form-hubspot input {
+    height: 3.5rem !important;
 }
 
 

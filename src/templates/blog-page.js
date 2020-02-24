@@ -6,6 +6,7 @@ import Feature2 from '../components/Feature2'
 import SocialNetworks from '../components/SocialNetworks'
 import ButtonMore from '../components/ButtonMore';
 import { graphql } from 'gatsby';
+import { getImage } from '../utils';
 
 const Post = ({
     image,
@@ -18,13 +19,46 @@ const Post = ({
 }) => {
     return (
         <section
-          className="shadow-sm blog-page jumbotron jumbotron-fluid p-0 m-0 position-relative">
+          className="blog-page jumbotron pt-0 jumbotron-fluid position-relative bg-white">
             <img 
                 style={{objectFit: "cover"}}
                 className="img-fluid jumbo__cover w-100 position-relative"
                 src={image}
                 alt={alt} />
-            <div
+            <div className="blog-page__content row px-3 pt-3 px-md-5 pt-md-5">
+                <div className="col-md-2 mb-3 mb-md-0">
+                    <img
+                        src={author.image} alt={author.alt} className="img-fluid contorn rounded-circle d-flex mx-auto mx-md-0" />
+                </div>
+                <div className="col-md-10">
+                    <h3 className="mb-3 font-weight-bold">{title}</h3>
+                    <div className="d-flex flex-column flex-md-row">
+                        <div className="d-flex align-items-center mr-3 mr-md-5">
+                            <img 
+
+                                className="icon-meta mr-2"
+                                src="/img/icon-author.svg"
+                                alt="icon author" />
+                                <span className="text-muted">{author.name}</span>
+                        </div>
+                        <div className="d-flex align-items-center">
+                            <img 
+                                className="icon-meta mr-2"
+                                src="/img/icon-date.svg"
+                                alt="icon author" />
+                                <span className="text-muted">{date}</span>
+                        </div>
+                    </div>
+                    <p className="text-muted mt-3">
+                        {description}
+                    </p>
+                    <ButtonMore
+                        isShowIcon={false} 
+                        label="Seguir leyendo"
+                        className="btn btn-info bg-1 border-0 px-4 color-white" to={slug} />
+                </div>
+            </div>
+            {/* <div
                 className="blog-page__content">
                 <h1 className="color-white font-weight-bold text-center">
                     {title}
@@ -53,37 +87,42 @@ const Post = ({
                         isShowIcon={false} 
                         className="btn btn-info font-weight-bold px-4 color-white" to={slug}/>
                 </div>
-            </div>
+            </div> */}
         </section>
     )
 }
 
 const BlogPage = ({
-    drName,
-    networks,
     location,
     data
 }) => {
     const posts = data.allMarkdownRemark.edges;
 
+    console.log('posts :', posts);
     return (
         <TemplateWrapper2 location={location}>
-            {
-                posts.map((item, index) => (
-                    <div 
-                        key={`post${index}`}
-                        className="mb-3 mb-md-5">
-                        <Post 
-                            image={item.node.frontmatter.listImage.childImageSharp.fluid.src}
-                            alt={item.node.frontmatter.altList}
-                            title={item.node.frontmatter.title}
-                            author={item.node.frontmatter.author.name}
-                            date={item.node.frontmatter.date}
-                            slug={item.node.fields.slug}
-                            description={item.node.frontmatter.description} />
-                    </div>
-                ))
-            }
+            <div className="container my-3 my-md-5 px-0 ">
+                {
+                    posts.map((item, index) => (
+                        <div 
+                            key={`post${index}`}
+                            className="mb-3 mb-md-5">
+                            <Post 
+                                image={item.node.frontmatter.listImage.childImageSharp.fluid.src}
+                                alt={item.node.frontmatter.altList}
+                                title={item.node.frontmatter.title}
+                                author={{
+                                    name: item.node.frontmatter.author.name,
+                                    image: getImage(item.node.frontmatter.author, "photo"),
+                                    alt: item.node.frontmatter.author.alt
+                                }}
+                                date={item.node.frontmatter.date}
+                                slug={item.node.fields.slug}
+                                description={item.node.frontmatter.description} />
+                        </div>
+                    ))
+                }
+            </div>
         </TemplateWrapper2>
     )
 }
@@ -103,6 +142,14 @@ export const pageQuery = graphql`
                     description
                     author {
                         name
+                        photo {
+                            childImageSharp {
+                                fluid {
+                                    ...GatsbyImageSharpFluid
+                                }
+                            }
+                        }
+                        alt
                     }
                     date(formatString: "DD/MM/YYYY")
                     listImage {
